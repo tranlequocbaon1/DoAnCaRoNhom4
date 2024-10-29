@@ -1,0 +1,15 @@
+﻿  main.cpp
+  Source.cpp
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(832,6): warning C4101: 'a': unreferenced local variable
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(832,9): warning C4101: 'b': unreferenced local variable
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1275,6): warning C4101: 'a': unreferenced local variable
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1275,9): warning C4101: 'b': unreferenced local variable
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1582,10): warning C4566: character represented by universal-character-name '\u1EC7' cannot be represented in the current code page (1258)
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1584,10): warning C4566: character represented by universal-character-name '\u1ED7' cannot be represented in the current code page (1258)
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1584,10): warning C4566: character represented by universal-character-name '\u1EC7' cannot be represented in the current code page (1258)
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1587,11): warning C4566: character represented by universal-character-name '\u1EC7' cannot be represented in the current code page (1258)
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1587,11): warning C4566: character represented by universal-character-name '\u00E3' cannot be represented in the current code page (1258)
+C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Source.cpp(1587,11): warning C4566: character represented by universal-character-name '\u1EE3' cannot be represented in the current code page (1258)
+  WriteName2P.cpp
+  Generating Code...
+  Main.vcxproj -> C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\x64\Debug\DoAnCaRo.exe
