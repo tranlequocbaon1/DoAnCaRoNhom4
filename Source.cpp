@@ -275,6 +275,7 @@ int TestBoard() {
 	GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 4);
 	cout << "y:" << _B[_X/5][_Y/2 - 4] << " " << _B[_X/5][_Y/2 - 3] << " " << _B[_X/5][_Y/2 - 2]
 		<< " " << _B[_X/5][_Y/2 - 1] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5][_Y/2 + 1] << " "
+	
 		<< _B[_X/5][_Y/2 + 2] << " " << _B[_X/5][_Y/2 + 3] << " " << _B[_X/5][_Y/2 + 4] << "                 "; //check ket qua
 	if (checkHoa(_B) == 0) return 0;
 
@@ -895,7 +896,7 @@ void startGame() {
 				case -1:
 					step();
 					_B[_X/5][_Y/2] = -1;
-					SetConsoleTextAttribute(hStdOut, 12 | (8 << 4));
+					SetConsoleTextAttribute(hStdOut, 12 | (9 << 4));
 					cout << "X";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
 						if ((_B[_X/5][_Y/2]) == 1) {
@@ -921,7 +922,7 @@ void startGame() {
 				case 1:
 					stepO();
 					_B[_X/5][_Y/2] = 1;
-					SetConsoleTextAttribute(hStdOut, 0 | (8 << 4));
+					SetConsoleTextAttribute(hStdOut, 0 | (9 << 4));
 					cout << "O";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
 						if ((_B[_X/5][_Y/2]) == 1) {
