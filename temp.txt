@@ -1,0 +1,14 @@
+ Volume in drive C is OS
+ Volume Serial Number is E68B-C152
+
+ Directory of C:\Users\PC\OneDrive - VNU-HCMUS\Desktop\KHTN_FIT\DoAnCaRo\Saves
+
+10/28/2024  12:19 PM    <DIR>          .
+10/29/2024  12:16 PM    <DIR>          ..
+10/29/2024  12:17 PM                27 example.txt
+10/27/2024  02:54 PM               332 file1.txt
+10/27/2024  02:55 PM               331 file2.txt
+10/27/2024  02:55 PM               337 file3.txt
+10/28/2024  12:19 PM               325 q.txt
+               5 File(s)          1,352 bytes
+               2 Dir(s)  133,917,364,224 bytes free

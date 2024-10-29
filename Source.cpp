@@ -20,7 +20,7 @@ int mainmenu()
 {
 	int choice = 0;
 	char key;
-	nhan:drawcaro();
+nhan:drawcaro();
 	while (true) {
 		GotoXY(0, 17);
 		displayMenu(choice);
@@ -301,12 +301,12 @@ int TestBoard() {
 			countCP += 1;
 			if (countCP == 5) {
 				for (int j = 0;j < 5;j++) {
-					GotoXY(_X +20  - (startOcp + j) * 5, _Y - 8 + (startOcp + j) * 2);
+					GotoXY(_X + 20 - (startOcp + j) * 5, _Y - 8 + (startOcp + j) * 2);
 					SetColor(0, 14);
 					cout << " 0 ";
 
 				}
-				return -1;
+				return 1;
 			}
 		}
 		else { countCP = 0;startOcp = -1; }
@@ -314,7 +314,7 @@ int TestBoard() {
 	//cheo chinh
 	for (int i = 0;i <= 9;i++) {
 		if (_B[_X - 20 + i * 5][_Y - 8 + i * 2] == -1) {
-			if(countXCC==0) startXcc = i;
+			if (countXCC == 0) startXcc = i;
 			countXCC += 1;
 			if (countXCC == 5) {
 				for (int j = 0;j < 5;j++) {
@@ -342,7 +342,7 @@ int TestBoard() {
 					GotoXY(_X - 20 + (startOcc + j) * 5, _Y - 8 + (startOcc + j) * 2);
 					SetColor(0, 14);
 					cout << " O ";
-					
+
 				}
 				return 1;
 			}
@@ -359,6 +359,7 @@ int TestBoard() {
 				startXt = i;
 			}
 			countY += 1;
+			_B[25][26] = 0;
 			if (countY == 5) {
 				for (int j = 0;j < 5;j++) {
 					GotoXY(_X, _Y - 8 + (startXt + j) * 2);
@@ -388,30 +389,30 @@ int TestBoard() {
 			}
 		}
 		else {
-				countX = 0;startOt = -1;
+			countX = 0;startOt = -1;
 		}
 	}
 
 
-		//ngang
+	//ngang
 	for (int i = 0;i <= 9;i++) {
-			if (_B[_X - 20 + i * 5][_Y] == -1) {
-				if (countX == 0) startXn = i;
-				countX += 1;
-				if (countX == 5) {
-					for (int j = 0; j < 5; j++) {
-						GotoXY(_X - 20 + (startXn + j) * 5, _Y);
-						SetColor(4, 14);
-						cout << " X ";
-					}
-					return -1;
+		if (_B[_X - 20 + i * 5][_Y] == -1) {
+			if (countX == 0) startXn = i;
+			countX += 1;
+			if (countX == 5) {
+				for (int j = 0; j < 5; j++) {
+					GotoXY(_X - 20 + (startXn + j) * 5, _Y);
+					SetColor(4, 14);
+					cout << " X ";
 				}
-			}
-			else {
-				countX = 0;
-				startXn = -1;
+				return -1;
 			}
 		}
+		else {
+			countX = 0;
+			startXn = -1;
+		}
+	}
 
 	for (int i = 0;i <= 9;i++) {
 		if (_B[_X - 20 + i * 5][_Y] == 1) {
@@ -419,19 +420,19 @@ int TestBoard() {
 			countX += 1;
 			if (countX == 5) {
 				for (int j = 0; j < 5; j++) {
-						GotoXY(_X - 20 + (startOn + j) * 5, _Y);
-						SetColor(0, 14);
-						cout << " O ";
-					}
-					return 1;
+					GotoXY(_X - 20 + (startOn + j) * 5, _Y);
+					SetColor(0, 14);
+					cout << " O ";
 				}
+				return 1;
 			}
+		}
 		else {
 			countX = 0;startOn = -1;
 		}
 	}
 	return 2;
-	
+
 }
 
 int CheckBoard(int pX, int pY) {
@@ -487,7 +488,7 @@ int GetConsoleWidth() {
 
 string player1, player2;
 void InputPlayerNames() {
-	
+
 	system("cls");
 	SetConsoleOutputCP(CP_UTF8);
 
@@ -684,7 +685,7 @@ void drawcaro() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
-	
+
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	cout << u8R"(     
                               ╔═█████████    ╔═█████████     ╔═█████████     ╔═█████████	
@@ -704,50 +705,50 @@ void drawcaro() {
 void displayMenu(int selected) {
 	const string options[] = { "Bat dau tro choi", "Huong dan","About","Load game","Setting","Thoat" };
 	const int numOptions = sizeof(options) / sizeof(options[0]);
-		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
-SetConsoleOutputCP(CP_UTF8);
+	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+	SetConsoleOutputCP(CP_UTF8);
 
-cout << u8"                                              ┌────────────────────────┐" << endl;
-for (int i = 0; i < numOptions; i++) {
+	cout << u8"                                              ┌────────────────────────┐" << endl;
+	for (int i = 0; i < numOptions; i++) {
 
-	if (i == selected) {
-		// Mục đang chọn với màu chữ đỏ
-		SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
-		SetConsoleOutputCP(CP_UTF8);
+		if (i == selected) {
+			// Mục đang chọn với màu chữ đỏ
+			SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
+			SetConsoleOutputCP(CP_UTF8);
 
-		cout<< u8"                                              │   >> " << options[i];
-		if      (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
-		else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
-		else if (options[i] == "About") cout << u8"             │ " << "\n";
-		else if (options[i] == "Load game") cout << u8"         │ " << "\n";
-		else if (options[i] == "Setting") cout << u8"           │ " << "\n";
-		else if (options[i] == "Thoat") cout << u8"             │ " << "\n";
+			cout << u8"                                              │   >> " << options[i];
+			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
+			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
+			else if (options[i] == "About") cout << u8"             │ " << "\n";
+			else if (options[i] == "Load game") cout << u8"         │ " << "\n";
+			else if (options[i] == "Setting") cout << u8"           │ " << "\n";
+			else if (options[i] == "Thoat") cout << u8"             │ " << "\n";
+		}
+		else {
+			// Mục không chọn với màu mặc định (trắng)
+			SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+			// Màu mặc định
+			cout << u8"                                              │      " << options[i];
+			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
+			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
+			else if (options[i] == "About") cout << u8"             │ " << "\n";
+			else if (options[i] == "Load game") cout << u8"         │ " << "\n";
+			else if (options[i] == "Setting") cout << u8"           │ " << "\n";
+			else if (options[i] == "Thoat") cout << u8"             │ " << "\n";
+		}
 	}
-	else {
-		// Mục không chọn với màu mặc định (trắng)
-		SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
-		// Màu mặc định
-		cout<< u8"                                              │      " << options[i];
-		if      (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
-		else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
-		else if (options[i] == "About") cout << u8"             │ " << "\n";
-		else if (options[i] == "Load game") cout << u8"         │ " << "\n";
-		else if (options[i] == "Setting") cout << u8"           │ " << "\n";
-		else if (options[i] == "Thoat") cout << u8"             │ " << "\n";
-	}
-}
-cout << u8"                                              └────────────────────────┘" << endl;
+	cout << u8"                                              └────────────────────────┘" << endl;
 
 
-std::cout << endl;
+	std::cout << endl;
 }
 void Setting() {
 	int choice = 0;
 	char key;
 	while (true) {
-		
+
 		displaysetting(choice);
 		key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
 
@@ -804,7 +805,7 @@ void displaysetting(int selected) {
 			cout << u8"                                              │   >> " << options[i];
 			if (options[i] == "SFX") cout << u8"               │ " << "\n";
 			else if (options[i] == "LANGUAGE") cout << u8"          │ " << "\n";
-			
+
 		}
 		else {
 			// Mục không chọn với màu mặc định (trắng)
@@ -843,14 +844,31 @@ void startGame() {
 	pastcoord.y = 0;
 
 	while (1) {
+		if (_X == 9 && _Y == 24) {
 
+			_X = 10;
+			_Y = 24;
+			_B[10][24] = _A[10][24].c;
+		}
+		if (_X == 1 && _Y == 26) {
+
+			_X = 10;
+			_Y = 24;
+			_B[10][24] = _A[10][24].c;
+		}
+		if (_X == 1 && _Y == 24) {
+
+			_X = 10;
+			_Y = 24;
+			_B[10][24] = _A[10][24].c;
+		}
 		_COMMAND = toupper(_getch());
 		if (_COMMAND == 27) {
 			click();
 			Sleep(500);
 			scoreP1 = 0;
 			scoreP2 = 0;
-			
+
 			ExitGame();
 			mainmenu();
 			return;
@@ -896,7 +914,7 @@ void startGame() {
 					pastcoord.x = _X;
 					pastcoord.y = _Y;
 
-					
+
 					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
 					break;
@@ -921,7 +939,7 @@ void startGame() {
 					}
 					pastcoord.x = _X;
 					pastcoord.y = _Y;
-					
+
 					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
 					break;
 				case 0:
@@ -934,7 +952,7 @@ void startGame() {
 					case 0:
 
 
-						if (toupper(AskContinue())=='N'|| AskContinue() == 27) {
+						if (toupper(AskContinue()) == 'N' || AskContinue() == 27) {
 							//system("pause");
 							Sleep(500);
 							ResetKetqua(_B);
