@@ -792,34 +792,40 @@ void displaysetting(int selected) {
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 	clearScreen();
 	cout << u8R"(     
-                                      SETTING
+                           SETTING
 )" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
 	SetConsoleOutputCP(CP_UTF8);
 	cout << u8"                                              ┌────────────────────────┐" << endl;
 	for (int i = 0; i < numOptions; i++) {
-
 		if (i == selected) {
-			// Mục đang chọn với màu chữ đỏ
-			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4)); // Màu chữ xanh lam, nền trắng // Màu chữ đỏ
+			// Mục đang chọn với màu chữ xanh lam
+			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 			SetConsoleOutputCP(CP_UTF8);
 			cout << u8"                                              │   >> " << options[i];
-			if (options[i] == "SFX") cout << u8"               │ " << "\n";
-			else if (options[i] == "LANGUAGE") cout << u8"          │ " << "\n";
-
+			if (i == 0) { // Chỉ hiển thị trạng thái cho SFX
+				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
+			}
+			else {
+				cout << u8"          │" << endl; // Không hiển thị trạng thái cho LANGUAGE
+			}
 		}
 		else {
 			// Mục không chọn với màu mặc định (trắng)
 			SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
-			// Màu mặc định
 			cout << u8"                                              │      " << options[i];
-			if (options[i] == "SFX") cout << u8"               │ " << "\n";
-			else if (options[i] == "LANGUAGE") cout << u8"          │ " << "\n";
+			if (i == 0) { // Chỉ hiển thị trạng thái cho SFX
+				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
+			}
+			else {
+				cout << u8"          │" << endl; // Không hiển thị trạng thái cho LANGUAGE
+			}
 		}
 	}
 	cout << u8"                                              └────────────────────────┘" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 }
+
 
 void startGame() {
 
@@ -1352,20 +1358,18 @@ void restartGame() {
 				case -1: stepO();
 					SetConsoleTextAttribute(hStdOut, 12 | (15 << 4));
 					cout << "X";
-					_B[_X/5][_Y/2] = -1; // Cập nhật bàn cờ
+					_B[_X][_Y] = -1; // Cập nhật bàn cờ
 					GotoXY(0, 0);
 					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
-					cout << "den O  "; SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
 					break;
 				case 1: step();
 					SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 					cout << "O";
-					_B[_X/5][_Y/2] = 1; // Cập nhật bàn cờ
+					_B[_X][_Y] = 1; // Cập nhật bàn cờ
 					GotoXY(0, 0);
 					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
-					cout << "den X "; SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
 					break;
 				case 0: // Nếu ô trống
 					ValidEnter = false; // Không làm gì, ô đã có X hoặc O
@@ -1426,7 +1430,7 @@ void restartGame() {
 
 							}
 						}
-						if (AskContinue() != 'Y') {
+						if (AskContinue() == 'N' || AskContinue() == 27) {
 							//system("pause");
 							Sleep(500);
 							ResetKetqua(_B);
@@ -1448,7 +1452,7 @@ void restartGame() {
 
 
 
-						if (AskContinue() != 'Y') {
+						if (AskContinue() == 'N' || AskContinue() == 27) {
 							//system("pause");
 							Sleep(500);
 							ResetKetqua(_B);
@@ -1472,6 +1476,8 @@ void reStartGame() {
 	DrawBoard(BOARD_SIZE);
 
 }
+
+
 void resetData() {
 	for (int i = 0;i < BOARD_SIZE;i++) {
 		for (int j = 0;j < BOARD_SIZE;j++) {
@@ -1486,13 +1492,13 @@ void resetData() {
 
 //final
 void showloadgame() {
+
 	clearScreen();
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	while (true) { // Vòng lặp để cập nhật màn hình sau mỗi thao tác
+	while (true) {
 		clearScreen();
-
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
 		clearScreen();
 
@@ -1506,91 +1512,145 @@ void showloadgame() {
                            ║ ██          ║ ██     ║ ██   ║ ██     ║ ██   ║ ██    ║ ██     
                            ║ █████████   ╚╦ █████████    ║ ██     ║ ██   ║ █████████      
                            ╚════════╝     ╚══════╝       ╚══╝     ╚══╝   ╚══════╝           
-		)" << std::endl;
+        )" << std::endl;
 
 		cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
 		cout << u8"                               │            DANH SACH FILE SAVE             │" << "\n";
 		cout << u8"                               │                                            │" << "\n";
 
 		vector<string> savedFiles;
-		showSavedFiles(savedFiles); // Lấy danh sách file lưu mới
+		showSavedFiles(savedFiles);
 
-		// Hiển thị tên file trong bảng
-		for (const auto& file : savedFiles) {
-			string formattedFileName = file;
-			if (formattedFileName.length() > 40) {
-				formattedFileName = formattedFileName.substr(0, 37) + "...";
+		int selectedFileIndex = 0;
+		bool selectingFile = false;
+
+		while (true) {
+			// Xóa màn hình chỉ khi người dùng di chuyển
+			if (selectingFile) {
+				clearScreen();
 			}
-			cout << u8"                               │  " << formattedFileName
-				<< std::string(40 - formattedFileName.length(), ' ') << u8"  │" << "\n";
-		}
+			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-		cout << u8"                               └────────────────────────────────────────────┘" << "\n";
-		cout << "Ban co muon Load File khong? (Y/N) hoac xoa file? (D): ";
-		char choice = _getch();
-		string fileName;
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+			clearScreen();
 
-		if (choice == 'n' || choice == 'N') {
-			click();
-			return;
-		}
-		else if (choice == 'q' || choice == 'Q') {
-			click();
-			return;
-		}
-		else if (choice == 'd' || choice == 'D') {
-			click();
-			cout << endl << "Nhap ten file save de xoa (khong can phan mo rong .txt): ";
-			cin >> fileName;
-			deleteSavedFile(fileName); // Gọi hàm xóa tệp
-		}
-		else if (choice == 'y' || choice == 'Y') {
-			click();
-			cout << endl << "Nhap ten file save de load (khong can phan mo rong .txt): ";
-			cin >> fileName;
+			cout << u8R"(
+                           ╔═██             █████████     ╔═█████████    ╔═█████████       
+                           ║ ██          ╔╝██    ╚╗ ██   ╔╝██═════╗ ██   ║ ██    ║ ██    
+                           ║ ██          ║ ██     ║ ██   ║ ██     ║ ██   ║ ██    ║ ██      
+                           ║ ██          ║ ██     ║ ██   ║ ██     ║ ██   ║ ██    ║ ██      
+                           ║ ██          ║ ██     ║ ██   ║ ███████████   ║ ██    ║ ██      
+                           ║ ██          ║ ██     ║ ██   ║ ██═════╗ ██   ║ ██    ║ ██      
+                           ║ ██          ║ ██     ║ ██   ║ ██     ║ ██   ║ ██    ║ ██     
+                           ║ █████████   ╚╦ █████████    ║ ██     ║ ██   ║ █████████      
+                           ╚════════╝     ╚══════╝       ╚══╝     ╚══╝   ╚══════╝           
+        )" << std::endl;
 
-			if (fileName == "q") {
-				cout << "Da ve menu." << endl;
-				mainmenu();
-			}
-
-			string fullFileName = "Saves/" + fileName + ".txt";
-			ifstream loadFile(fullFileName.c_str());
-
-			if (!loadFile.is_open()) {
-				error();
-				cout << "Loi: Khong the mo file save! Kiem tra lai ten file va thu muc 'Saves/'." << endl;
-				return;
-			}
-
-			if (loadFile.peek() == ifstream::traits_type::eof()) {
-				error();
-				cout << "Loi: File save rong hoac khong dung dinh dang!" << endl;
-				return;
-			}
-
-			for (int i = 0; i < BOARD_SIZE; i++) {
-				for (int j = 0; j < BOARD_SIZE; j++) {
-					loadFile >> _A[i][j].c;
+			cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
+			cout << u8"                               │            DANH SACH FILE SAVE             │" << "\n";
+			cout << u8"                               │                                            │" << "\n";
+			// Hiển thị tên file trong bảng và đánh dấu tệp đang chọn
+			for (size_t i = 0; i < savedFiles.size(); i++) {
+				string formattedFileName = savedFiles[i];
+				if (formattedFileName.length() > 40) {
+					formattedFileName = formattedFileName.substr(0, 37) + "...";
+				}
+				if (i == selectedFileIndex && selectingFile) {
+					cout << u8"                               │ > " << formattedFileName
+						<< std::string(38 - formattedFileName.length(), ' ') << u8"   │" << "\n";
+				}
+				else {
+					cout << u8"                               │   " << formattedFileName
+						<< std::string(40 - formattedFileName.length(), ' ') << u8" │" << "\n";
 				}
 			}
 
-			int turn;
-			loadFile >> turn;
-			_TURN = (turn == 1);
+			cout << u8"                               └────────────────────────────────────────────┘" << "\n";
+			cout << "Ban co muon Load File khong? (Y/N) hoac xoa file? (D): ";
+			char choice = _getch();
 
-			loadFile >> _X >> _Y;
-			loadFile >> scoreP1 >> scoreP2;
-			loadFile.close();
+			if (choice == 'n' || choice == 'N') {
+				click();
+				return;
+			}
+			else if (choice == 'q' || choice == 'Q') {
+				click();
+				return;
+			}
+			else if (choice == 'd' || choice == 'D') {
+				click();
+				cout << endl << "Nhap ten file save de xoa (khong can phan mo rong .txt): ";
+				string fileName;
+				cin >> fileName;
+				deleteSavedFile(fileName);
+				savedFiles.clear();
+				showSavedFiles(savedFiles);
+				selectedFileIndex = 0;
+			}
+			else if (choice == 'y' || choice == 'Y') {
+				click();
+				selectingFile = true;
+			}
+			else if (selectingFile) {
+				if (choice == 'w' || choice == 'W') {
+					click();
+					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
+				}
+				else if (choice == 's' || choice == 'S') {
+					click();
+					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
+				}
+				else if (choice == '\r') { // Enter để load tệp
+					click();
+					string fileName = savedFiles[selectedFileIndex];
+					string fullFileName = "Saves/" + fileName + ".txt";
 
-			clearScreen();
-			restartGame();
-			GotoXY(_X, _Y);
-			cout << "Game da duoc load thanh cong tu file: " << fullFileName << endl;
-			break;
+					if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".txt") {
+						fullFileName = "Saves/" + fileName; // Nếu đã có ".txt" thì giữ nguyên
+					}
+					else {
+						fullFileName = "Saves/" + fileName + ".txt"; // Nếu chưa có thì thêm ".txt"
+					}
+					ifstream loadFile(fullFileName.c_str());
+					cout << "duong dan file load: " << fullFileName << endl;
+
+					if (!loadFile.is_open()) {
+						error();
+						cout << "Loi: Khong the mo file save! Kiem tra lai ten file va thu muc 'Saves/'." << endl;
+						return;
+					}
+
+					if (loadFile.peek() == ifstream::traits_type::eof()) {
+						error();
+						cout << "Loi: File save rong hoac khong dung dinh dang!" << endl;
+						return;
+					}
+
+					for (int i = 0; i < BOARD_SIZE; i++) {
+						for (int j = 0; j < BOARD_SIZE; j++) {
+							loadFile >> _A[i][j].c;
+						}
+					}
+
+					int turn;
+					loadFile >> turn;
+					_TURN = (turn == 1);
+
+					loadFile >> _X >> _Y;
+					loadFile >> scoreP1 >> scoreP2;
+					loadFile.close();
+
+					clearScreen();
+					restartGame();
+					GotoXY(_X, _Y);
+					cout << "Game da duoc load thanh cong tu file: " << fullFileName << endl;
+					break;
+				}
+			}
 		}
 	}
 }
+
 void LoadGameWithFileName() {
 	clearScreen();  // Xóa màn hình trước khi tải game
 	showloadgame();  // Hiện danh sách các file save
