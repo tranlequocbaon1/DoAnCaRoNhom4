@@ -497,7 +497,7 @@ void InputPlayerNames() {
 	int consoleWidth = GetConsoleWidth();
 	int boxWidth = 41; // Chiều rộng của khung
 	int centerX = (consoleWidth - boxWidth) / 2;
-
+	
 	// Hiển thị khung tiêu đề
 	GotoXY(centerX, 1);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
@@ -902,7 +902,7 @@ void startGame() {
 				case -1:
 					step();
 					_B[_X/5][_Y/2] = -1;
-					SetConsoleTextAttribute(hStdOut, 12 | (9 << 4));
+					SetConsoleTextAttribute(hStdOut, 12 | (7 << 4));
 					cout << "X";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
 						if ((_B[_X/5][_Y/2]) == 1) {
@@ -928,7 +928,7 @@ void startGame() {
 				case 1:
 					stepO();
 					_B[_X/5][_Y/2] = 1;
-					SetConsoleTextAttribute(hStdOut, 0 | (9 << 4));
+					SetConsoleTextAttribute(hStdOut, 0 | (7 << 4));
 					cout << "O";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
 						if ((_B[_X/5][_Y/2]) == 1) {
