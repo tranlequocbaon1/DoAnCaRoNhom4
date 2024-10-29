@@ -33,7 +33,7 @@ void drawcaro();
 void clearScreen();
 void FixConsoleWindow();
 void GotoXY(int x, int y);
-void ResetKetqua(int a[BOARD_SIZE][BOARD_SIZE]);
+void ResetKetqua(int _B[BOARD_SIZE + 1][BOARD_SIZE + 1]);
 void ResetData();
 void DrawBoard(int pSize);
 void StartGame();
@@ -41,7 +41,7 @@ void ExitGame();
 
 int ProcessFinish(int pWhoWin);
 int AskContinue();
-int checkHoa(int a[BOARD_SIZE][BOARD_SIZE]);
+int checkHoa(int _B[BOARD_SIZE + 1][BOARD_SIZE + 1]);
 int TestBoard();
 int CheckBoard(int pX, int pY);
 

@@ -7,7 +7,7 @@
 struct _POINT { int x, y, c; };
 _POINT _A[BOARD_SIZE + 1][BOARD_SIZE + 1];
 _POINT pastcoord;
-int _B[BOARD_SIZE][BOARD_SIZE];
+int _B[BOARD_SIZE+1][BOARD_SIZE+1];
 bool _TURN;
 int _COMMAND;
 int _X, _Y;
@@ -20,7 +20,7 @@ int mainmenu()
 {
 	int choice = 0;
 	char key;
-nhan:drawcaro();
+	nhan:drawcaro();
 	while (true) {
 		GotoXY(0, 17);
 		displayMenu(choice);
@@ -85,10 +85,10 @@ void GotoXY(int x, int y) {
 	coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
-void ResetKetqua(int a[BOARD_SIZE][BOARD_SIZE]) {
+void ResetKetqua(int a[BOARD_SIZE + 1][BOARD_SIZE + 1]) {
 	for (int i = 0;i < BOARD_SIZE;i++) {
 		for (int j = 0;j < BOARD_SIZE;j++) {
-			a[LEFT + 2 + i * 5][TOP + 1 + 2 * j] = 0;
+			a[1 + i ][2 + j] = 0;
 		}
 	}
 }
@@ -235,11 +235,11 @@ int AskContinue() {
 	cout << "    nhap y/n de tiep tuc/dung     ";
 	return toupper(_getch());
 }
-int checkHoa(int a[BOARD_SIZE][BOARD_SIZE]) {
+int checkHoa(int a[BOARD_SIZE+1][BOARD_SIZE+1]) {
 	int countSL = 0;
 	for (int i = 0; i <= BOARD_SIZE; i++) {
 		for (int j = 0; j <= BOARD_SIZE; j++) {
-			if (a[LEFT + 2 + i * 5][TOP + 1 + 2 * j] == 1 || a[LEFT + 2 + i * 5][TOP + 1 + 2 * j] == -1) {
+			if (a[1 + i ][ 1 +  j] == 1 || a[1 + i ][1+ j] == -1) {
 				countSL += 1;
 				GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 5);//test vitri
 				cout << countSL;
@@ -268,19 +268,19 @@ int TestBoard() {
 
 
 	GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 2);
-	cout << "x:" << _B[_X - 20][_Y] << " " << _B[_X - 15][_Y] << " " << _B[_X - 10][_Y]
-		<< " " << _B[_X - 5][_Y] << " _" << _B[_X][_Y] << "_ " << _B[_X + 5][_Y] << " "
-		<< _B[_X + 10][_Y] << " " << _B[_X + 15][_Y] << " " << _B[_X + 20][_Y] << "                 ";
-
+	cout << "x:" << _B[_X/5 - 4][_Y/2] << " " << _B[_X/5 - 3][_Y/2] << " " << _B[_X/5 - 2][_Y/2]
+		<< " " << _B[_X/5 - 1][_Y/2] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5 + 1][_Y/2] << " "
+		<< _B[_X/5 + 2][_Y/2] << " " << _B[_X/5 + 3][_Y/2] << " " << _B[_X/5 + 4][_Y/2] << "                 ";
+	
 	GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 4);
-	cout << "y:" << _B[_X][_Y - 8] << " " << _B[_X][_Y - 6] << " " << _B[_X][_Y - 4]
-		<< " " << _B[_X][_Y - 2] << " _" << _B[_X][_Y] << "_ " << _B[_X][_Y + 2] << " "
-		<< _B[_X][_Y + 4] << " " << _B[_X][_Y + 6] << " " << _B[_X][_Y + 8] << "                 "; //check ket qua
+	cout << "y:" << _B[_X/5][_Y/2 - 4] << " " << _B[_X/5][_Y/2 - 3] << " " << _B[_X/5][_Y/2 - 2]
+		<< " " << _B[_X/5][_Y/2 - 1] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5][_Y/2 + 1] << " "
+		<< _B[_X/5][_Y/2 + 2] << " " << _B[_X/5][_Y/2 + 3] << " " << _B[_X/5][_Y/2 + 4] << "                 "; //check ket qua
 	if (checkHoa(_B) == 0) return 0;
 
 	//cheo phu
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X + 20 - i * 5][_Y - 8 + i * 2] == -1) {
+		if (_B[_X / 5 + 4 - i][_Y / 2 - 4 + i] == -1) {
 			if (countCP == 0) startXcp = i;
 			countCP += 1;
 			if (countCP == 5) {
@@ -296,7 +296,7 @@ int TestBoard() {
 		else { countCP = 0;startXcp = -1; }
 	}
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X + 20 - i * 5][_Y - 8 + i * 2] == 1) {
+		if (_B[_X/5 + 4 - i][_Y/2 - 4 + i] == 1) {
 			if (countCP == 0) startOcp = i;
 			countCP += 1;
 			if (countCP == 5) {
@@ -313,7 +313,7 @@ int TestBoard() {
 	}
 	//cheo chinh
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X - 20 + i * 5][_Y - 8 + i * 2] == -1) {
+		if (_B[_X / 5 - 4 + i][_Y / 2 - 4 + i] == -1) {
 			if (countXCC == 0) startXcc = i;
 			countXCC += 1;
 			if (countXCC == 5) {
@@ -333,7 +333,7 @@ int TestBoard() {
 	}
 
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X - 20 + i * 5][_Y - 8 + i * 2] == 1) {
+		if (_B[_X / 5 - 4 + i][_Y / 2 - 4 + i] == 1) {
 			if (countOCC == 0) startOcc = i;
 			countOCC += 1;
 
@@ -354,12 +354,12 @@ int TestBoard() {
 	}
 	//thang
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X][_Y - 8 + i * 2] == -1) {
+		if (_B[_X/5][_Y/2-4+ i ] == -1) {
 			if (countY == 0) {
 				startXt = i;
 			}
 			countY += 1;
-			_B[25][26] = 0;
+			
 			if (countY == 5) {
 				for (int j = 0;j < 5;j++) {
 					GotoXY(_X, _Y - 8 + (startXt + j) * 2);
@@ -376,7 +376,7 @@ int TestBoard() {
 
 	}
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X][_Y - 8 + i * 2] == 1) {
+		if (_B[_X / 5][_Y / 2 - 4 + i] == 1) {
 			if (countX == 0) startOt = i;
 			countX += 1;
 			if (countX == 5) {
@@ -396,7 +396,7 @@ int TestBoard() {
 
 	//ngang
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X - 20 + i * 5][_Y] == -1) {
+		if (_B[_X / 5 - 4 + i][_Y / 2] == -1) {
 			if (countX == 0) startXn = i;
 			countX += 1;
 			if (countX == 5) {
@@ -415,7 +415,7 @@ int TestBoard() {
 	}
 
 	for (int i = 0;i <= 9;i++) {
-		if (_B[_X - 20 + i * 5][_Y] == 1) {
+		if (_B[_X / 5 - 4 + i][_Y / 2] == 1) {
 			if (countX == 0) startOn = i;
 			countX += 1;
 			if (countX == 5) {
@@ -894,16 +894,16 @@ void startGame() {
 				switch (CheckBoard(_X, _Y)) {
 				case -1:
 					step();
-					_B[_X][_Y] = -1;
+					_B[_X/5][_Y/2] = -1;
 					SetConsoleTextAttribute(hStdOut, 12 | (8 << 4));
 					cout << "X";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
-						if ((_B[_X][_Y]) == 1) {
+						if ((_B[_X/5][_Y/2]) == 1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(12, 15);
 							cout << "X";
 						}
-						if ((_B[_X][_Y]) == -1) {
+						if ((_B[_X/5][_Y/2]) == -1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(0, 15);
 							cout << "O";
@@ -920,16 +920,16 @@ void startGame() {
 					break;
 				case 1:
 					stepO();
-					_B[_X][_Y] = 1;
+					_B[_X/5][_Y/2] = 1;
 					SetConsoleTextAttribute(hStdOut, 0 | (8 << 4));
 					cout << "O";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
-						if ((_B[_X][_Y]) == 1) {
+						if ((_B[_X/5][_Y/2]) == 1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(12, 15);
 							cout << "X";
 						}
-						if ((_B[_X][_Y]) == -1) {
+						if ((_B[_X/5][_Y/2]) == -1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(0, 15);
 							cout << "O";
@@ -1351,7 +1351,7 @@ void restartGame() {
 				case -1: stepO();
 					SetConsoleTextAttribute(hStdOut, 12 | (15 << 4));
 					cout << "X";
-					_B[_X][_Y] = -1; // Cập nhật bàn cờ
+					_B[_X/5][_Y/2] = -1; // Cập nhật bàn cờ
 					GotoXY(0, 0);
 					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
@@ -1361,7 +1361,7 @@ void restartGame() {
 				case 1: step();
 					SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 					cout << "O";
-					_B[_X][_Y] = 1; // Cập nhật bàn cờ
+					_B[_X/5][_Y/2] = 1; // Cập nhật bàn cờ
 					GotoXY(0, 0);
 					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
 					cout << "den X "; SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
