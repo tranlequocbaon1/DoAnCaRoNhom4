@@ -1,6 +1,4 @@
-﻿  Box.cpp
-  Source.cpp
-E:\DoAnCaRoNhom4\Source.cpp(488,6): warning C4101: 'a': unreferenced local variable
-E:\DoAnCaRoNhom4\Source.cpp(488,9): warning C4101: 'b': unreferenced local variable
-  Generating Code...
+﻿  Source.cpp
+E:\DoAnCaRoNhom4\Source.cpp(479,6): warning C4101: 'a': unreferenced local variable
+E:\DoAnCaRoNhom4\Source.cpp(479,9): warning C4101: 'b': unreferenced local variable
   Main.vcxproj -> E:\DoAnCaRoNhom4\x64\Debug\DoAnCaRo.exe

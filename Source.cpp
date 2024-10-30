@@ -4,18 +4,9 @@
 #include"Sound.h"
 #include "Save.h"
 #include <iostream>
-#include <conio.h> // Để sử dụng _getch()
-#include <windows.h>
-#include <iomanip>
+#include <conio.h>
+#include <Windows.h>
 
-
-
-#include <cstdlib>  // Để sử dụng system()
-#include <string>
-#include <mmsystem.h>
-#pragma comment(lib, "winmm.lib")
-#include <vector>
-#include <cstdio>
 
 
 
