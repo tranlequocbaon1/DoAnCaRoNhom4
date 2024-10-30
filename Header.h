@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <string>
 
 #ifndef HEADER_H
 #define HEADER_H
@@ -18,6 +19,8 @@ extern int _X;
 extern int _Y;
 extern int scoreP1;
 extern int scoreP2;
+extern std::string player1;
+extern std::string player2;
 
 void about();
 void Setting();
@@ -54,6 +57,7 @@ void displayMenu(int selected);
 void startGame();
 void showInstructions();
 void displaysetting(int selected);
+int GetConsoleWidth();
 
 
 
