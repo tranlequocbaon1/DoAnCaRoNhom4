@@ -17,24 +17,33 @@ void displaysetting(int selected) {
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 	clearScreen();
 	cout << u8R"(     
-                           SETTING
+                     
+                  ╔═████████    ╔═████████ ╔███████████ ╔███████████ ╔═██  ╔═██   ╔═██  ╔═█████████ 
+                  ║██════╗ ██  ╔╝██═════╝  ╚═══╗ ██     ╚═══╗ ██     ║ ██  ║ ███  ║ ██ ╔╝██    ╚╗ ██
+                  ║██    ╚═╝   ║ ██            ║ ██         ║ ██     ║ ██  ║ ██ █ ║ ██ ║ ██     ╚═╝
+                  ╚╦████████   ║ █████████     ║ ██         ║ ██     ║ ██  ║ ██╚╗█║ ██ ║ ██
+                   ╚══════╦ ██ ║ ██═════╝      ║ ██         ║ ██     ║ ██  ║ ██ ╚╗█ ██ ║ ██    ╔████
+                  ██      ║ ██ ║ ██            ║ ██         ║ ██     ║ ██  ║ ██  ╚╗███ ║ ██    ╚═╗██
+                  ╚╦█████████  ╚╦ ████████     ║ ██         ║ ██     ║ ██  ║ ██   ╚╗██ ╚╦ █████████
+                   ╚═══════╝    ╚═══════╝      ╚═╝          ╚═╝      ╚═╝   ╚═╝     ╚═╝  ╚════════╝ 
+
 )" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
 	SetConsoleOutputCP(CP_UTF8);
-	GotoXY(46, 4);
+	GotoXY(46, 12);
 	cout << u8"┌────────────────────────┐" << endl;
 	for (int i = 0; i < numOptions; i++) {
 		if (i == selected) {
 			// Mục đang chọn với màu chữ xanh lam
 			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 			SetConsoleOutputCP(CP_UTF8);
-			GotoXY(46, 5+i%2);//di chuyen toi cho option
+			GotoXY(46, 13+i%2);//di chuyen toi cho option
 			cout << u8"│   >> " << options[i];
 			if (i == 0) { // Chỉ hiển thị trạng thái cho SFX
 				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
 			}
 			else {
-				GotoXY(70, 6);
+				GotoXY(70, 14);
 				cout << u8" │" << endl; // Không hiển thị trạng thái cho LANGUAGE
 			}
 		}
@@ -50,7 +59,7 @@ void displaysetting(int selected) {
 			}
 		}
 	}
-	GotoXY(46, 7);
+	GotoXY(46, 15);
 	cout << u8"└────────────────────────┘" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 }

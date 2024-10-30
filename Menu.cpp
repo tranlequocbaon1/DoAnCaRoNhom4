@@ -26,7 +26,12 @@ void drawcaro() {
                               ╚════════╝    ╚══╝     ╚══╝    ╚═╝     ╚═╝     ╚══════╝
 )" << endl;
 	GotoXY(0, 10);
-	DrawHeart(3,15);
+	DrawHeart(102,18);
+	DrawMinion1(78, 16);//minion dung
+	DrawMinion2(90, 18);//minion bat tim
+	DrawX(3, 3);
+	DrawO(100, 3);
+
 }
 
 
@@ -37,7 +42,7 @@ void displayMenu(int selected) {
 
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	SetConsoleOutputCP(CP_UTF8);
-	GotoXY(46, 15);
+	GotoXY(46, 10);
 	cout << u8"┌────────────────────────┐" << endl;
 	for (int i = 0; i < numOptions; i++) {
 
@@ -45,7 +50,7 @@ void displayMenu(int selected) {
 			// Mục đang chọn với màu chữ đỏ
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
 			SetConsoleOutputCP(CP_UTF8);
-			GotoXY(46, 16+i%6);
+			GotoXY(46, 11+i%6);
 			cout << u8"│   >> " << options[i];
 			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
 			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
@@ -58,7 +63,7 @@ void displayMenu(int selected) {
 			// Mục không chọn với màu mặc định (trắng)
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 			// Màu mặc định
-			GotoXY(46, 16 + i % 6);
+			GotoXY(46, 11 + i % 6);
 			cout << u8"│      " << options[i];
 			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
 			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
@@ -68,7 +73,7 @@ void displayMenu(int selected) {
 			else if (options[i] == "Thoat") cout << u8"             │ " << "\n";
 		}
 	}
-	GotoXY(46, 22);
+	GotoXY(46, 17);
 	cout << u8"└────────────────────────┘" << endl;
 
 

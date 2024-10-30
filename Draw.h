@@ -7,5 +7,7 @@ void DrawWIN();
 void DrawBlank();
 void DrawTIE();
 void DrawHeart(int,int);
+void DrawMinion1(int, int);
+void DrawMinion2(int, int);
 
 #endif 
