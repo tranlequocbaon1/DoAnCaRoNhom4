@@ -57,11 +57,11 @@ void InputPlayerNames() {
 
 	// Hiển thị khung tiêu đề
 	GotoXY(centerX, 1);
-	cout << u8R"(┌─────────────────────────────────────────┐)";
+	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(centerX, 2);
-	cout << u8R"(│            ENTER NICKNAME               │)";
+	cout << u8R"(║            ENTER NICKNAME               ║)";
 	GotoXY(centerX, 3);
-	cout << u8R"(└─────────────────────────────────────────┘)";
+	cout << u8R"(╚═════════════════════════════════════════╝)";
 
 	// Hiển thị và căn giữa phần nhập tên Player 1
 	GotoXY(centerX, 5);
