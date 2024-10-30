@@ -525,7 +525,7 @@ void showloadgame() {
 			}
 
 			cout << u8"                               └────────────────────────────────────────────┘" << "\n";
-			cout << "Ban co muon Load File khong? (Y/N) hoac xoa file? (D): ";
+			cout << "                           Ban co muon Load File khong? (Y/N) hoac xoa file? (D): ";
 			char choice = _getch();
 
 			if (choice == 'n' || choice == 'N') {
@@ -538,7 +538,7 @@ void showloadgame() {
 			}
 			else if (choice == 'd' || choice == 'D') {
 				click();
-				cout << endl << "Nhap ten file save de xoa (khong can phan mo rong .txt): ";
+				cout << endl << "                         Nhap ten file save de xoa (khong can phan mo rong .txt): ";
 				string fileName;
 				cin >> fileName;
 				deleteSavedFile(fileName);
