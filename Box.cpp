@@ -197,3 +197,12 @@ void Box3() {
 
 }
 
+void Box4() {
+	SetColor(0, 15);
+	GotoXY(40, 8);
+	cout << u8R"(╔═════════════════════════════════════════╗)";
+	GotoXY(40, 9);
+	cout << u8R"(║    NHAP Y/N DE (TIEP TUC)/(DUNG LAI)    ║)";
+	GotoXY(40, 10);
+	cout << u8R"(╚═════════════════════════════════════════╝)";
+}

@@ -32,7 +32,9 @@ void SaveGameWithFileName() {
 	// Kiểm tra nếu số lượng file đạt giới hạn 8
 	if (fileCount >= 9) {
 		error();
-		cout << "Thu muc 'Saves' da dat gioi han 8 file. Khong the luu them." << endl;
+		GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3); cout << "Thu muc 'Saves' da dat gioi han 8 file, khong the luu them. " << endl;
+		Sleep(500);
+		GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3); cout << "                                                                                       ";
 		return;
 	}
 
@@ -45,18 +47,19 @@ void SaveGameWithFileName() {
 		if (fileName.length() > 8) {
 			error();
 			// Xóa dòng nhập tên file
-			GotoXY(LEFT + 30, TOP + 2 * BOARD_SIZE + 2);  // Di chuyển đến vị trí nhập tên file
-			cout << string(fileName.length(), ' ');  // Ghi đè tên file sai bằng khoảng trắng
+			 // Ghi đè tên file sai bằng khoảng trắng
 
 			// Thông báo lỗi
 			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
 			cout << "Ten file qua dai, vui long nhap lai (toi da 8 ky tu).";
-			Sleep(1000); // Tạm dừng để hiển thị thông báo lỗi
+			Sleep(1000); 			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
+			cout << "                                                                                          ";
+			// Tạm dừng để hiển thị thông báo lỗi
 
 			// Xóa dòng thông báo lỗi sau khi hiển thị
 			GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
 
-			cout << "                                                                                  ";
+			cout << "                                                                                                                 ";
 
 			// Xóa bộ đệm nhập và đặt lại con trỏ
 			cin.clear();  // Xóa trạng thái lỗi của cin
@@ -104,11 +107,13 @@ void SaveGameWithFileName() {
 		mainmenu();
 	}
 	else {
+		GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
+		cout << "                                                                                                                                                     ";
+
 		GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
 		cout << "                                                                                                                                                     ";
 	}
 }
-
 void showSavedFiles(vector<string>& savedFiles) {
 	// Chạy lệnh dir và ghi đầu ra vào file temp.txt
 	system("dir Saves > temp.txt");

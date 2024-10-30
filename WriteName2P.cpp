@@ -8,6 +8,7 @@
 #include <conio.h>
 #include"Sound.h"
 
+
 using namespace std;
 
 string getInputWithEscCheck() {
@@ -56,6 +57,7 @@ void InputPlayerNames() {
 	int centerX = (consoleWidth - boxWidth) / 2;
 
 	// Hiển thị khung tiêu đề
+	SetColor(12, 15);
 	GotoXY(centerX, 1);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(centerX, 2);
@@ -64,6 +66,7 @@ void InputPlayerNames() {
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 
 	// Hiển thị và căn giữa phần nhập tên Player 1
+	SetColor(0, 15);
 	GotoXY(centerX, 5);
 	cout << "Nhap ten player1";
 	GotoXY(centerX, 6);

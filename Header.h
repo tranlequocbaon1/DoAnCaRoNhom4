@@ -52,6 +52,7 @@ void Box1();
 void Box2();
 void Score2Player();
 void Box3();
+void Box4();
 
 void displayMenu(int selected);
 void startGame();

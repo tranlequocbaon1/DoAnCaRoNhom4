@@ -200,8 +200,9 @@ int ProcessFinish(int pWhoWin) {
 	return pWhoWin;
 }
 int AskContinue() {
+	Sleep(4000);
 	GotoXY(15, _A[BOARD_SIZE][BOARD_SIZE - 1].y);
-	cout << "    nhap y/n de tiep tuc/dung     ";
+	Box4();
 	return toupper(_getch());
 }
 int checkHoa(int a[BOARD_SIZE+1][BOARD_SIZE+1]) {
@@ -212,7 +213,7 @@ int checkHoa(int a[BOARD_SIZE+1][BOARD_SIZE+1]) {
 				countSL += 1;
 				GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 5);//test vitri
 				cout << countSL;
-				if (countSL == BOARD_SIZE * BOARD_SIZE - 1) return 0;
+				if (countSL == BOARD_SIZE * BOARD_SIZE ) return 0;
 			}
 			else break;
 		}
@@ -236,16 +237,17 @@ int TestBoard() {
 	int startXcp = -1;//X bat dau khi xet cheo phu
 
 
-	GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 2);
-	cout << "x:" << _B[_X/5 - 4][_Y/2] << " " << _B[_X/5 - 3][_Y/2] << " " << _B[_X/5 - 2][_Y/2]
-		<< " " << _B[_X/5 - 1][_Y/2] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5 + 1][_Y/2] << " "
-		<< _B[_X/5 + 2][_Y/2] << " " << _B[_X/5 + 3][_Y/2] << " " << _B[_X/5 + 4][_Y/2] << "                 ";
-	
-	GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 4);
-	cout << "y:" << _B[_X/5][_Y/2 - 4] << " " << _B[_X/5][_Y/2 - 3] << " " << _B[_X/5][_Y/2 - 2]
-		<< " " << _B[_X/5][_Y/2 - 1] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5][_Y/2 + 1] << " "
-	
-		<< _B[_X/5][_Y/2 + 2] << " " << _B[_X/5][_Y/2 + 3] << " " << _B[_X/5][_Y/2 + 4] << "                 "; //check ket qua
+	//GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 2);
+	//cout << "x:" << _B[_X/5 - 4][_Y/2] << " " << _B[_X/5 - 3][_Y/2] << " " << _B[_X/5 - 2][_Y/2]
+	//	<< " " << _B[_X/5 - 1][_Y/2] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5 + 1][_Y/2] << " "
+	//	<< _B[_X/5 + 2][_Y/2] << " " << _B[_X/5 + 3][_Y/2] << " " << _B[_X/5 + 4][_Y/2] << "                 ";
+	//
+	//GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 4);
+	//cout << "y:" << _B[_X/5][_Y/2 - 4] << " " << _B[_X/5][_Y/2 - 3] << " " << _B[_X/5][_Y/2 - 2]
+	//	<< " " << _B[_X/5][_Y/2 - 1] << " _" << _B[_X/5][_Y/2] << "_ " << _B[_X/5][_Y/2 + 1] << " "
+	//
+	//	<< _B[_X/5][_Y/2 + 2] << " " << _B[_X/5][_Y/2 + 3] << " " << _B[_X/5][_Y/2 + 4] << "                 "; //check ket qua
+
 	if (checkHoa(_B) == 0) return 0;
 
 	//cheo phu
