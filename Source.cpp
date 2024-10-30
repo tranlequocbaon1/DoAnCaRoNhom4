@@ -7,18 +7,11 @@
 #include <conio.h>
 #include <Windows.h>
 
-
-
-
-
 using namespace std;
-
 
 #define BOARD_SIZE 12
 #define LEFT 3
 #define TOP 1
-
-
 
 //menu
  _POINT pastcoord; // Định nghĩa biến
