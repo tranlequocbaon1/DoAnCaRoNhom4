@@ -616,7 +616,7 @@ void DrawTIE() {
 	SetColor(1, 15);
 }
 
-void DrawHeart() {
+void DrawHeart(int x,int y) {
 	int mang[8][9] = {
 		{15,0,0,0,15,0,0,0,15},
 		{0,4,4,4,0,4,4,4,0},
@@ -628,11 +628,12 @@ void DrawHeart() {
 		{15,15,15,15,0,15,15,15,15}
 	};
 	SetConsoleOutputCP(CP_UTF8);
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 8; i+=2)
 	{
+		GotoXY(x, y+i/2);
 		for (int x = 0; x < 9; x++) {
-			SetColor(mang[i][x], 15);
-			cout << u8"██";
+			SetColor(mang[i+1][x], mang[i][x]);
+			cout << u8"▄";
 		}
 		cout << endl;
 	}

@@ -6,8 +6,7 @@ void showInstructions() {
 	clearScreen();
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
-
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15 << 4));
 	clearScreen();
 	std::cout << u8R"(
                                  ╔═█████████    ╔═██ 	 ╔═██   ╔═██         ╔═████████    
@@ -19,7 +18,7 @@ void showInstructions() {
                                  ║ ██    ║ ██   ╚╦ █████████    ║ █████████  ║ ████████       
                                  ╚═╝     ╚═╝     ╚════════╝     ╚═══════╝    ╚═══════╝              
 )" << std::endl;
-	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));
 	SetConsoleOutputCP(CP_UTF8);
 	std::cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
 	std::cout << u8"                               │              'A'    : MOVE LEFT            │" << "\n";

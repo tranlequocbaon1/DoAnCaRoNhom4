@@ -160,15 +160,30 @@ void SaveToFile(const string& filename, const string& content) {
 }
 
 int checkWinCondition() {
-	// Kiểm tra hàng
 	for (int i = 0; i < BOARD_SIZE; i++) {
 		for (int j = 0; j <= BOARD_SIZE - 5; j++) {
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của X
 			if (_A[i][j].c == -1 && _A[i][j + 1].c == -1 && _A[i][j + 2].c == -1 &&
 				_A[i][j + 3].c == -1 && _A[i][j + 4].c == -1) {
+
+				// Đặt màu cho chuỗi chiến thắng của X
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + (j + k) * 5, 2 + i * 2); // Tọa độ X thay đổi theo cột, Y giữ nguyên theo hàng
+					SetColor(4, 14);
+					cout << " X ";
+				}
 				return -1; // X thắng
 			}
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của O
 			if (_A[i][j].c == 1 && _A[i][j + 1].c == 1 && _A[i][j + 2].c == 1 &&
 				_A[i][j + 3].c == 1 && _A[i][j + 4].c == 1) {
+
+				// Đặt màu cho chuỗi chiến thắng của O
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + (j + k) * 5, 2 + i * 2);
+					SetColor(0, 14);
+					cout << " O ";
+				}
 				return 1; // O thắng
 			}
 		}
@@ -177,12 +192,28 @@ int checkWinCondition() {
 	// Kiểm tra cột
 	for (int j = 0; j < BOARD_SIZE; j++) {
 		for (int i = 0; i <= BOARD_SIZE - 5; i++) {
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của X
 			if (_A[i][j].c == -1 && _A[i + 1][j].c == -1 && _A[i + 2][j].c == -1 &&
 				_A[i + 3][j].c == -1 && _A[i + 4][j].c == -1) {
+
+				// Đặt màu cho chuỗi chiến thắng của X
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + j * 5, 2 + (i + k) * 2); // Tọa độ X giữ nguyên theo cột, Y thay đổi theo hàng
+					SetColor(4, 14);
+					cout << " X ";
+				}
 				return -1; // X thắng
 			}
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của O
 			if (_A[i][j].c == 1 && _A[i + 1][j].c == 1 && _A[i + 2][j].c == 1 &&
 				_A[i + 3][j].c == 1 && _A[i + 4][j].c == 1) {
+
+				// Đặt màu cho chuỗi chiến thắng của O
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + j * 5, 2 + (i + k) * 2);
+					SetColor(0, 14);
+					cout << " O ";
+				}
 				return 1; // O thắng
 			}
 		}
@@ -191,12 +222,28 @@ int checkWinCondition() {
 	// Kiểm tra đường chéo chính
 	for (int i = 0; i <= BOARD_SIZE - 5; i++) {
 		for (int j = 0; j <= BOARD_SIZE - 5; j++) {
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của X
 			if (_A[i][j].c == -1 && _A[i + 1][j + 1].c == -1 && _A[i + 2][j + 2].c == -1 &&
 				_A[i + 3][j + 3].c == -1 && _A[i + 4][j + 4].c == -1) {
+
+				// Đặt màu cho chuỗi chiến thắng của X
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + (j + k) * 5, 2 + (i + k) * 2); // X và Y đều tăng
+					SetColor(4, 14);
+					cout << " X ";
+				}
 				return -1; // X thắng
 			}
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của O
 			if (_A[i][j].c == 1 && _A[i + 1][j + 1].c == 1 && _A[i + 2][j + 2].c == 1 &&
 				_A[i + 3][j + 3].c == 1 && _A[i + 4][j + 4].c == 1) {
+
+				// Đặt màu cho chuỗi chiến thắng của O
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + (j + k) * 5, 2 + (i + k) * 2);
+					SetColor(0, 14);
+					cout << " O ";
+				}
 				return 1; // O thắng
 			}
 		}
@@ -205,12 +252,28 @@ int checkWinCondition() {
 	// Kiểm tra đường chéo phụ
 	for (int i = 0; i <= BOARD_SIZE - 5; i++) {
 		for (int j = 4; j < BOARD_SIZE; j++) {
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của X
 			if (_A[i][j].c == -1 && _A[i + 1][j - 1].c == -1 && _A[i + 2][j - 2].c == -1 &&
 				_A[i + 3][j - 3].c == -1 && _A[i + 4][j - 4].c == -1) {
+
+				// Đặt màu cho chuỗi chiến thắng của X
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + (j - k) * 5, 2 + (i + k) * 2); // X giảm, Y tăng
+					SetColor(4, 14);
+					cout << " X ";
+				}
 				return -1; // X thắng
 			}
+			// Kiểm tra chuỗi 5 ký tự liên tiếp của O
 			if (_A[i][j].c == 1 && _A[i + 1][j - 1].c == 1 && _A[i + 2][j - 2].c == 1 &&
 				_A[i + 3][j - 3].c == 1 && _A[i + 4][j - 4].c == 1) {
+
+				// Đặt màu cho chuỗi chiến thắng của O
+				for (int k = 0; k < 5; k++) {
+					GotoXY(5 + (j - k) * 5, 2 + (i + k) * 2);
+					SetColor(0, 14);
+					cout << " O ";
+				}
 				return 1; // O thắng
 			}
 		}
@@ -246,6 +309,8 @@ void countXO(int& countX, int& countO) {
 	}
 }
 
+
+
 void restartGame() {
 	SetConsoleOutputCP(1251);
 	cout << "Bat dau tro choi...\n";
@@ -268,10 +333,12 @@ void restartGame() {
 		for (int j = 0; j < BOARD_SIZE; j++) {
 			if (_A[i][j].c == 1) {
 				GotoXY((j + 1) * 5, (i + 1) * 2);
+				SetColor(0, 15);
 				cout << "O";
 			}
 			else if (_A[i][j].c == -1) {
 				GotoXY((j + 1) * 5, (i + 1) * 2);
+				SetColor(12, 15);
 				cout << "X";
 			}
 		}
@@ -313,22 +380,52 @@ void restartGame() {
 			else if (_COMMAND == 13) {
 				// Nếu người chơi bấm Enter
 				switch (CheckBoard(_X, _Y)) {
-				case -1: stepO();
-					SetConsoleTextAttribute(hStdOut, 12 | (15 << 4));
+				case -1: {
+					step();
+					_A[_X][_Y].c = -1;
+					SetConsoleTextAttribute(hStdOut, 12 | (7 << 4));
 					cout << "X";
-					_B[_X][_Y] = -1; // Cập nhật bàn cờ
-					GotoXY(0, 0);
-					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
+					if (pastcoord.x != 0 && pastcoord.y != 0) {
+						if ((_A[_X][_Y].c ) == 1) {
+							GotoXY(pastcoord.x, pastcoord.y);
+							SetColor(12, 15);
+							cout << "X";
+						}
+						if ((_A[_X][_Y].c ) == -1) {
+							GotoXY(pastcoord.x, pastcoord.y);
+							SetColor(0, 15);
+							cout << "O";
+
+						}
+
+					}
 
 
 					break;
-				case 1: step();
+				}
+				case 1: {
+					step();
 					SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 					cout << "O";
-					_B[_X][_Y] = 1; // Cập nhật bàn cờ
+					_A[_X][_Y].c = 1; // Cập nhật bàn cờ
 					GotoXY(0, 0);
 					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
+					if (pastcoord.x != 0 && pastcoord.y != 0) {
+						if ((_A[_X][_Y].c) == 1) {
+							GotoXY(pastcoord.x, pastcoord.y);
+							SetColor(12, 15);
+							cout << "X";
+						}
+						if ((_A[_X][_Y].c) == -1) {
+							GotoXY(pastcoord.x, pastcoord.y);
+							SetColor(0, 15);
+							cout << "O";
+
+						}
+
+					}
 					break;
+				}
 				case 0: // Nếu ô trống
 					ValidEnter = false; // Không làm gì, ô đã có X hoặc O
 				}
@@ -490,7 +587,7 @@ void showloadgame() {
 			}
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED |(15<<4));
 			clearScreen();
 
 			cout << u8R"(

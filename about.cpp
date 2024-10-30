@@ -8,7 +8,7 @@ void about() {
 	clearScreen();
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));
 
 	clearScreen();
 	std::cout << u8R"(
@@ -21,7 +21,7 @@ void about() {
                           ║ ██     ║ ██    ║ █████████   ╚╦ █████████    ╚╦ █████████        ║ ██ 
                           ╚═╝      ╚═╝     ╚══════╝       ╚══════╝        ╚════════╝         ╚═╝ 
 )" << std::endl;
-	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));
 	SetConsoleOutputCP(CP_UTF8);
 	std::cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
 	std::cout << u8"                               │    Teacher_Instructors:Truong Toan Thinh   │" << "\n";

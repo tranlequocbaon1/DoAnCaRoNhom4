@@ -6,6 +6,6 @@ void DrawO(int, int);
 void DrawWIN();
 void DrawBlank();
 void DrawTIE();
-void DrawHeart();
+void DrawHeart(int,int);
 
 #endif 

@@ -11,10 +11,10 @@ using namespace std;
 void drawcaro() {
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+	//SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
 
-	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);
 	cout << u8R"(     
                               ╔═█████████    ╔═█████████     ╔═█████████     ╔═█████████	
                              ╔╝██           ╔╝██═════╗ ██    ║ ██    ║ ██   ╔╝██    ╚╗ ██
@@ -26,7 +26,7 @@ void drawcaro() {
                               ╚════════╝    ╚══╝     ╚══╝    ╚═╝     ╚═╝     ╚══════╝
 )" << endl;
 	GotoXY(0, 10);
-	DrawHeart();
+	DrawHeart(3,15);
 }
 
 
@@ -37,16 +37,16 @@ void displayMenu(int selected) {
 
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	SetConsoleOutputCP(CP_UTF8);
-
-	cout << u8"                                              ┌────────────────────────┐" << endl;
+	GotoXY(46, 15);
+	cout << u8"┌────────────────────────┐" << endl;
 	for (int i = 0; i < numOptions; i++) {
 
 		if (i == selected) {
 			// Mục đang chọn với màu chữ đỏ
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
 			SetConsoleOutputCP(CP_UTF8);
-
-			cout << u8"                                              │   >> " << options[i];
+			GotoXY(46, 16+i%6);
+			cout << u8"│   >> " << options[i];
 			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
 			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
 			else if (options[i] == "About") cout << u8"             │ " << "\n";
@@ -58,7 +58,8 @@ void displayMenu(int selected) {
 			// Mục không chọn với màu mặc định (trắng)
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 			// Màu mặc định
-			cout << u8"                                              │      " << options[i];
+			GotoXY(46, 16 + i % 6);
+			cout << u8"│      " << options[i];
 			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
 			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
 			else if (options[i] == "About") cout << u8"             │ " << "\n";
@@ -67,7 +68,8 @@ void displayMenu(int selected) {
 			else if (options[i] == "Thoat") cout << u8"             │ " << "\n";
 		}
 	}
-	cout << u8"                                              └────────────────────────┘" << endl;
+	GotoXY(46, 22);
+	cout << u8"└────────────────────────┘" << endl;
 
 
 	std::cout << endl;

@@ -21,18 +21,21 @@ void displaysetting(int selected) {
 )" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
 	SetConsoleOutputCP(CP_UTF8);
-	cout << u8"                                              ┌────────────────────────┐" << endl;
+	GotoXY(46, 4);
+	cout << u8"┌────────────────────────┐" << endl;
 	for (int i = 0; i < numOptions; i++) {
 		if (i == selected) {
 			// Mục đang chọn với màu chữ xanh lam
 			SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 			SetConsoleOutputCP(CP_UTF8);
-			cout << u8"                                              │   >> " << options[i];
+			GotoXY(46, 5+i%2);//di chuyen toi cho option
+			cout << u8"│   >> " << options[i];
 			if (i == 0) { // Chỉ hiển thị trạng thái cho SFX
 				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
 			}
 			else {
-				cout << u8"          │" << endl; // Không hiển thị trạng thái cho LANGUAGE
+				GotoXY(70, 6);
+				cout << u8" │" << endl; // Không hiển thị trạng thái cho LANGUAGE
 			}
 		}
 		else {
@@ -47,7 +50,8 @@ void displaysetting(int selected) {
 			}
 		}
 	}
-	cout << u8"                                              └────────────────────────┘" << endl;
+	GotoXY(46, 7);
+	cout << u8"└────────────────────────┘" << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
 }
 
@@ -61,10 +65,10 @@ void Setting() {
 		key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
 
 		if (key == 'w' || key == 'W') {
-			choice = (choice - 1 + 6) % 6; // Di chuyển lên
+			choice = (choice - 1 + 2) % 2; // Di chuyển lên
 		}
 		else if (key == 's' || key == 'S') {
-			choice = (choice + 1) % 6; // Di chuyển xuống
+			choice = (choice + 1) % 2; // Di chuyển xuống
 		}
 		else if (key == 'Q' || key == 'q')
 		{
