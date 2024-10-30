@@ -36,7 +36,7 @@ string getInputWithEscCheck() {
 					input.pop_back();
 				}
 			}
-			else {
+			else if (input.length() < 32) {
 				cout << ch; // Hiển thị ký tự vừa nhập
 				input += ch;
 			}
@@ -100,7 +100,7 @@ void InputPlayerNames() {
 			cout << "Ten phai nho hon hoac bang 10 ky tu.     " << endl;
 			Sleep(800);
 			GotoXY(centerX + 5, 7);
-			cout << "                                     ";
+			cout << "                                    ";
 			GotoXY(centerX + 5, 7);
 		}
 		else validInput = true;
@@ -117,8 +117,11 @@ void InputPlayerNames() {
 
 		if (player2.length() > 10) {
 			GotoXY(centerX, 15);
+			cout << "                                         ";
+			Sleep(200);
+			GotoXY(centerX, 15);
 			cout << "Ten phai nho hon hoac bang 10 ky tu.      " << endl;
-			Sleep(500); // Tạm dừng 0.5 giây
+			Sleep(1000); // Tạm dừng 0.5 giây
 			GotoXY(centerX + 5, 12);
 			cout << "                                    "; // Xóa tên đã nhập
 			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
@@ -131,7 +134,7 @@ void InputPlayerNames() {
 			cout << "Ten phai khac nhau. Vui long nhap lai.    " << endl;
 			Sleep(1000); // Tạm dừng 0.5 giây
 			GotoXY(centerX + 5, 12);
-			cout << "                                    "; // Xóa tên đã nhập
+			cout << "                                     "; // Xóa tên đã nhập
 			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
 		}
 		else {

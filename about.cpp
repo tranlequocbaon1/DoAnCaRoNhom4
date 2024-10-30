@@ -21,8 +21,9 @@ void about() {
                           ║ ██     ║ ██    ║ █████████   ╚╦ █████████    ╚╦ █████████        ║ ██ 
                           ╚═╝      ╚═╝     ╚══════╝       ╚══════╝        ╚════════╝         ╚═╝ 
 )" << std::endl;
-	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));
+	SetConsoleTextAttribute(hConsole, 10 | (15<<4));
 	SetConsoleOutputCP(CP_UTF8);
+
 	std::cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
 	std::cout << u8"                               │    Teacher_Instructors:Truong Toan Thinh   │" << "\n";
 	std::cout << u8"                               │ GROUP 04:                                  │" << "\n";
