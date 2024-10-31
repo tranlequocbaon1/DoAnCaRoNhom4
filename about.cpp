@@ -21,7 +21,7 @@ void about() {
                           ║ ██     ║ ██    ║ █████████   ╚╦ █████████    ╚╦ █████████        ║ ██ 
                           ╚═╝      ╚═╝     ╚══════╝       ╚══════╝        ╚════════╝         ╚═╝ 
 )" << std::endl;
-	SetConsoleTextAttribute(hConsole, 10 | (15<<4));
+	SetConsoleTextAttribute(hConsole, 2 | (15<<4));
 	SetConsoleOutputCP(CP_UTF8);
 
 	std::cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";

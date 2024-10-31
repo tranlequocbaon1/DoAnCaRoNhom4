@@ -68,7 +68,7 @@ void InputPlayerNames() {
 	// Hiển thị và căn giữa phần nhập tên Player 1
 	SetColor(0, 15);
 	GotoXY(centerX, 5);
-	cout << "Nhap ten player1";
+	cout << ">>Nhap ten player1";
 	GotoXY(centerX, 6);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
 	GotoXY(centerX, 7);
@@ -79,7 +79,7 @@ void InputPlayerNames() {
 
 	// Hiển thị và căn giữa phần nhập tên Player 2
 	GotoXY(centerX, 10);
-	cout << "Nhap ten player2";
+	cout << ">>Nhap ten player2";
 	GotoXY(centerX, 11);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
 	GotoXY(centerX, 12);

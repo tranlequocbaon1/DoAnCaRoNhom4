@@ -11,26 +11,28 @@ using namespace std;
 void drawcaro() {
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	
 	//SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
-
+	DrawSquirtle(0, 4);
+	
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);
-	cout << u8R"(     
-                              ╔═█████████    ╔═█████████     ╔═█████████     ╔═█████████	
-                             ╔╝██           ╔╝██═════╗ ██    ║ ██    ║ ██   ╔╝██    ╚╗ ██
-                             ║ ██           ║ ██     ║ ██    ║ ██    ║ ██   ║ ██     ║ ██
-                             ║ ██           ║ ███████████    ║ █████████    ║ ██     ║ ██
-                             ║ ██           ║ ██═════╗ ██    ║ ██════╗ ██   ║ ██     ║ ██
-                             ║ ██           ║ ██     ║ ██    ║ ██    ║ ██   ║ ██     ║ ██
-                             ╚╦ █████████   ║ ██     ║ ██    ║ ██    ║ ██   ╚╦ █████████ 
-                              ╚════════╝    ╚══╝     ╚══╝    ╚═╝     ╚═╝     ╚══════╝
-)" << endl;
+	
+	GotoXY(30, 1);cout << u8" ╔═█████████    ╔═█████████     ╔═█████████     ╔═█████████";
+	GotoXY(30, 2);cout << u8"╔╝██           ╔╝██═════╗ ██    ║ ██    ║ ██   ╔╝██    ╚╗ ██";
+	GotoXY(30, 3);cout << u8"║ ██           ║ ██     ║ ██    ║ ██    ║ ██   ║ ██     ║ ██";
+	GotoXY(30, 4);cout << u8"║ ██           ║ ███████████    ║ █████████    ║ ██     ║ ██";
+	GotoXY(30, 5);cout << u8"║ ██           ║ ██═════╗ ██    ║ ██════╗ ██   ║ ██     ║ ██";
+	GotoXY(30, 6);cout << u8"║ ██           ║ ██     ║ ██    ║ ██    ║ ██   ║ ██     ║ ██";
+	GotoXY(30, 7);cout << u8"╚╦ █████████   ║ ██     ║ ██    ║ ██    ║ ██   ╚╦ █████████ ";
+	GotoXY(30, 8);cout << u8" ╚════════╝    ╚══╝     ╚══╝    ╚═╝     ╚═╝     ╚══════╝";
+
 	GotoXY(0, 10);
 	DrawHeart(102,18);
 	DrawMinion1(78, 16);//minion dung
 	DrawMinion2(90, 18);//minion bat tim
-	DrawX(3, 3);
 	DrawO(100, 3);
+	
 
 }
 
