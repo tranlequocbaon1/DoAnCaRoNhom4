@@ -14,6 +14,7 @@
 #ifdef _WIN32
 #include <direct.h>  // Thư viện cho Windows
 #define CreateDir _mkdir  // Đổi tên cho hàm Windows
+
 using namespace std;
 #else
 #endif
@@ -35,7 +36,7 @@ void SaveGameWithFileName() {
 		error();
 		int countError = 3;
 		do {
-			Box5();
+			Box5();//hien thi loi toi da file
 			Sleep(500);
 			GotoXY(42, 9);std::cout << "                                                          ";
 			Sleep(500);
@@ -48,34 +49,28 @@ void SaveGameWithFileName() {
 	}
 
 	string fileName;
-	do {
-		GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
-		cout << "Nhap ten file de luu game (toi da 8 ky tu): ";
-		cin >> fileName;
 
+	GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
+	Box6();
+		
+	bool validInput = true;
+	while (validInput) {//chan kh cho nhap tran ra khoi khung
+		fileName = getInputWithEscCheck();
 		if (fileName.length() > 8) {
 			error();
-			// Xóa dòng nhập tên file
-			 // Ghi đè tên file sai bằng khoảng trắng
-
 			// Thông báo lỗi
 			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
-			cout << "Ten file qua dai, vui long nhap lai (toi da 8 ky tu).";
-			Sleep(1000); 			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
-			cout << "                                                                                          ";
-			// Tạm dừng để hiển thị thông báo lỗi
-
-			// Xóa dòng thông báo lỗi sau khi hiển thị
-			GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
-
-			cout << "                                                                                                                 ";
-
-			// Xóa bộ đệm nhập và đặt lại con trỏ
-			cin.clear();  // Xóa trạng thái lỗi của cin
-			cin.ignore(INT_MAX, '\n');  // Xóa bộ đệm nhập
+			Box_Error_Name();
+			Sleep(1000); 		
+			system("cls");
+			RecoveryBoard();
+			Box6();
+			GotoXY(58, 9);
+			cout << "                                  ";//che ten cu
+			GotoXY(58, 9);
 		}
-	} while (fileName.length() > 8); // Lặp lại nếu tên file quá dài
-
+		else validInput = false;
+	}
 	fileName += ".txt";  // Thêm phần mở rộng cho file
 
 	// Thêm đường dẫn vào thư mục "Saves"

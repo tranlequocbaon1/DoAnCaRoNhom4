@@ -216,3 +216,26 @@ void Box5() {
 	GotoXY(40, 10);
 	cout << u8R"(╚═════════════════════════════════════════════════════════════╝)";
 }
+
+void Box6() {
+	SetColor(0, 15);
+	GotoXY(30, 8);
+	cout << u8R"(╔═════════════════════════════════════════════════════════════╗)";
+	GotoXY(30, 9);
+	cout << u8R"(║ Nhap ten file de luu game:                                   )";
+	GotoXY(92, 9);
+	cout << u8"║";
+	GotoXY(30, 10);
+	cout << u8R"(╚═════════════════════════════════════════════════════════════╝)";
+	GotoXY(30, 11);SetColor(4, 15);cout << "--Please name the file with fewer than 8 characters.--";
+	GotoXY(58, 9);
+}
+void Box_Error_Name() {
+	SetColor(4, 15);
+	GotoXY(40, 12);
+	cout << u8R"(╔═════════════════════════════════════════╗)";
+	GotoXY(40, 13);
+	cout << u8R"(║  File name must be under 8 characters.  ║)";
+	GotoXY(40, 14);
+	cout << u8R"(╚═════════════════════════════════════════╝)";
+}

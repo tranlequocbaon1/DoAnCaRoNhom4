@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <string>
 
+
 #ifndef HEADER_H
 #define HEADER_H
 
@@ -55,6 +56,8 @@ void Score2Player();
 void Box3();
 void Box4();
 void Box5();
+void Box6();
+void Box_Error_Name();
 
 void displayMenu(int selected);
 void startGame();
@@ -63,7 +66,7 @@ void displaysetting(int selected);
 int GetConsoleWidth();
 
 
-
+std::string getInputWithEscCheck();
 void InputPlayerNames();
 
 #endif
