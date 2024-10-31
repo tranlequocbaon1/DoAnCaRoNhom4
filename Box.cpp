@@ -227,8 +227,9 @@ void Box6() {
 	cout << u8"║";
 	GotoXY(30, 10);
 	cout << u8R"(╚═════════════════════════════════════════════════════════════╝)";
-	GotoXY(30, 11);SetColor(4, 15);cout << "--Please name the file with fewer than 8 characters.--";
+	GotoXY(34, 11);SetColor(4, 14);cout << "--Please name the file with fewer than 8 characters.--";SetColor(0, 15);
 	GotoXY(58, 9);
+	
 }
 void Box_Error_Name() {
 	SetColor(4, 15);

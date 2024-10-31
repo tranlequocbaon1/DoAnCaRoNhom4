@@ -622,6 +622,7 @@ void RecoveryBoard() {
 	Box1();
 	Box2();
 	Box3();
+	Score2Player();
 	GotoXY(_X, _Y);
 
 }

@@ -16,8 +16,41 @@
 #define CreateDir _mkdir  // Đổi tên cho hàm Windows
 
 using namespace std;
+
 #else
 #endif
+
+string getInputWithEscCheck_Save() {
+	string input = "";
+	char ch;
+
+	while (true) {
+		// Kiểm tra nếu có phím nhấn
+		if (_kbhit()) {
+			ch = _getch(); // Lấy ký tự nhập vào
+
+			if (ch == 27) { // Kiểm tra nếu là phím Esc
+				RecoveryBoard();
+				return ""; // Quay lại menu
+			}
+			else if (ch == '\r') { // Kiểm tra nếu là phím Enter
+				cout << endl;
+				break;
+			}
+			else if (ch == '\b') { // Xóa ký tự nếu nhấn phím Backspace
+				if (!input.empty()) {
+					cout << "\b \b"; // Xóa ký tự khỏi màn hình
+					input.pop_back();
+				}
+			}
+			else if (input.length() < 32) {
+				cout << ch; // Hiển thị ký tự vừa nhập
+				input += ch;
+			}
+		}
+	}
+	return input;
+}
 
 void SaveGameWithFileName() {
 	// Đếm số lượng file .txt trong thư mục Saves
@@ -42,7 +75,7 @@ void SaveGameWithFileName() {
 			Sleep(500);
 			
 			countError--;
-		} while (countError > 0);;
+		} while (countError > 0);
 		RecoveryBoard();
 		
 		return;
@@ -55,13 +88,21 @@ void SaveGameWithFileName() {
 		
 	bool validInput = true;
 	while (validInput) {//chan kh cho nhap tran ra khoi khung
-		fileName = getInputWithEscCheck();
+		fileName = getInputWithEscCheck_Save();
 		if (fileName.length() > 8) {
 			error();
 			// Thông báo lỗi
 			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
-			Box_Error_Name();
-			Sleep(1000); 		
+			int countError = 3;
+			do {
+				Box_Error_Name();//hien thi loi toi da file
+				Sleep(500);
+				GotoXY(41, 13);
+				cout << "                                        ";
+				Sleep(200);
+				countError--;
+			} while (countError > 0);
+			Box_Error_Name();		
 			system("cls");
 			RecoveryBoard();
 			Box6();
@@ -71,51 +112,53 @@ void SaveGameWithFileName() {
 		}
 		else validInput = false;
 	}
-	fileName += ".txt";  // Thêm phần mở rộng cho file
+	if (fileName != "") {
+		fileName += ".txt";  // Thêm phần mở rộng cho file
 
-	// Thêm đường dẫn vào thư mục "Saves"
-	string filePath = "Saves/" + fileName;
+		// Thêm đường dẫn vào thư mục "Saves"
+		string filePath = "Saves/" + fileName;
 
-	// Mở file để lưu vào đường dẫn
-	ofstream saveFile(filePath.c_str());
+		// Mở file để lưu vào đường dẫn
+		ofstream saveFile(filePath.c_str());
 
-	if (!saveFile) {
-		error();
-		cout << "ERROR, khong the tao file luu game" << endl;
-		return;
-	}
-
-	// Lưu trạng thái bàn cờ
-	for (int i = 0; i < BOARD_SIZE; i++) {
-		for (int j = 0; j < BOARD_SIZE; j++) {
-			saveFile << _A[i][j].c << " ";  // Lưu giá trị của từng ô cờ
+		if (!saveFile) {
+			error();
+			cout << "ERROR, khong the tao file luu game" << endl;
+			return;
 		}
-		saveFile << endl;
-	}
+
+		// Lưu trạng thái bàn cờ
+		for (int i = 0; i < BOARD_SIZE; i++) {
+			for (int j = 0; j < BOARD_SIZE; j++) {
+				saveFile << _A[i][j].c << " ";  // Lưu giá trị của từng ô cờ
+			}
+			saveFile << endl;
+		}
 
 
-	// Lưu lượt chơi hiện tại
-	saveFile << (_TURN ? 1 : 0) << endl;
+		// Lưu lượt chơi hiện tại
+		saveFile << (_TURN ? 1 : 0) << endl;
 
-	// Lưu vị trí con trỏ hiện tại
-	saveFile << _X << " " << _Y << endl;
-	saveFile << scoreP1 << " " << scoreP2 << endl;  // Lưu điểm số của người chơi 1 và 2
-	saveFile.close();
+		// Lưu vị trí con trỏ hiện tại
+		saveFile << _X << " " << _Y << endl;
+		saveFile << scoreP1 << " " << scoreP2 << endl;  // Lưu điểm số của người chơi 1 và 2
+		saveFile.close();
 
-	GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 3);
-	cout << "Ban co muon quay ve menu chinh? (Nhan ESC de thoat hoac bat ky phim nao khac de tiep tuc choi)";
+		GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 3);
+		std::cout << "Ban co muon quay ve menu chinh? (Nhan ESC de thoat hoac bat ky phim nao khac de tiep tuc choi)";
 
-	char choice = _getch();  // Nhận phím từ người dùng
-	if (choice == 27) {
-		click(); // ESC có mã ASCII là 27
-		mainmenu();
-	}
-	else {
-		GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
-		cout << "                                                                                                                                                     ";
+		char choice = _getch();  // Nhận phím từ người dùng
+		if (choice == 27) {
+			click(); // ESC có mã ASCII là 27
+			mainmenu();
+		}
+		else {
+			GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
+			cout << "                                                                                                                                                     ";
 
-		GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
-		cout << "                                                                                                                                                     ";
+			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
+			cout << "                                                                                                                                                     ";
+		}
 	}
 }
 void showSavedFiles(vector<string>& savedFiles) {
