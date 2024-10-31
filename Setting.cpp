@@ -30,7 +30,7 @@ void displaysetting(int selected) {
 
 )" << endl;
 	
-	DrawC(0,15);
+	//DrawC(0,15);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
 	SetConsoleOutputCP(CP_UTF8);
 	GotoXY(46, 12);

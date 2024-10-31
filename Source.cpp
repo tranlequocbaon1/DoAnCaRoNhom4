@@ -69,6 +69,7 @@ int mainmenu()
 				goto nhan;
 				break;
 			case 5:
+				system("cls");
 				cout << "Cam on da choi! Tam biet!\n";
 				return 0;
 			}

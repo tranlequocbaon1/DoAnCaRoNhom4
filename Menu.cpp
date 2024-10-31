@@ -33,6 +33,7 @@ void drawcaro() {
 	DrawMinion2(90, 18);//minion bat tim
 	DrawO(100, 3);
 	
+	
 
 }
 
@@ -54,7 +55,7 @@ void displayMenu(int selected) {
 			SetConsoleOutputCP(CP_UTF8);
 			GotoXY(46, 11+i%6);
 			cout << u8"│   >> " << options[i];
-			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
+			     if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
 			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
 			else if (options[i] == "About") cout << u8"             │ " << "\n";
 			else if (options[i] == "Load game") cout << u8"         │ " << "\n";
@@ -67,7 +68,7 @@ void displayMenu(int selected) {
 			// Màu mặc định
 			GotoXY(46, 11 + i % 6);
 			cout << u8"│      " << options[i];
-			if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
+			     if (options[i] == "Bat dau tro choi") cout << u8"  │ " << "\n";
 			else if (options[i] == "Huong dan") cout << u8"         │ " << "\n";
 			else if (options[i] == "About") cout << u8"             │ " << "\n";
 			else if (options[i] == "Load game") cout << u8"         │ " << "\n";
