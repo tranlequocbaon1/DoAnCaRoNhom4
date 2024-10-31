@@ -69,7 +69,7 @@ void SaveGameWithFileName() {
 		error();
 		int countError = 3;
 		do {
-			Box5();//hien thi loi toi da file
+			Box_Error_MaxSave();//hien thi loi toi da file
 			Sleep(500);
 			GotoXY(42, 9);std::cout << "                                                          ";
 			Sleep(500);

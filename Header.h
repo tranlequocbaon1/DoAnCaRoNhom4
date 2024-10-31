@@ -55,7 +55,7 @@ void Box2();
 void Score2Player();
 void Box3();
 void Box4();
-void Box5();
+void Box_Error_MaxSave();
 void Box6();
 void Box_Error_Name();
 
