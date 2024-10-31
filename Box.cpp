@@ -240,3 +240,13 @@ void Box_Error_Name() {
 	GotoXY(40, 14);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
+void Box_Save_Complete() {
+	SetColor(2, 15);
+	GotoXY(40, 12);
+	cout << u8R"(╔═════════════════════════════════════════╗)";
+	GotoXY(40, 13);
+	cout << u8R"(║         FILE SAVED SUCCESSFULLY!!       ║)";
+	GotoXY(40, 14);
+	cout << u8R"(╚═════════════════════════════════════════╝)";
+}
+

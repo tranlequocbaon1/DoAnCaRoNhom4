@@ -58,6 +58,7 @@ void Box4();
 void Box_Error_MaxSave();
 void Box6();
 void Box_Error_Name();
+void Box_Save_Complete();
 
 void displayMenu(int selected);
 void startGame();

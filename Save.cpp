@@ -144,21 +144,9 @@ void SaveGameWithFileName() {
 		saveFile << scoreP1 << " " << scoreP2 << endl;  // Lưu điểm số của người chơi 1 và 2
 		saveFile.close();
 
-		GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 3);
-		std::cout << "Ban co muon quay ve menu chinh? (Nhan ESC de thoat hoac bat ky phim nao khac de tiep tuc choi)";
-
-		char choice = _getch();  // Nhận phím từ người dùng
-		if (choice == 27) {
-			click(); // ESC có mã ASCII là 27
-			mainmenu();
-		}
-		else {
-			GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
-			cout << "                                                                                                                                                     ";
-
-			GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3);
-			cout << "                                                                                                                                                     ";
-		}
+		Box_Save_Complete();
+		Sleep(1000);
+		RecoveryBoard();
 	}
 }
 void showSavedFiles(vector<string>& savedFiles) {
