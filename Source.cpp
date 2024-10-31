@@ -602,4 +602,29 @@ void startGame() {
 }
 
 
+void RecoveryBoard() {
+	system("cls");
+	DrawBoard(BOARD_SIZE);
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
+			if (_A[i][j].c == 1) {
+				GotoXY((j + 1) * 5, (i + 1) * 2);
+				SetColor(0, 15);
+				cout << "O";
+			}
+			else if (_A[i][j].c == -1) {
+				GotoXY((j + 1) * 5, (i + 1) * 2);
+				SetColor(12, 15);
+				cout << "X";
+			}
+		}
+	}
+	Box1();
+	Box2();
+	Box3();
+	GotoXY(_X, _Y);
+
+}
+
+
 

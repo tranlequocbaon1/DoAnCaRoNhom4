@@ -36,6 +36,7 @@ void ResetData();
 void DrawBoard(int pSize);
 void StartGame();
 void ExitGame();
+void RecoveryBoard();
 
 int ProcessFinish(int pWhoWin);
 int AskContinue();
@@ -53,6 +54,7 @@ void Box2();
 void Score2Player();
 void Box3();
 void Box4();
+void Box5();
 
 void displayMenu(int selected);
 void startGame();

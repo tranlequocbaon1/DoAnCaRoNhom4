@@ -14,6 +14,7 @@
 #ifdef _WIN32
 #include <direct.h>  // Thư viện cho Windows
 #define CreateDir _mkdir  // Đổi tên cho hàm Windows
+using namespace std;
 #else
 #endif
 
@@ -32,9 +33,17 @@ void SaveGameWithFileName() {
 	// Kiểm tra nếu số lượng file đạt giới hạn 8
 	if (fileCount >= 9) {
 		error();
-		GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3); cout << "Thu muc 'Saves' da dat gioi han 8 file, khong the luu them. " << endl;
-		Sleep(500);
-		GotoXY(LEFT, TOP + 2 * BOARD_SIZE + 3); cout << "                                                                                       ";
+		int countError = 3;
+		do {
+			Box5();
+			Sleep(500);
+			GotoXY(42, 9);std::cout << "                                                          ";
+			Sleep(500);
+			
+			countError--;
+		} while (countError > 0);;
+		RecoveryBoard();
+		
 		return;
 	}
 
