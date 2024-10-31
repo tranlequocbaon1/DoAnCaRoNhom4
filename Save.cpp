@@ -186,6 +186,7 @@ void CreateSaveDirectory() {
 }
 
 void SaveToFile(const string& filename, const string& content) {
+
 	string filepath = "Saves/" + filename;  // Lưu vào thư mục Saves
 	ofstream file(filepath);
 
