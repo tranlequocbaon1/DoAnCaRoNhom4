@@ -576,7 +576,7 @@ void startGame() {
 					case 0:
 
 
-						if (toupper(AskContinue()) == 'N' || AskContinue() == 27) {
+						if (toupper(AskContinue()) != 'Y'&& toupper(AskContinue())!=13|| AskContinue() == 27) {
 							//system("pause");
 							Sleep(500);
 							ResetKetqua(_B);
