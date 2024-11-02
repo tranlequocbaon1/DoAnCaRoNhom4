@@ -47,7 +47,87 @@ string getInputWithEscCheck() {
 
 string player1, player2;
 void InputPlayerNames() {
+	int consoleWidth = GetConsoleWidth();
+	int boxWidth = 41; // Chiều rộng của khung
+	int centerX = (consoleWidth - boxWidth) / 2;
+	SetName_View();
+	bool validInput = false;
+	while (!validInput) {
+		GotoXY(centerX + 5, 7);
+		player1 = getInputWithEscCheck();
+		if (player1.empty())  player1 = "Player1";
+		if (player1.length() > 10) {
+			Sleep(200);
+			int count = 3;
+			while (count > 0) {
+				Box_Error_SetName();
+				Sleep(400);
+				GotoXY(43, 16);
+				cout << "                                       ";
+				Sleep(400);
+				count--;
+			}
+			SetName_View();
+			GotoXY(centerX + 5, 7);
+			validInput = false;
+		}
+		else validInput = true;
+	}
+	validInput = false;
+	while (!validInput) {
+		GotoXY(centerX + 5, 12);
+		player2 = getInputWithEscCheck(); // Sử dụng hàm để nhập tên Player 2
 
+		if (player2.empty()) { // Nếu người dùng nhấn Esc
+			player2 = "Player2"; // Đặt tên mặc định
+			return; // Quay lại menu
+		}
+
+		if (player2.length() > 10) {
+			Sleep(200);
+			Box_Error_SetName();
+			Sleep(800);
+			SetName_View();
+			GotoXY(centerX + 5, 7);
+			cout << player1;
+			int count = 3;
+			while (count > 0) {
+				Box_Error_SetName();
+				Sleep(400);
+				GotoXY(43, 16);
+				cout << "                                       ";
+				Sleep(400);
+				count--;
+			}
+			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
+			validInput = false;
+		}
+		else if (player1 == player2) {
+			Sleep(200);
+			Box_Error_Duplicate_SetName();
+			Sleep(800);
+			SetName_View();
+			GotoXY(centerX + 5, 7);
+			cout << player1;
+			int count = 3;
+			while (count > 0) {
+				Box_Error_Duplicate_SetName();
+				Sleep(400);
+				GotoXY(43, 16);
+				cout << "                                       ";
+				Sleep(400);
+				count--;
+			}
+			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
+			validInput = false;
+		}
+		else {
+			validInput = true; // Thoát khỏi vòng lặp nếu nhập tên hợp lệ
+		}
+	}
+}
+
+void SetName_View() {
 	system("cls");
 	SetConsoleOutputCP(CP_UTF8);
 
@@ -86,59 +166,4 @@ void InputPlayerNames() {
 	cout << u8R"(│                                         │)";
 	GotoXY(centerX, 13);
 	cout << u8R"(└─────────────────────────────────────────┘)";
-
-	bool validInput = false;
-	while (!validInput) {
-		GotoXY(centerX + 5, 7);
-		player1 = getInputWithEscCheck();
-		if (player1.empty())  player1 = "Player1";
-		if (player1.length() > 10) {
-			GotoXY(centerX, 15);
-			cout << "                                        " << endl;
-			Sleep(200);
-			GotoXY(centerX, 15);
-			cout << "Ten phai nho hon hoac bang 10 ky tu.     " << endl;
-			Sleep(800);
-			GotoXY(centerX + 5, 7);
-			cout << "                                    ";
-			GotoXY(centerX + 5, 7);
-		}
-		else validInput = true;
-	}
-	validInput = false;
-	while (!validInput) {
-		GotoXY(centerX + 5, 12);
-		player2 = getInputWithEscCheck(); // Sử dụng hàm để nhập tên Player 2
-
-		if (player2.empty()) { // Nếu người dùng nhấn Esc
-			player2 = "Player2"; // Đặt tên mặc định
-			return; // Quay lại menu
-		}
-
-		if (player2.length() > 10) {
-			GotoXY(centerX, 15);
-			cout << "                                         ";
-			Sleep(200);
-			GotoXY(centerX, 15);
-			cout << "Ten phai nho hon hoac bang 10 ky tu.      " << endl;
-			Sleep(1000); // Tạm dừng 0.5 giây
-			GotoXY(centerX + 5, 12);
-			cout << "                                    "; // Xóa tên đã nhập
-			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
-		}
-		else if (player1 == player2) {
-			GotoXY(centerX, 15);
-			cout << "                                         ";
-			Sleep(200);
-			GotoXY(centerX, 15);
-			cout << "Ten phai khac nhau. Vui long nhap lai.    " << endl;
-			Sleep(1000); // Tạm dừng 0.5 giây
-			GotoXY(centerX + 5, 12);
-			cout << "                                     "; // Xóa tên đã nhập
-			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
-		}
-		else {
-			validInput = true; // Thoát khỏi vòng lặp nếu nhập tên hợp lệ
-		}
-	}
 }

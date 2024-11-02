@@ -61,6 +61,8 @@ void Box_Error_MaxSave();
 void Box6();
 void Box_Error_Name();
 void Box_Save_Complete();
+void Box_Error_SetName();
+void Box_Error_Duplicate_SetName();
 
 void displayMenu(int selected);
 void startGame();
@@ -71,6 +73,7 @@ int GetConsoleWidth();
 
 std::string getInputWithEscCheck();
 void InputPlayerNames();
+void SetName_View();
 
 
 #endif

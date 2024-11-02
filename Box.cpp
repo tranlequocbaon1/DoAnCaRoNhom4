@@ -236,7 +236,7 @@ void Box_Error_Name() {
 	GotoXY(40, 12);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 13);
-	cout << u8R"(║  File name must be under 8 characters.  ║)";
+	cout << u8R"(║  FILE NAME MUST BE UNDER 8 CHARACTERS.  ║)";
 	GotoXY(40, 14);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
@@ -249,4 +249,26 @@ void Box_Save_Complete() {
 	GotoXY(40, 14);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
+
+void Box_Error_SetName() {
+	SetColor(4, 15);
+	GotoXY(40, 15);
+	cout << u8R"(╔═════════════════════════════════════════╗)";
+	GotoXY(40, 16);
+	cout << u8R"(║   NICKNAME MUST BE UNDER 8 CHARTACTERS  ║)";
+	GotoXY(40, 17);
+	cout << u8R"(╚═════════════════════════════════════════╝)";
+	SetColor(0, 15);
+}
+void Box_Error_Duplicate_SetName() {
+	SetColor(4, 15);
+	GotoXY(40, 15);
+	cout << u8R"(╔═════════════════════════════════════════╗)";
+	GotoXY(40, 16);
+	cout << u8R"(║         THE NAME ALREADY EXISTS         ║)";
+	GotoXY(40, 17);
+	cout << u8R"(╚═════════════════════════════════════════╝)";
+	SetColor(0, 15);
+}
+
 

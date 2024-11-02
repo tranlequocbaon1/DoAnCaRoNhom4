@@ -1,27 +1,28 @@
 ﻿#include <iostream>
 #include <Windows.h>
 #include <conio.h>
+#include <thread>
 #include "header.h"
+bool resetFlag;
+bool countdownActive=true;
+
+using namespace std;
 
 
 
-
-void TimerCountDown() {
-	int  time = 30;
-
-	while (time > 0) {
-		for (int i = 0; i < 10; ++i) {
-			if (_kbhit()) {
-				char key = _getch();
-				if (key == '\r') {
-					time = 30;
-					break;
-				}
-			}
-			Sleep(100); // Ngủ 0.1 giây
-		}
-		GotoXY(100, 2);
-		std::cout << time;
-		time--;
-	}
+void TimerCountDown(int seconds) {
+    while (seconds > 0 && countdownActive) {
+        cout << "\033[H\n\n";
+        cout <<"\r\t\t\t\t\t\t\t\t\t\t\t\t\t\t" << seconds;
+        
+        GotoXY(_X, _Y);
+        this_thread::sleep_for(chrono::seconds(1)); 
+        if (resetFlag) {
+            seconds = 30; // Reset lại thời gian
+            resetFlag = false; // Đặt lại cờ reset
+        }
+        --seconds;
+       
+    } 
+    
 }

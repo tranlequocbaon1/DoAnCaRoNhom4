@@ -353,6 +353,7 @@ void countXO(int& countX, int& countO) {
 
 
 void restartGame() {
+	_POINT pc;
 	SetConsoleOutputCP(1251);
 	cout << "Bat dau tro choi...\n";
 
@@ -369,6 +370,8 @@ void restartGame() {
 	Box2();
 	Box3();
 	Score2Player();
+	pc.x = 0;
+	pc.y = 0;
 	GotoXY(LEFT + 2, TOP + 1); // Đưa con trỏ về ô đầu tiên
 	for (int i = 0; i < BOARD_SIZE; i++) {
 		for (int j = 0; j < BOARD_SIZE; j++) {
@@ -421,52 +424,54 @@ void restartGame() {
 			else if (_COMMAND == 13) {
 				// Nếu người chơi bấm Enter
 				switch (CheckBoard(_X, _Y)) {
-				case -1: {
+				case -1:
 					step();
-					_A[_X][_Y].c = -1;
+					_B[_X][_Y] = -1;
 					SetConsoleTextAttribute(hStdOut, 12 | (7 << 4));
 					cout << "X";
-					if (pastcoord.x != 0 && pastcoord.y != 0) {
-						if ((_A[_X][_Y].c ) == 1) {
-							GotoXY(pastcoord.x, pastcoord.y);
+					if (pc.x != 0 && pc.y != 0) {
+						if ((_B[_X][_Y]) == 1) {
+							GotoXY(pc.x, pc.y);
 							SetColor(12, 15);
 							cout << "X";
 						}
-						if ((_A[_X][_Y].c ) == -1) {
-							GotoXY(pastcoord.x, pastcoord.y);
+						if ((_B[_X][_Y]) == -1) {
+							GotoXY(pc.x, pc.y);
 							SetColor(0, 15);
 							cout << "O";
 
 						}
 
 					}
+					pc.x = _X;
+					pc.y = _Y;
+					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
 
 					break;
-				}
-				case 1: {
-					step();
-					SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
+				case 1:
+					stepO();
+					_B[_X][_Y] = 1;
+					SetConsoleTextAttribute(hStdOut, 0 | (7 << 4));
 					cout << "O";
-					_A[_X][_Y].c = 1; // Cập nhật bàn cờ
-					GotoXY(0, 0);
-					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
-					if (pastcoord.x != 0 && pastcoord.y != 0) {
-						if ((_A[_X][_Y].c) == 1) {
-							GotoXY(pastcoord.x, pastcoord.y);
+
+					if (pc.x != 0 && pc.y != 0) {
+						if ((_B[_X][_Y]) == 1) {
+							GotoXY(pc.x, pc.y);
 							SetColor(12, 15);
 							cout << "X";
 						}
-						if ((_A[_X][_Y].c) == -1) {
-							GotoXY(pastcoord.x, pastcoord.y);
+						if ((_B[_X][_Y]) == -1) {
+							GotoXY(pc.x, pc.y);
 							SetColor(0, 15);
 							cout << "O";
 
 						}
-
 					}
+					pc.x = _X;
+					pc.y = _Y;
+					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
 					break;
-				}
 				case 0: // Nếu ô trống
 					ValidEnter = false; // Không làm gì, ô đã có X hoặc O
 				}

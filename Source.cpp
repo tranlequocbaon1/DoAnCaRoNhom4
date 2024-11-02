@@ -8,6 +8,8 @@
 #include <Windows.h>
 #include"Timer.h"
 #include <iomanip>
+#include <thread>
+
 using namespace std;
 
 #define BOARD_SIZE 12
@@ -50,6 +52,7 @@ int mainmenu()
 			switch (choice) {
 				//thuc hien hanh dong
 			case 0:
+				
 				startGame();
 				goto nhan;
 				break;
@@ -485,11 +488,13 @@ void startGame() {
 	GotoXY(LEFT + 2, TOP + 1);//dua con tro ve o dau tien
 	pastcoord.x = 0;
 	pastcoord.y = 0;
-	//TimerCountDown();
+	std::thread timerThread(TimerCountDown, 30);
+	timerThread.detach();
 	while (1) {
+		
 		_COMMAND = toupper(_getch());
 		if (_COMMAND == 27 || _COMMAND == 'Q') {
-
+			countdownActive = false;
 			int choice = 0;
 			char key;
 			bool running = true;
@@ -543,6 +548,7 @@ void startGame() {
 			else if (_COMMAND == 'D') MoveRight();
 			else if (_COMMAND == 'W') MoveUp();
 			else if (_COMMAND == 'L') {
+				countdownActive = false;
 				CONSOLE_SCREEN_BUFFER_INFO csbi;
 				GetConsoleScreenBufferInfo(hStdOut, &csbi);
 				int bottomRow = csbi.srWindow.Bottom;  // Get the bottom row of the current console window
@@ -553,7 +559,7 @@ void startGame() {
 
 			}
 			else if (_COMMAND == 13) {
-
+				resetFlag = true;
 				switch (CheckBoard(_X, _Y)) {
 				case -1:
 					step();
@@ -611,6 +617,7 @@ void startGame() {
 				if (ValidEnter == true) {
 					switch (ProcessFinish(TestBoard())) {
 					case-1:
+						countdownActive = false;
 					case 1:
 					case 0:
 
@@ -627,6 +634,7 @@ void startGame() {
 
 						}
 						else {
+							countdownActive = true;
 							ResetKetqua(_B);
 							startGame();
 						}
@@ -636,6 +644,7 @@ void startGame() {
 				ValidEnter = true;
 			}
 		}
+		
 	}
 
 }
@@ -716,7 +725,7 @@ void displayMenu2(int selected) {
 			else if (options[i] == "Thoat") {
 				GotoXY(46, 13);
 				cout << u8"│      " << options[i];
-				cout << u8"             │ " << "\n";
+				cout << u8"             │" << "\n";
 			}
 		}
 	}
