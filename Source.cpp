@@ -6,7 +6,8 @@
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
-
+#include"Timer.h"
+#include <iomanip>
 using namespace std;
 
 #define BOARD_SIZE 12
@@ -201,7 +202,7 @@ int ProcessFinish(int pWhoWin) {
 	return pWhoWin;
 }
 int AskContinue() {
-	Sleep(4000);
+	Sleep(1000);
 	GotoXY(15, _A[BOARD_SIZE][BOARD_SIZE - 1].y);
 	Box4();
 	return toupper(_getch());
@@ -484,19 +485,57 @@ void startGame() {
 	GotoXY(LEFT + 2, TOP + 1);//dua con tro ve o dau tien
 	pastcoord.x = 0;
 	pastcoord.y = 0;
-
+	//TimerCountDown();
 	while (1) {
 		_COMMAND = toupper(_getch());
-		if (_COMMAND == 27||_COMMAND=='Q') {
-			click();
-			Sleep(500);
-			scoreP1 = 0;
-			scoreP2 = 0;
+		if (_COMMAND == 27 || _COMMAND == 'Q') {
 
-			ExitGame();
-			mainmenu();
-			return;
+			int choice = 0;
+			char key;
+			bool running = true;
+			while (running) {
+				GotoXY(0, 17);
+				displayMenu2(choice);
+				key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
+
+				if (key == 'w' || key == 'W') {
+					choice = (choice - 1 + 3) % 3; // Di chuyển lên
+				}
+				else if (key == 's' || key == 'S') {
+					choice = (choice + 1) % 3; // Di chuyển xuống
+				}
+				else if (key == 13) {
+
+
+					if (choice == 2) {
+						click();
+						Sleep(500);
+						scoreP1 = 0;
+						scoreP2 = 0;
+
+						ExitGame();
+						mainmenu();
+
+						ExitProcess(0);
+						break;
+					}
+					else if (choice == 1){
+						
+						toggleSFX();
+						
+						
+						GotoXY(72, 4);
+						
+					}
+					else break;
+					
+				
+				}
+
+			}RecoveryBoard();
+		
 		}
+		
 		else {
 			if (_COMMAND == 'A') MoveLeft();
 			else if (_COMMAND == 'W') MoveUp();
@@ -627,5 +666,72 @@ void RecoveryBoard() {
 
 }
 
+void displayMenu2(int selected) {
+	const string options[] = { "Continue","SFX","Thoat"};
+	const int numOptions = sizeof(options) / sizeof(options[0]);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+	SetConsoleOutputCP(CP_UTF8);
+	GotoXY(46, 10);
+	cout << u8"┌────────────────────────┐" << endl;
+	for (int i = 0; i < numOptions; i++) {
+
+		if (i == selected) {
+			// Mục đang chọn với màu chữ đỏ
+			SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
+			SetConsoleOutputCP(CP_UTF8);
+
+			if (options[i] == "Continue") {
+				GotoXY(46, 11);
+				cout << u8"│  >>  " << options[i];
+				cout << u8"          │" << "\n";
+			}
+			if (options[i] == "SFX") {
+				GotoXY(46, 12);
+				cout << u8"│  >>  " << options[i];
+				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
+			}
+			else if (options[i] == "Thoat") {
+				GotoXY(46, 13);
+				cout << u8"│  >>  " << options[i];
+				cout << u8"             │" << "\n";
+			}
+		}
+		else {
+			// Mục không chọn với màu mặc định (trắng)
+			SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+			// Màu mặc định
+			if (options[i] == "Continue") {
+				GotoXY(46, 11);
+				cout << u8"│      " << options[i];
+				cout << u8"          │" << "\n";
+			}
+			else if(options[i] == "SFX") {
+				GotoXY(46, 12);
+				cout << u8"│      " << options[i];
+				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
+			}
+
+			else if (options[i] == "Thoat") {
+				GotoXY(46, 13);
+				cout << u8"│      " << options[i];
+				cout << u8"             │ " << "\n";
+			}
+		}
+	}
+	GotoXY(46, 14);
+	std::cout << u8"└────────────────────────┘" << endl;
+
+
+	std::cout << endl;
+
+
+
+}
+void mainmenu2()
+{
+	
+}
 
 

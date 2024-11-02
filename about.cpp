@@ -25,13 +25,13 @@ void about() {
 	SetConsoleOutputCP(CP_UTF8);
 
 	std::cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
-	std::cout << u8"                               │    Teacher_Instructors:Truong Toan Thinh   │" << "\n";
+	std::cout << u8"                               │    Teacher_Instructors:Trương Toàn Thịnh   │" << "\n";
 	std::cout << u8"                               │ GROUP 04:                                  │" << "\n";
-	std::cout << u8"                               │   +Do Ngoc Gia Bao - Leader(24120263)      │" << "\n";
-	std::cout << u8"                               │   +Huynh Thanh Tu          (24120235)      │" << "\n";
-	std::cout << u8"                               │   +Tran Le Quoc Bao        (24120268)      │" << "\n";
-	std::cout << u8"                               │   +Nguyen Van Toan         (24120232)      │" << "\n";
-	std::cout << u8"                               │   +Tran Thien An           (24120255)      │" << "\n";
+	std::cout << u8"                               │   +Đỗ Ngọc Gia Bảo - Leader(24120263)      │" << "\n";
+	std::cout << u8"                               │   +Huỳnh Thanh Tú          (24120235)      │" << "\n";
+	std::cout << u8"                               │   +Trần Lê Quốc Bảo        (24120268)      │" << "\n";
+	std::cout << u8"                               │   +Nguyễn Văn Toàn         (24120232)      │" << "\n";
+	std::cout << u8"                               │   +Trần Thiên An           (24120255)      │" << "\n";
 	std::cout << u8"                               │ Press Q to return Menu                     │" << "\n";
 	std::cout << u8"                               └────────────────────────────────────────────┘" << "\n";
 

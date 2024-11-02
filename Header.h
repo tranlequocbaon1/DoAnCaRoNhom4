@@ -28,6 +28,8 @@ void Setting();
 int mainmenu();
 void showloadgame();
 void drawcaro();
+void displayMenu2(int selected);
+void mainmenu2();
 
 void clearScreen();
 void FixConsoleWindow();
@@ -69,5 +71,6 @@ int GetConsoleWidth();
 
 std::string getInputWithEscCheck();
 void InputPlayerNames();
+
 
 #endif
