@@ -15,5 +15,6 @@ void DrawSquirtle(int, int);
 void setColor(WORD color);
 void drawpx(int n);
 void DrawC(int x, int y);
-
+void DrawBG();
+void DrawBg_xp();
 #endif ;

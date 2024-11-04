@@ -4,5 +4,7 @@
 #define TIME_H
 extern bool resetFlag ;
 extern bool countdownActive;
-void TimerCountDown(int );
+extern int kq;
+extern int seconds;
+void TimerCountDown( );
 #endif // !TIME_H

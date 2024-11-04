@@ -271,4 +271,16 @@ void Box_Error_Duplicate_SetName() {
 	SetColor(0, 15);
 }
 
+void Box_TimeCountdown_End() {
+	SetColor(4, 15);
+	GotoXY(40, 15);
+	cout << u8R"(╔═════════════════════════════════════════╗)";
+	GotoXY(40, 16);
+	cout << u8R"(║              TIME IS UP!!!!!            ║)";
+	GotoXY(40, 17);
+	cout << u8R"(╚═════════════════════════════════════════╝)";
+	SetColor(0, 15);
+}
+
+
 

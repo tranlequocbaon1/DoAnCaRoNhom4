@@ -31,6 +31,7 @@ using namespace std;
 
 int mainmenu()
 {
+	
 	int choice = 0;
 	char key;
 	nhan:drawcaro();
@@ -128,7 +129,7 @@ void StartGame() {
 	ResetData();
 	DrawBoard(BOARD_SIZE);
 	Score2Player();
-
+	countdownActive = true;
 }
 
 void GabageCollect() {
@@ -144,6 +145,7 @@ int ProcessFinish(int pWhoWin) {
 	GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 2);
 	switch (pWhoWin) {
 	case -1: {
+		countdownActive = false;
 		victory();
 		scoreP1 += 1;
 		int demnguoc = 7;
@@ -162,6 +164,7 @@ int ProcessFinish(int pWhoWin) {
 		break;
 	}
 	case 1: {
+		countdownActive = false;
 		victory();
 		scoreP2 += 1;
 		int demnguoc = 7;
@@ -180,6 +183,7 @@ int ProcessFinish(int pWhoWin) {
 		break;
 	}
 	case 0: {
+		countdownActive = false;
 		victory();
 		int demnguoc = 7;
 		while (demnguoc > 0) {
@@ -478,8 +482,9 @@ void startGame() {
 
 	int a, b;
 	bool ValidEnter = true;
-
+	seconds = 15;
 	StartGame();
+	
 	Box1();
 	Box2();
 	Box3();
@@ -488,7 +493,7 @@ void startGame() {
 	GotoXY(LEFT + 2, TOP + 1);//dua con tro ve o dau tien
 	pastcoord.x = 0;
 	pastcoord.y = 0;
-	std::thread timerThread(TimerCountDown, 30);
+	std::thread timerThread(TimerCountDown);
 	timerThread.detach();
 	while (1) {
 		
@@ -615,31 +620,52 @@ void startGame() {
 					ValidEnter = false;
 				}
 				if (ValidEnter == true) {
-					switch (ProcessFinish(TestBoard())) {
-					case-1:
-						countdownActive = false;
-					case 1:
-					case 0:
-
-
-						if (toupper(AskContinue()) != 'Y'&& toupper(AskContinue())!=13|| AskContinue() == 27) {
-							//system("pause");
-							Sleep(500);
-							ResetKetqua(_B);
-							system("cls");
-							scoreP1 = 0;
-							scoreP2 = 0;
-							mainmenu();
-							return;
-
+					if (seconds > 0) {
+						switch (ProcessFinish(TestBoard())) {
+						case-1:
+							countdownActive = false;
+						case 1:
+						case 0:
+							if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
+								//system("pause");
+								Sleep(500);
+								ResetKetqua(_B);
+								system("cls");
+								scoreP1 = 0;
+								scoreP2 = 0;
+								mainmenu();
+								return;
+							}
+							else {
+								countdownActive = true;
+								ResetKetqua(_B);
+								startGame();
+							}
 						}
-						else {
-							countdownActive = true;
-							ResetKetqua(_B);
-							startGame();
-						}
-
 					}
+					else {
+						switch (ProcessFinish(kq)) {
+						case-1:
+						case 1:
+						case 0:
+							if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
+								//system("pause");
+								Sleep(500);
+								ResetKetqua(_B);
+								system("cls");
+								scoreP1 = 0;
+								scoreP2 = 0;
+								mainmenu();
+								return;
+							}
+							else {
+								countdownActive = true;
+								ResetKetqua(_B);
+								startGame();
+							}
+						}
+					}
+				
 				}
 				ValidEnter = true;
 			}
@@ -672,6 +698,7 @@ void RecoveryBoard() {
 	Box3();
 	Score2Player();
 	GotoXY(_X, _Y);
+	countdownActive = true;
 
 }
 
