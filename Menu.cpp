@@ -15,7 +15,7 @@ void drawcaro() {
 	
 	//SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
-	DrawBg_xp();
+	DrawBG();
 	/*DrawSquirtle(0, 4);*/
 	
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);

@@ -47,6 +47,7 @@ string getInputWithEscCheck() {
 
 string player1, player2;
 void InputPlayerNames() {
+	DrawBG();
 	int consoleWidth = GetConsoleWidth();
 	int boxWidth = 41; // Chiều rộng của khung
 	int centerX = (consoleWidth - boxWidth) / 2;
@@ -77,7 +78,7 @@ void InputPlayerNames() {
 	while (!validInput) {
 		GotoXY(centerX + 5, 12);
 		player2 = getInputWithEscCheck(); // Sử dụng hàm để nhập tên Player 2
-
+		DrawBG();
 		if (player2.empty()) { // Nếu người dùng nhấn Esc
 			player2 = "Player2"; // Đặt tên mặc định
 			return; // Quay lại menu
@@ -129,6 +130,7 @@ void InputPlayerNames() {
 
 void SetName_View() {
 	system("cls");
+	DrawBG();
 	SetConsoleOutputCP(CP_UTF8);
 
 	// Lấy chiều rộng của console
