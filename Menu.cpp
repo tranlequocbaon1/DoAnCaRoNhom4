@@ -13,10 +13,11 @@ void drawcaro() {
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	
-	//SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
+	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
-	DrawBG();
-	/*DrawSquirtle(0, 4);*/
+	//DrawBG();
+	DrawSquirtle(76, 6);
+	DrawPikachu(0, 4);
 	
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);
 	
@@ -34,6 +35,7 @@ void drawcaro() {
 	//DrawMinion1(78, 16);//minion dung
 	//DrawMinion2(90, 18);//minion bat tim
 	//DrawO(100, 3);
+	
 	
 	
 
