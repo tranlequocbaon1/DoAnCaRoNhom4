@@ -54,14 +54,14 @@ void InputPlayerNames() {
 	SetName_View();
 	bool validInput = false;
 	while (!validInput) {
-		GotoXY(centerX + 5, 7);
+		GotoXY(3, 5);
 		player1 = getInputWithEscCheck();
 		if (player1.empty())  player1 = "Player1";
 		if (player1.length() > 10) {
 			Sleep(200);
 			int count = 3;
 			while (count > 0) {
-				Box_Error_SetName();
+				Box_Error_SetName(2,9);
 				Sleep(400);
 				GotoXY(43, 16);
 				cout << "                                       ";
@@ -87,14 +87,14 @@ void InputPlayerNames() {
 
 		if (player2.length() > 10) {
 			Sleep(200);
-			Box_Error_SetName();
+			Box_Error_SetName(60,23);
 			Sleep(800);
 			SetName_View();
 			GotoXY(centerX + 5, 7);
 			cout << player1;
 			int count = 3;
 			while (count > 0) {
-				Box_Error_SetName();
+				Box_Error_SetName(60,23);
 				Sleep(400);
 				GotoXY(43, 16);
 				cout << "                                       ";
@@ -150,13 +150,13 @@ void SetName_View() {
 
 	// Hiển thị và căn giữa phần nhập tên Player 1
 	SetColor(0, 15);
-	GotoXY(centerX, 5);
+	GotoXY(2, 3);
 	cout << ">>Nhap ten player1";
-	GotoXY(centerX, 6);
+	GotoXY(2, 4);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
-	GotoXY(centerX, 7);
+	GotoXY(2, 5);
 	cout << u8R"(│                                         │)";
-	GotoXY(centerX, 8);
+	GotoXY(2, 6);
 	cout << u8R"(└─────────────────────────────────────────┘)";
 
 

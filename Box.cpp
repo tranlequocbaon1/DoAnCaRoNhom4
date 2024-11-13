@@ -250,13 +250,13 @@ void Box_Save_Complete() {
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
 
-void Box_Error_SetName() {
+void Box_Error_SetName(int x,int y) {
 	SetColor(4, 15);
-	GotoXY(40, 15);
+	GotoXY(x, y+1);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
-	GotoXY(40, 16);
+	GotoXY(x, y+2);
 	cout << u8R"(║   NICKNAME MUST BE UNDER 8 CHARTACTERS  ║)";
-	GotoXY(40, 17);
+	GotoXY(x, y+3);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
 }

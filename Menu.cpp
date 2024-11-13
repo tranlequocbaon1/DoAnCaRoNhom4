@@ -15,20 +15,20 @@ void drawcaro() {
 	
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
-	//DrawBG();
-	DrawSquirtle(76, 6);
-	DrawPikachu(0, 4);
+	DrawBg_xp();
+	//DrawSquirtle(76, 6);
+	//DrawPikachu(0, 4);
 	
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);
 	
-	GotoXY(30, 1);cout << u8" ╔═█████████    ╔═█████████     ╔═█████████     ╔═█████████";
+	GotoXY(31, 1); cout << u8"╔═█████████    ╔═█████████     ╔═█████████     ╔═█████████";
 	GotoXY(30, 2);cout << u8"╔╝██           ╔╝██═════╗ ██    ║ ██    ║ ██   ╔╝██    ╚╗ ██";
 	GotoXY(30, 3);cout << u8"║ ██           ║ ██     ║ ██    ║ ██    ║ ██   ║ ██     ║ ██";
 	GotoXY(30, 4);cout << u8"║ ██           ║ ███████████    ║ █████████    ║ ██     ║ ██";
 	GotoXY(30, 5);cout << u8"║ ██           ║ ██═════╗ ██    ║ ██════╗ ██   ║ ██     ║ ██";
 	GotoXY(30, 6);cout << u8"║ ██           ║ ██     ║ ██    ║ ██    ║ ██   ║ ██     ║ ██";
 	GotoXY(30, 7);cout << u8"╚╦ █████████   ║ ██     ║ ██    ║ ██    ║ ██   ╚╦ █████████";
-	GotoXY(30, 8);cout << u8" ╚════════╝    ╚══╝     ╚══╝    ╚═╝     ╚═╝     ╚══════╝";
+	GotoXY(31, 8); cout << u8"╚════════╝    ╚══╝     ╚══╝    ╚═╝     ╚═╝     ╚══════╝";
 
 	GotoXY(0, 10);
 	//DrawHeart(102,18);

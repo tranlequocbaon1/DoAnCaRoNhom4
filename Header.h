@@ -61,7 +61,7 @@ void Box_Error_MaxSave();
 void Box6();
 void Box_Error_Name();
 void Box_Save_Complete();
-void Box_Error_SetName();
+void Box_Error_SetName(int,int);
 void Box_Error_Duplicate_SetName();
 void Box_TimeCountdown_End();
 
