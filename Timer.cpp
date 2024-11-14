@@ -15,6 +15,7 @@ using namespace std;
 void TimerCountDown() {
     while (seconds >= 0 && countdownActive) {
         cout << "\033[H\n\n";
+        cout << "\r\t\t\t\t\t\t\t\t\t\t\t\t\t\t" << "  ";
         cout << "\r\t\t\t\t\t\t\t\t\t\t\t\t\t\t" << seconds;
 
         GotoXY(_X, _Y);

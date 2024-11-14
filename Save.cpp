@@ -769,4 +769,98 @@ void deleteSavedFile(const string& fileName) {
 		cout << "Tệp đã được xóa thành công: " << filePath << endl;
 	}
 }
+void xoagame()
+{
+	clearScreen();
+	SetConsoleOutputCP(CP_UTF8);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	while (true)
+	{
+		clearScreen();
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+		clearScreen();
+
+		cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
+		cout << u8"                               │            DANH SACH FILE SAVE             │" << "\n";
+		cout << u8"                               │                                            │" << "\n";
+
+		vector<string> savedFiles;
+		showSavedFiles(savedFiles);
+
+		int selectedFileIndex = 0;
+		int selectingFile = 0;
+
+		while (true)
+		{
+			// Xóa màn hình chỉ khi người dùng di chuyển
+			if (selectingFile)
+			{
+				clearScreen();
+			}
+			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15 << 4));
+			clearScreen();
+
+			cout << u8"                               ┌────────────────────────────────────────────┐" << "\n";
+			cout << u8"                               │            DANH SACH FILE SAVE             │" << "\n";
+			cout << u8"                               │                                            │" << "\n";
+			// Hiển thị tên file trong bảng và đánh dấu tệp đang chọn
+			for (size_t i = 0; i < savedFiles.size(); i++)
+			{
+				string formattedFileName = savedFiles[i];
+				if (formattedFileName.length() > 40) {
+					formattedFileName = formattedFileName.substr(0, 37) + "...";
+				}
+				if (i == selectedFileIndex && selectingFile) {
+					cout << u8"                               │ > " << formattedFileName
+						<< std::string(38 - formattedFileName.length(), ' ') << u8"   │" << "\n";
+				}
+				else {
+					cout << u8"                               │   " << formattedFileName
+						<< std::string(40 - formattedFileName.length(), ' ') << u8" │" << "\n";
+				}
+			}
+
+			cout << u8"                               └────────────────────────────────────────────┘" << "\n";
+			cout << "                                 Ban co muon xoa File khong? (D) ";
+			char choice = _getch();
+
+			if (choice == 'n' || choice == 'N') {
+				click();
+				return;
+			}
+			else if (choice == 'q' || choice == 'Q') {
+				click();
+				return;
+			}
+			else if (choice == 'd' || choice == 'D')
+			{
+				click();
+				selectingFile = -1;
+			}
+			else if (selectingFile == -1)
+			{
+				if (choice == 'w' || choice == 'W') {
+					click();
+					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
+				}
+				else if (choice == 's' || choice == 'S') {
+					click();
+					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
+				}
+				else if (choice == '\r') {
+
+					string fileName = savedFiles[selectedFileIndex];
+					deleteSavedFile(fileName);
+					savedFiles.clear();
+					showSavedFiles(savedFiles);
+					selectedFileIndex = 0;
+					selectingFile = 0;
+				}
+			}
+		}
+	}
+}
 

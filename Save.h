@@ -21,5 +21,7 @@ void countXO(int& countX, int& countO);
 void reStartGame();
 int checkWinCondition();
 void deleteSavedFile(const std::string& fileName);
+void xoagame();
+
 
 #endif

@@ -1,5 +1,4 @@
 ﻿#include "Header.h"
-
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -54,22 +53,22 @@ void InputPlayerNames() {
 	SetName_View();
 	bool validInput = false;
 	while (!validInput) {
-		GotoXY(3, 5);
+		GotoXY(3, 6);
 		player1 = getInputWithEscCheck();
-		if (player1.empty())  player1 = "Player1";
+		if (player1.empty())  player1 = "Player 1";
 		if (player1.length() > 10) {
 			Sleep(200);
 			int count = 3;
 			while (count > 0) {
-				Box_Error_SetName(2,9);
+				Box_Error_SetName(2,8);
 				Sleep(400);
-				GotoXY(43, 16);
+				GotoXY(3, 10);
 				cout << "                                       ";
 				Sleep(400);
 				count--;
 			}
 			SetName_View();
-			GotoXY(centerX + 5, 7);
+			GotoXY(3,7);
 			validInput = false;
 		}
 		else validInput = true;
@@ -77,7 +76,7 @@ void InputPlayerNames() {
 	validInput = false;
 	while (!validInput) {
 		//DrawBG();
-		GotoXY(centerX + 5, 12);
+		GotoXY(76,6);
 		player2 = getInputWithEscCheck(); // Sử dụng hàm để nhập tên Player 2
 		
 		if (player2.empty()) { // Nếu người dùng nhấn Esc
@@ -87,16 +86,16 @@ void InputPlayerNames() {
 
 		if (player2.length() > 10) {
 			Sleep(200);
-			Box_Error_SetName(60,23);
+			Box_Error_SetName(75,8);
 			Sleep(800);
 			SetName_View();
-			GotoXY(centerX + 5, 7);
+			GotoXY(3, 5);
 			cout << player1;
 			int count = 3;
 			while (count > 0) {
-				Box_Error_SetName(60,23);
+				Box_Error_SetName(75,8);
 				Sleep(400);
-				GotoXY(43, 16);
+				GotoXY(76, 10);
 				cout << "                                       ";
 				Sleep(400);
 				count--;
@@ -111,7 +110,7 @@ void InputPlayerNames() {
 			SetName_View();
 			GotoXY(centerX + 5, 7);
 			cout << player1;
-			int count = 3;
+			int count = 3; 
 			while (count > 0) {
 				Box_Error_Duplicate_SetName();
 				Sleep(400);
@@ -120,7 +119,7 @@ void InputPlayerNames() {
 				Sleep(400);
 				count--;
 			}
-			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
+			GotoXY(76,8); // Đưa con trỏ về vị trí nhập tên
 			validInput = false;
 		}
 		else {
@@ -150,23 +149,23 @@ void SetName_View() {
 
 	// Hiển thị và căn giữa phần nhập tên Player 1
 	SetColor(0, 15);
-	GotoXY(2, 3);
-	cout << ">>Nhap ten player1";
 	GotoXY(2, 4);
-	cout << u8R"(┌─────────────────────────────────────────┐)";
+	cout << ">>Nhap ten player1";
 	GotoXY(2, 5);
-	cout << u8R"(│                                         │)";
+	cout << u8R"(┌─────────────────────────────────────────┐)";
 	GotoXY(2, 6);
+	cout << u8R"(│                                         │)";
+	GotoXY(2, 7);
 	cout << u8R"(└─────────────────────────────────────────┘)";
 
 
 	// Hiển thị và căn giữa phần nhập tên Player 2
-	GotoXY(centerX, 10);
+	GotoXY(75,4);
 	cout << ">>Nhap ten player2";
-	GotoXY(centerX, 11);
+	GotoXY(75, 5);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
-	GotoXY(centerX, 12);
+	GotoXY(75, 6);
 	cout << u8R"(│                                         │)";
-	GotoXY(centerX, 13);
+	GotoXY(75, 7);
 	cout << u8R"(└─────────────────────────────────────────┘)";
 }
