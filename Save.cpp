@@ -593,7 +593,8 @@ void resetData() {
 }
 
 //final
-void showloadgame() {
+void showloadgame()
+{
 
 	clearScreen();
 	SetConsoleOutputCP(CP_UTF8);
@@ -624,7 +625,7 @@ void showloadgame() {
 		showSavedFiles(savedFiles);
 
 		int selectedFileIndex = 0;
-		bool selectingFile = false;
+		int selectingFile = 0;
 
 		while (true) {
 			// Xóa màn hình chỉ khi người dùng di chuyển
@@ -633,7 +634,7 @@ void showloadgame() {
 			}
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-			SetConsoleTextAttribute(hConsole, FOREGROUND_RED |(15<<4));
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15 << 4));
 			clearScreen();
 
 			cout << u8R"(
@@ -668,7 +669,7 @@ void showloadgame() {
 			}
 
 			cout << u8"                               └────────────────────────────────────────────┘" << "\n";
-			cout << "                           Ban co muon Load File khong? (Y/N) hoac xoa file? (D): ";
+			cout << "                           Ban co muon Load File khong? (Y/N) hoac xoa file? (D) ";
 			char choice = _getch();
 
 			if (choice == 'n' || choice == 'N') {
@@ -679,21 +680,40 @@ void showloadgame() {
 				click();
 				return;
 			}
-			else if (choice == 'd' || choice == 'D') {
+			else if (choice == 'd' || choice == 'D')
+			{
 				click();
-				cout << endl << "                         Nhap ten file save de xoa (khong can phan mo rong .txt): ";
-				string fileName;
-				cin >> fileName;
-				deleteSavedFile(fileName);
-				savedFiles.clear();
-				showSavedFiles(savedFiles);
-				selectedFileIndex = 0;
+				selectingFile = -1;
 			}
-			else if (choice == 'y' || choice == 'Y') {
+			else if (selectingFile == -1)
+			{
+				if (choice == 'w' || choice == 'W') {
+					click();
+					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
+				}
+				else if (choice == 's' || choice == 'S') {
+					click();
+					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
+				}
+				else if (choice == '\r') {
+
+					string fileName = savedFiles[selectedFileIndex];
+					deleteSavedFile(fileName);
+					savedFiles.clear();
+					showSavedFiles(savedFiles);
+					selectedFileIndex = 0;
+					selectingFile = 0;
+
+				}
+			}
+
+			else if (choice == 'y' || choice == 'Y')
+			{
 				click();
-				selectingFile = true;
+				selectingFile = 1;
 			}
-			else if (selectingFile) {
+			else if (selectingFile == 1)
+			{
 				if (choice == 'w' || choice == 'W') {
 					click();
 					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
@@ -703,6 +723,7 @@ void showloadgame() {
 					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
 				}
 				else if (choice == '\r') { // Enter để load tệp
+					click();
 					click();
 					string fileName = savedFiles[selectedFileIndex];
 					string fullFileName = "Saves/" + fileName + ".txt";
@@ -747,12 +768,18 @@ void showloadgame() {
 					GotoXY(_X, _Y);
 					cout << "Game da duoc load thanh cong tu file: " << fullFileName << endl;
 					break;
+
+
 				}
 			}
+
+
+
+
+
 		}
 	}
 }
-
 void LoadGameWithFileName() {
 	clearScreen();  // Xóa màn hình trước khi tải game
 	showloadgame();  // Hiện danh sách các file save
@@ -760,13 +787,13 @@ void LoadGameWithFileName() {
 }
 
 void deleteSavedFile(const string& fileName) {
-	string filePath = "Saves/" + fileName + ".txt"; // Tạo đường dẫn đầy đủ đến tệp
-	cout << "Đang xóa tệp: " << filePath << endl; // In ra đường dẫn để kiểm tra
+	string filePath = "Saves/" + fileName; // Tạo đường dẫn đầy đủ đến tệp
+	cout << "Dang xoa tep: " << filePath << endl; // In ra đường dẫn để kiểm tra
 	if (remove(filePath.c_str()) != 0) {
-		perror("Lỗi khi xóa tệp"); // Thông báo lỗi nếu không xóa được
+		perror("Loi khi xoa tep"); // Thông báo lỗi nếu không xóa được
 	}
 	else {
-		cout << "Tệp đã được xóa thành công: " << filePath << endl;
+		cout << "Tep da xoa thanh cong: " << filePath << endl;
 	}
 }
 void xoagame()
