@@ -35,8 +35,9 @@ int mainmenu()
 	int choice = 0;
 	char key;
 	DrawBg_xp();
+	GotoXY(0, 0);
 	nhan:drawcaro();
-	DrawCaro();
+	//DrawCaro();
 	while (true) {
 		GotoXY(0, 17);
 		displayMenu(choice);
