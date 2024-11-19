@@ -52,7 +52,8 @@ string getInputWithEscCheck_Save() {
 	return input;
 }
 
-void SaveGameWithFileName() {
+void SaveGameWithFileName()
+{
 	// Đếm số lượng file .txt trong thư mục Saves
 	system("dir /b Saves\\*.txt > file_count.txt");  // Lưu danh sách file vào file_count.txt
 	ifstream countFile("file_count.txt");
@@ -73,19 +74,33 @@ void SaveGameWithFileName() {
 			Sleep(500);
 			GotoXY(42, 9);std::cout << "                                                          ";
 			Sleep(500);
-			
+
 			countError--;
 		} while (countError > 0);
+		char key = _getch();
+
+		if (key == 'k') {
+			xoagame();
+
+
+		}
+
 		RecoveryBoard();
-		
+		int countX, countO;
+		countXO(countX, countO);
+		_TURN = (countX <= countO); // Nếu số lượng X <= O, thì lượt chơi là của X
+		if (_TURN == 1) DrawX(89 + 2, 17);
+		else DrawO(89 + 2, 17);
+		GotoXY(_X, _Y);
 		return;
+
 	}
 
 	string fileName;
 
 	GotoXY(LEFT + 20, TOP + 2 * BOARD_SIZE + 2);
 	Box6();
-		
+
 	bool validInput = true;
 	while (validInput) {//chan kh cho nhap tran ra khoi khung
 		fileName = getInputWithEscCheck_Save();
@@ -102,7 +117,7 @@ void SaveGameWithFileName() {
 				Sleep(200);
 				countError--;
 			} while (countError > 0);
-			Box_Error_Name();		
+			Box_Error_Name();
 			system("cls");
 			RecoveryBoard();
 			Box6();

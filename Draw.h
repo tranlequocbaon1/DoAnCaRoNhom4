@@ -18,5 +18,6 @@ void DrawC(int x, int y);
 void DrawBG();
 void DrawBg_xp();
 void DrawPikachu(int a,int b);
-void DrawCaro();
+void DrawCaro(int x, int y);
+void DrawBG_Tim();
 #endif ;
