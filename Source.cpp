@@ -671,7 +671,7 @@ void startGame() {
 						case 0:
 							if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
 								//system("pause");
-								Sleep(500);
+								//Sleep(500);
 								ResetKetqua(_B);
 								system("cls");
 								scoreP1 = 0;
