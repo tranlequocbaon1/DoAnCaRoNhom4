@@ -15,7 +15,6 @@ void drawcaro() {
 	clearScreen();
 	DrawBG_Tim();
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);
-	
 	DrawCaro(38,1);
 }
 

@@ -89,7 +89,7 @@ int mainmenu()
 			case 5:
 				system("cls");
 				cout << "Cam on da choi! Tam biet!\n";
-				return 1;
+				ExitProcess(1);
 				
 				break;
 			}
@@ -515,18 +515,18 @@ int GetConsoleWidth() {
 void startGame() {
 
 	SetConsoleOutputCP(1251);
-	
+
 
 	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | (15 << 4));
-	
+
 	FixConsoleWindow();
-	if ( InputActive = true) { InputPlayerNames(); }
-	int a, b;
+	if (InputActive = true) { InputPlayerNames(); }
+	
 	bool ValidEnter = true;
 	seconds = 15;
 	StartGame();
-	
+
 	Box1();
 	Box2();
 	Box3();
@@ -537,8 +537,9 @@ void startGame() {
 	pastcoord.y = 0;
 	std::thread timerThread(TimerCountDown);
 	timerThread.detach();
+	
 	while (1) {
-		
+
 		_COMMAND = toupper(_getch());
 		if (_COMMAND == 27 || _COMMAND == 'Q') {
 			countdownActive = false;
@@ -571,23 +572,23 @@ void startGame() {
 						ExitProcess(0);
 						break;
 					}
-					else if (choice == 1){
-						
+					else if (choice == 1) {
+
 						toggleSFX();
-						
-						
+
+
 						GotoXY(72, 4);
-						
+
 					}
 					else break;
-					
-				
+
+
 				}
 
 			}RecoveryBoard();
-		
+
 		}
-		
+
 		else {
 			if (_COMMAND == 'A') MoveLeft();
 			else if (_COMMAND == 'W') MoveUp();
@@ -610,16 +611,16 @@ void startGame() {
 				switch (CheckBoard(_X, _Y)) {
 				case -1:
 					step();
-					_B[_X/5][_Y/2] = -1;
+					_B[_X / 5][_Y / 2] = -1;
 					SetConsoleTextAttribute(hStdOut, 12 | (7 << 4));
 					cout << "X";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
-						if ((_B[_X/5][_Y/2]) == 1) {
+						if ((_B[_X / 5][_Y / 2]) == 1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(12, 15);
 							cout << "X";
 						}
-						if ((_B[_X/5][_Y/2]) == -1) {
+						if ((_B[_X / 5][_Y / 2]) == -1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(0, 15);
 							cout << "O";
@@ -636,16 +637,16 @@ void startGame() {
 					break;
 				case 1:
 					stepO();
-					_B[_X/5][_Y/2] = 1;
+					_B[_X / 5][_Y / 2] = 1;
 					SetConsoleTextAttribute(hStdOut, 0 | (7 << 4));
 					cout << "O";
 					if (pastcoord.x != 0 && pastcoord.y != 0) {
-						if ((_B[_X/5][_Y/2]) == 1) {
+						if ((_B[_X / 5][_Y / 2]) == 1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(12, 15);
 							cout << "X";
 						}
-						if ((_B[_X/5][_Y/2]) == -1) {
+						if ((_B[_X / 5][_Y / 2]) == -1) {
 							GotoXY(pastcoord.x, pastcoord.y);
 							SetColor(0, 15);
 							cout << "O";
@@ -685,36 +686,27 @@ void startGame() {
 							}
 						}
 					}
-					else {
-						switch (ProcessFinish(kq)) {
-						case-1:
-						case 1:
-						case 0:
-							if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
-								//system("pause");
-								Sleep(500);
-								ResetKetqua(_B);
-								system("cls");
-								scoreP1 = 0;
-								scoreP2 = 0;
-								mainmenu();
-								return;
-							}
-							else {
-								countdownActive = true;
-								ResetKetqua(_B);
-								startGame();
-							}
-						}
-					}
-				
+					
+
+
 				}
 				ValidEnter = true;
 			}
+		}if (seconds == 0) {
+			HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+			DWORD prevMode;
+
+			// Lấy chế độ hiện tại
+			GetConsoleMode(hInput, &prevMode);
+
+			// Tắt chế độ ENABLE_PROCESSED_INPUT để ngăn nhận phím Enter
+			SetConsoleMode(hInput, prevMode & ~ENABLE_PROCESSED_INPUT);
 		}
 		
-	}
 
+
+	}
+	
 }
 
 

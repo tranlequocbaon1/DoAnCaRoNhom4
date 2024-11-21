@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <thread>
 #include "header.h"
+#include <mutex>
 
 bool resetFlag;
 bool countdownActive=true;
@@ -29,11 +30,21 @@ void TimerCountDown() {
                 kq = -1;
             }
             else if (_B[pastcoord.x / 5][pastcoord.y / 2] == -1) { kq = 1; }
-            else kq = 2;
-            
-            Box_TimeCountdown_End();
+            else kq = 0;
+            int count = 3;
+            while (count > 0) {
+                Box_TimeCountdown_End();
+                Sleep(500);
+                GotoXY(45, 16);
+                cout << "                         ";
+                Sleep(500);
+                count--;
+            }
+            mutex;
+
             switch (ProcessFinish(kq)) {
             case-1:
+                cout << "1";
             case 1:
             case 0:
                 if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
@@ -52,11 +63,13 @@ void TimerCountDown() {
                     startGame();
                 }
             }
-            
-
         }
         seconds--;
     }
+}
+
+void CheckCountDown() {
+   
 }
 
 
