@@ -13,7 +13,7 @@ void drawcaro() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	clearScreen();
-	DrawBG_Tim();
+	DrawBg_xp();
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 12);
 	DrawCaro(38,1);
 }
