@@ -3,6 +3,7 @@
 #include<iostream>;
 #include <conio.h>
 #include "sound.h"
+#include "Draw.h"
 
 void about() {
 	clearScreen();
@@ -10,17 +11,7 @@ void about() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));
 
-	clearScreen();
-	std::cout << u8R"(
-                           ╔═█████████     ╔═█████████    ╔═█████████	 ╔═██ 	  ╔═██   ╔═██████████
-                          ╔╝██═════╗ ██    ║ ██    ║ ██  ╔╝██    ╚╗ ██   ║ ██     ║ ██   ╚═══╗ ██
-                          ║ ██     ║ ██    ╠═██════╣ ██  ║ ██     ║ ██   ║ ██     ║ ██       ║ ██ 
-                          ║ ███████████    ║ █████████   ║ ██     ║ ██   ║ ██     ║ ██       ║ ██
-                          ║ ██═════╗ ██    ║ ██    ║ ██  ║ ██     ║ ██   ║ ██     ║ ██       ║ ██
-                          ║ ██     ║ ██    ║ ██    ║ ██  ║ ██     ║ ██   ║ ██     ║ ██       ║ ██
-                          ║ ██     ║ ██    ║ █████████   ╚╦ █████████    ╚╦ █████████        ║ ██ 
-                          ╚═╝      ╚═╝     ╚══════╝       ╚══════╝        ╚════════╝         ╚═╝ 
-)" << std::endl;
+	drawAbout(39, 1);
 	SetConsoleTextAttribute(hConsole, 2 | (15<<4));
 	SetConsoleOutputCP(CP_UTF8);
 
