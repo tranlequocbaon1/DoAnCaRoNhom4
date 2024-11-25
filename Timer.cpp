@@ -40,6 +40,7 @@ void TimerCountDown() {
                 Sleep(500);
                 count--;
             }
+            RecoveryBoard();
             
 
            
@@ -49,27 +50,7 @@ void TimerCountDown() {
 }
 
 void CheckCountDown() {
-    switch (ProcessFinish(kq)) {
-    case-1:
-        cout << "1";
-    case 1:
-    case 0:
-        if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
-            //system("pause");
-            Sleep(500);
-            ResetKetqua(_B);
-            system("cls");
-            scoreP1 = 0;
-            scoreP2 = 0;
-            mainmenu();
-            return;
-        }
-        else {
-            countdownActive = true;
-            ResetKetqua(_B);
-            startGame();
-        }
-    }
+    
 }
 
 

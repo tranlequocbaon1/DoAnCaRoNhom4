@@ -32,8 +32,8 @@ void displayMenu(int selected) {
 			SetConsoleOutputCP(CP_UTF8);
 
 			if (options[i] == "NEW GAME") {
-				SetConsoleTextAttribute(hConsole, (15 << 4) | 10);
-				GotoXY(46, 9); cout << u8"     ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
+				SetConsoleTextAttribute(hConsole, (1 << 4) | 10);
+				GotoXY(51, 9); cout << u8"▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄";
 				SetConsoleTextAttribute(hConsole, (15 << 4) | 2);
 				GotoXY(69, 9); cout << u8"▄";
 				SetConsoleTextAttribute(hConsole, (10 << 4) | 10); 
