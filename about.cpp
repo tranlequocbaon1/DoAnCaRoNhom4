@@ -7,6 +7,7 @@
 
 void about() {
 	clearScreen();
+	DrawBg_Xanh();
 	SetConsoleOutputCP(CP_UTF8);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));

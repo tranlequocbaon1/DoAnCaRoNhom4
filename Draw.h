@@ -23,5 +23,10 @@ void DrawBG_Tim();
 void drawRule(int x, int y);
 void drawAbout(int x, int y);
 void drawLoadGame(int x, int y);
+void drawSetting(int x, int y);
+void DrawBg_Xanh();
+void DrawBg_Cam();
+void DrawBg_Hong();
+
 
 #endif ;

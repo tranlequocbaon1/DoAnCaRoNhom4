@@ -10,6 +10,7 @@ void showInstructions() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15 << 4));
 	clearScreen();
+	DrawBg_Cam();
 	drawRule(39, 1);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | (15<<4));
 	SetConsoleOutputCP(CP_UTF8);
