@@ -535,8 +535,7 @@ void startGame() {
 	GotoXY(LEFT + 2, TOP + 1);//dua con tro ve o dau tien
 	pastcoord.x = 0;
 	pastcoord.y = 0;
-	std::thread timerThread(TimerCountDown);
-	timerThread.detach();
+	
 	
 	while (1) {
 
