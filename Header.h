@@ -9,10 +9,10 @@
 #define LEFT 3
 #define TOP 1
 
-  struct _POINT { int x, y, c; };
- extern _POINT _A[BOARD_SIZE + 1][BOARD_SIZE + 1];
- extern _POINT pastcoord;
- 
+struct _POINT { int x, y, c; };
+extern _POINT _A[BOARD_SIZE + 1][BOARD_SIZE + 1];
+extern _POINT pastcoord;
+
 extern int _B[BOARD_SIZE + 1][BOARD_SIZE + 1];
 extern bool _TURN;
 extern int _COMMAND;
@@ -35,7 +35,7 @@ void displayMenu2(int selected);
 void clearScreen();
 void FixConsoleWindow();
 void GotoXY(int x, int y);
-void ResetKetqua(int _B[BOARD_SIZE+ 1][BOARD_SIZE + 1]);
+void ResetKetqua(int _B[BOARD_SIZE + 1][BOARD_SIZE + 1]);
 void ResetData();
 void DrawBoard(int pSize);
 void StartGame();
@@ -62,9 +62,11 @@ void Box_Error_MaxSave();
 void Box6();
 void Box_Error_Name();
 void Box_Save_Complete();
-void Box_Error_SetName(int,int);
+void Box_Error_SetName(int, int);
 void Box_Error_Duplicate_SetName();
 void Box_TimeCountdown_End();
+void Box_Error_Empty_File();
+void Box_Error_Duplicate_file();
 
 void displayMenu(int selected);
 void startGame();
