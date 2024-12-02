@@ -1027,31 +1027,30 @@ void drawLoadGame(int x, int y) {
 	};
 	SetConsoleOutputCP(CP_UTF8);
 	ve(x, y, 0, 2, 0, 5, image);
-	ve(x + 11, y, 0, 2, 5, 14, image);
-	ve(x + 21, y, 0, 2, 14, 33, image);
-	ve(x, y + 1, 2, 8, 0, 5, image);
-	ve(x + 10, y + 1, 2, 8, 5, 36, image);
-	ve(x, y + 4, 8, 12, 0, 41, image);
-	ve(x, y + 6, 12, 14, 0, 10, image);
-	ve(x + 11, y + 6, 12, 14, 10, 19, image);
-	ve(x + 21, y + 6, 12, 14, 19, 22, image);
-	ve(x + 27, y + 6, 12, 14, 22, 25, image);
-	ve(x + 31, y + 6, 12, 14, 25, 34, image);
+ve(x + 11, y, 0, 2, 5, 14, image);
+ve(x + 21, y, 0, 2, 14, 33, image);
+ve(x, y + 1, 2, 8, 0, 5, image);
+ve(x + 10, y + 1, 2, 8, 5, 36, image);
+ve(x, y + 4, 8, 12, 0, 41, image);
+ve(x, y + 6, 12, 14, 0, 10, image);
+ve(x + 11, y + 6, 12, 14, 10, 19, image);
+ve(x + 21, y + 6, 12, 14, 19, 22, image);
+ve(x + 27, y + 6, 12, 14, 22, 25, image);
+ve(x + 31, y + 6, 12, 14, 25, 34, image);
 
-	ve(x + 48, y, 0, 2, 33, 42, image);
-	ve(x + 58, y, 0, 2, 42, 56, image);
-	ve(x + 75, y, 0, 2, 56, 71, image);
-	ve(x + 47, y + 1, 2, 4, 35, 61, image);
-	ve(x + 74, y + 1, 2, 4, 61, 77, image);
-	ve(x + 47, y + 2, 4, 6, 35, 78, image);
-	ve(x + 47, y + 3, 6, 8, 35, 77, image);
-	ve(x + 47, y + 4, 8, 12, 40, 83, image);
-	ve(x + 48, y + 6, 12, 14, 34, 44, image);
-	ve(x + 59, y + 6, 12, 14, 44, 47, image);
-	ve(x + 65, y + 6, 12, 14, 47, 50, image);
-	ve(x + 69, y + 6, 12, 14, 50, 54, image);
-	ve(x + 76, y + 6, 12, 14, 54, 69, image);
-	GotoXY(x, y + 16);
+ve(x + 48, y, 0, 2, 33, 42, image);
+ve(x + 58, y, 0, 2, 42, 56, image);
+ve(x + 75, y, 0, 2, 56, 71, image);
+ve(x + 47, y + 1, 2, 4, 36, 62, image);
+ve(x + 74, y + 1, 2, 4, 62, 78, image);
+ve(x + 47, y + 2, 4, 6, 36, 79, image);
+ve(x + 47, y + 3, 6, 8, 36, 78, image);
+ve(x + 47, y + 4, 8, 12, 41, 84, image);
+ve(x + 48, y + 6, 12, 14, 34, 43, image);
+ve(x + 58, y + 6, 12, 14, 43, 46, image);
+ve(x + 64, y + 6, 12, 14, 46, 49, image);
+ve(x + 68, y + 6, 12, 14, 49, 53, image);
+ve(x + 75, y + 6, 12, 14, 53, 68, image);
 }
 
 void drawSetting(int x, int y) {
