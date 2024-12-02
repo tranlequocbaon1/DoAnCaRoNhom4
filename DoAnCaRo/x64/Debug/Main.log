@@ -1,18 +1,1 @@
-﻿  Box.cpp
-  Draw.cpp
-  Menu.cpp
-  Rule.cpp
-  Save.cpp
-E:\New folder\Save.cpp(403,6): warning C4101: 'a': unreferenced local variable
-E:\New folder\Save.cpp(403,9): warning C4101: 'b': unreferenced local variable
-  Setting.cpp
-  Sound.cpp
-  Source.cpp
-  Timer.cpp
-  WriteName2P.cpp
-  about.cpp
-E:\New folder\about.cpp(3,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  main.cpp
-E:\New folder\main.cpp(4,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  Generating Code...
-LINK : fatal error LNK1168: cannot open E:\New folder\x64\Debug\DoAnCaRo.exe for writing
+﻿  Main.vcxproj -> E:\New folder\x64\Debug\DoAnCaRo.exe

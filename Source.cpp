@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "header.h"
 #include"Draw.h"
 #include"Sound.h"
@@ -521,7 +521,7 @@ void startGame() {
 	SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | (15 << 4));
 
 	FixConsoleWindow();
-	if (InputActive) { InputPlayerNames(); }
+	if (InputActive = true) { InputPlayerNames(); }
 	
 	bool ValidEnter = true;
 	seconds = 15;
@@ -679,8 +679,7 @@ void startGame() {
 								return;
 							}
 							else {
-								countdownActive = false;
-								InputActive = false;
+								countdownActive = true;
 								ResetKetqua(_B);
 								startGame();
 							}
@@ -714,7 +713,7 @@ void startGame() {
 				cout << "1";
 			case 1:
 			case 0:
-				if ((toupper(AskContinue()) != 'y' && toupper(AskContinue()) != 13) || AskContinue() == 27) {
+				if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
 					//system("pause");
 					Sleep(500);
 					ResetKetqua(_B);
@@ -725,8 +724,7 @@ void startGame() {
 					return;
 				}
 				else {
-					InputActive = false;
-					countdownActive = false;
+					countdownActive = true;
 					ResetKetqua(_B);
 					startGame();
 				}
