@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "header.h"
 #include"Draw.h"
 #include"Sound.h"
@@ -18,33 +18,33 @@ using namespace std;
 #define TOP 1
 
 //menu
- _POINT pastcoord; // Định nghĩa biến
- _POINT _A[BOARD_SIZE + 1][BOARD_SIZE + 1];
+_POINT pastcoord; // Định nghĩa biến
+_POINT _A[BOARD_SIZE + 1][BOARD_SIZE + 1];
 
- int _B[BOARD_SIZE + 1][BOARD_SIZE + 1];
- bool _TURN;
- int _COMMAND;
- int _X, _Y;
- int scoreP1 = 0;
+int _B[BOARD_SIZE + 1][BOARD_SIZE + 1];
+bool _TURN;
+int _COMMAND;
+int _X, _Y;
+int scoreP1 = 0;
 
- int scoreP2 = 0;
- bool InputActive = true;
+int scoreP2 = 0;
+bool InputActive = true;
 
 
 
 int mainmenu()
 {
-	
+
 	int choice = 0;
 	char key;
 	DrawBg_xp();
-	
-	
+
+
 	drawcaro();
 	GotoXY(0, 0);
 	while (true) {
-		
-		
+
+
 		displayMenu(choice);
 		key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
 
@@ -61,36 +61,36 @@ int mainmenu()
 			switch (choice) {
 				//thuc hien hanh dong
 			case 0:
-				
+
 				startGame();
 				drawcaro();
-				
+
 				break;
 			case 1:
 				showInstructions();
 				drawcaro();
-				
+
 				break;
 			case 2:
 				about();
 				drawcaro();
-				
+
 				break;
 			case 3:
 				LoadGameWithFileName();
 				drawcaro();
-				
+
 				break;
 			case 4:
 				Setting();
 				drawcaro();
-				
+
 				break;
 			case 5:
 				system("cls");
 				cout << "Cam on da choi! Tam biet!\n";
 				ExitProcess(1);
-				
+
 				break;
 			}
 		}
@@ -102,8 +102,8 @@ void DrawBoard(int pSize) {
 	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hStdOut, (15 << 4) | 1);
 	SetConsoleOutputCP(CP_UTF8);
-	for (int i = 0;i <= pSize - 1;i++) {
-		for (int j = 0;j <= pSize - 1;j++) {
+	for (int i = 0; i <= pSize - 1; i++) {
+		for (int j = 0; j <= pSize - 1; j++) {
 			GotoXY(LEFT, TOP + 2 * j);
 			cout << u8"╠";
 
@@ -159,29 +159,29 @@ void GotoXY(int x, int y) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 void ResetKetqua(int a[BOARD_SIZE + 1][BOARD_SIZE + 1]) {
-	for (int i = 0;i < BOARD_SIZE;i++) {
-		for (int j = 0;j < BOARD_SIZE;j++) {
-			a[1 + i ][2 + j] = 0;
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
+			a[1 + i][2 + j] = 0;
 		}
 	}
 }
 void ResetData() {
-	for (int i = 0;i < BOARD_SIZE;i++) {
-		for (int j = 0;j < BOARD_SIZE;j++) {
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
 			_A[i][j].x = 5 * j + LEFT + 2;
 			_A[i][j].y = 2 * i + TOP + 1;
 			_A[i][j].c = 0;
 		}
 	}
-	_TURN = true;_COMMAND = -1;
-	_X = _A[0][0].x;_Y = _A[0][0].y;
+	_TURN = true; _COMMAND = -1;
+	_X = _A[0][0].x; _Y = _A[0][0].y;
 }
 
 
 void StartGame() {
 	ResetKetqua(_B);
 	system("cls");
-	
+
 	system("cls");
 	ResetData();
 	DrawBoard(BOARD_SIZE);
@@ -271,14 +271,14 @@ int AskContinue() {
 	Box4();
 	return toupper(_getch());
 }
-int checkHoa(int a[BOARD_SIZE+1][BOARD_SIZE+1]) {
+int checkHoa(int a[BOARD_SIZE + 1][BOARD_SIZE + 1]) {
 	int countSL = 0;
 	for (int i = 0; i <= BOARD_SIZE; i++) {
 		for (int j = 0; j <= BOARD_SIZE; j++) {
-			if (a[1 + i ][ 1 +  j] == 1 || a[1 + i ][1+ j] == -1) {
+			if (a[1 + i][1 + j] == 1 || a[1 + i][1 + j] == -1) {
 				countSL += 1;
 				GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 5);//test vitri
-				if (countSL == BOARD_SIZE * BOARD_SIZE ) return 0;
+				if (countSL == BOARD_SIZE * BOARD_SIZE) return 0;
 			}
 			else break;
 		}
@@ -303,12 +303,12 @@ int TestBoard() {
 	if (checkHoa(_B) == 0) return 0;
 
 	//cheo phu
-	for (int i = 0;i <= 9;i++) {
+	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5 + 4 - i][_Y / 2 - 4 + i] == -1) {
 			if (countCP == 0) startXcp = i;
 			countCP += 1;
 			if (countCP == 5) {
-				for (int j = 0;j < 5;j++) {
+				for (int j = 0; j < 5; j++) {
 					GotoXY(_X + 20 - (startXcp + j) * 5, _Y - 8 + (startXcp + j) * 2);
 					SetColor(4, 14);
 					cout << " X ";
@@ -317,14 +317,14 @@ int TestBoard() {
 				return -1;
 			}
 		}
-		else { countCP = 0;startXcp = -1; }
+		else { countCP = 0; startXcp = -1; }
 	}
-	for (int i = 0;i <= 9;i++) {
-		if (_B[_X/5 + 4 - i][_Y/2 - 4 + i] == 1) {
+	for (int i = 0; i <= 9; i++) {
+		if (_B[_X / 5 + 4 - i][_Y / 2 - 4 + i] == 1) {
 			if (countCP == 0) startOcp = i;
 			countCP += 1;
 			if (countCP == 5) {
-				for (int j = 0;j < 5;j++) {
+				for (int j = 0; j < 5; j++) {
 					GotoXY(_X + 20 - (startOcp + j) * 5, _Y - 8 + (startOcp + j) * 2);
 					SetColor(0, 14);
 					cout << " 0 ";
@@ -333,15 +333,15 @@ int TestBoard() {
 				return 1;
 			}
 		}
-		else { countCP = 0;startOcp = -1; }
+		else { countCP = 0; startOcp = -1; }
 	}
 	//cheo chinh
-	for (int i = 0;i <= 9;i++) {
+	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5 - 4 + i][_Y / 2 - 4 + i] == -1) {
 			if (countXCC == 0) startXcc = i;
 			countXCC += 1;
 			if (countXCC == 5) {
-				for (int j = 0;j < 5;j++) {
+				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startXcc + j) * 5, _Y - 8 + (startXcc + j) * 2);
 					SetColor(4, 14);
 					cout << " X ";
@@ -356,13 +356,13 @@ int TestBoard() {
 		}
 	}
 
-	for (int i = 0;i <= 9;i++) {
+	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5 - 4 + i][_Y / 2 - 4 + i] == 1) {
 			if (countOCC == 0) startOcc = i;
 			countOCC += 1;
 
 			if (countOCC == 5) {
-				for (int j = 0;j < 5;j++) {
+				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startOcc + j) * 5, _Y - 8 + (startOcc + j) * 2);
 					SetColor(0, 14);
 					cout << " O ";
@@ -371,20 +371,20 @@ int TestBoard() {
 			}
 		}
 		else {
-			countOCC = 0;startOcc = -1;
+			countOCC = 0; startOcc = -1;
 		}
 
 	}
 	//thang
-	for (int i = 0;i <= 9;i++) {
-		if (_B[_X/5][_Y/2-4+ i ] == -1) {
+	for (int i = 0; i <= 9; i++) {
+		if (_B[_X / 5][_Y / 2 - 4 + i] == -1) {
 			if (countY == 0) {
 				startXt = i;
 			}
 			countY += 1;
-			
+
 			if (countY == 5) {
-				for (int j = 0;j < 5;j++) {
+				for (int j = 0; j < 5; j++) {
 					GotoXY(_X, _Y - 8 + (startXt + j) * 2);
 					SetColor(4, 14);
 					cout << " X ";
@@ -398,7 +398,7 @@ int TestBoard() {
 		}
 
 	}
-	for (int i = 0;i <= 9;i++) {
+	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5][_Y / 2 - 4 + i] == 1) {
 			if (countX == 0) startOt = i;
 			countX += 1;
@@ -412,13 +412,13 @@ int TestBoard() {
 			}
 		}
 		else {
-			countX = 0;startOt = -1;
+			countX = 0; startOt = -1;
 		}
 	}
 
 
 	//ngang
-	for (int i = 0;i <= 9;i++) {
+	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5 - 4 + i][_Y / 2] == -1) {
 			if (countX == 0) startXn = i;
 			countX += 1;
@@ -437,7 +437,7 @@ int TestBoard() {
 		}
 	}
 
-	for (int i = 0;i <= 9;i++) {
+	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5 - 4 + i][_Y / 2] == 1) {
 			if (countX == 0) startOn = i;
 			countX += 1;
@@ -451,7 +451,7 @@ int TestBoard() {
 			}
 		}
 		else {
-			countX = 0;startOn = -1;
+			countX = 0; startOn = -1;
 		}
 	}
 	return 2;
@@ -459,8 +459,8 @@ int TestBoard() {
 }
 
 int CheckBoard(int pX, int pY) {
-	for (int i = 0;i <= BOARD_SIZE;i++) {
-		for (int j = 0;j <= BOARD_SIZE;j++) {
+	for (int i = 0; i <= BOARD_SIZE; i++) {
+		for (int j = 0; j <= BOARD_SIZE; j++) {
 			if (_A[i][j].x == pX && _A[i][j].y == pY && _A[i][j].c == 0) {
 				if (_TURN == true) _A[i][j].c = -1;
 				else _A[i][j].c = 1;
@@ -521,8 +521,8 @@ void startGame() {
 	SetConsoleTextAttribute(hStdOut, FOREGROUND_BLUE | (15 << 4));
 
 	FixConsoleWindow();
-	if (InputActive = true) { InputPlayerNames(); }
-	
+	if (InputActive) { InputPlayerNames(); }
+
 	bool ValidEnter = true;
 	seconds = 15;
 	StartGame();
@@ -535,8 +535,8 @@ void startGame() {
 	GotoXY(LEFT + 2, TOP + 1);//dua con tro ve o dau tien
 	pastcoord.x = 0;
 	pastcoord.y = 0;
-	
-	
+
+
 	while (1) {
 
 		_COMMAND = toupper(_getch());
@@ -631,7 +631,7 @@ void startGame() {
 					pastcoord.y = _Y;
 
 
-					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
+					DrawO(89 + 2, 17); SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
 					break;
 				case 1:
@@ -656,7 +656,7 @@ void startGame() {
 					pastcoord.x = _X;
 					pastcoord.y = _Y;
 
-					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
+					DrawX(89 + 2, 17); SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
 					break;
 				case 0:
 					ValidEnter = false;
@@ -679,7 +679,8 @@ void startGame() {
 								return;
 							}
 							else {
-								countdownActive = true;
+								countdownActive = false;
+								InputActive = false;
 								ResetKetqua(_B);
 								startGame();
 							}
@@ -702,7 +703,7 @@ void startGame() {
 			// Tắt chế độ ENABLE_PROCESSED_INPUT để ngăn nhận phím Enter
 			SetConsoleMode(hInput, prevMode & ~ENABLE_PROCESSED_INPUT);
 		}
-		
+
 		if (seconds == 0) {
 			if (pastcoord.x == 1) kq = -1;
 			if (pastcoord.x == -1) kq = 1;
@@ -713,7 +714,7 @@ void startGame() {
 				cout << "1";
 			case 1:
 			case 0:
-				if (toupper(AskContinue()) != 'Y' && toupper(AskContinue()) != 13 || AskContinue() == 27) {
+				if ((toupper(AskContinue()) != 'y' && toupper(AskContinue()) != 13) || AskContinue() == 27) {
 					//system("pause");
 					Sleep(500);
 					ResetKetqua(_B);
@@ -724,7 +725,8 @@ void startGame() {
 					return;
 				}
 				else {
-					countdownActive = true;
+					InputActive = false;
+					countdownActive = false;
 					ResetKetqua(_B);
 					startGame();
 				}
@@ -733,7 +735,7 @@ void startGame() {
 
 
 	}
-	
+
 }
 
 
@@ -764,7 +766,7 @@ void RecoveryBoard() {
 }
 
 void displayMenu2(int selected) {
-	const string options[] = { "Continue","SFX","Thoat"};
+	const string options[] = { "Continue","SFX","Thoat" };
 	const int numOptions = sizeof(options) / sizeof(options[0]);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -804,7 +806,7 @@ void displayMenu2(int selected) {
 				cout << u8"│      " << options[i];
 				cout << u8"          │" << "\n";
 			}
-			else if(options[i] == "SFX") {
+			else if (options[i] == "SFX") {
 				GotoXY(46, 12);
 				cout << u8"│      " << options[i];
 				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
