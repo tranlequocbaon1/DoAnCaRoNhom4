@@ -1,5 +1,6 @@
 ﻿
 #include "Save.h"
+#include "language.h"
 #include <Windows.h>
 #include<iostream>
 #include<string>
@@ -645,7 +646,11 @@ void showloadgame()
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
 
 		GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
-		GotoXY(40, 13); cout << u8"│            DANH SACH FILE SAVE             │" << "\n";
+		GotoXY(40, 13);
+		if (isEnglish)
+			cout << u8"│               SAVED FILE LIST              │" << "\n";
+		else
+			cout << u8"│             DANH SÁCH FILE LƯU             │" << "\n";
 		GotoXY(40, 14); cout << u8"│                                            │" << "\n";
 
 		vector<string> savedFiles;
@@ -670,7 +675,11 @@ void showloadgame()
 
 			}
 			GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
-			GotoXY(40, 13); cout << u8"│            DANH SACH FILE SAVE             │" << "\n";
+			GotoXY(40, 13);
+			if (isEnglish)
+				cout << u8"│               SAVED FILE LIST              │" << "\n";
+			else
+				cout << u8"│             DANH SÁCH FILE LƯU             │" << "\n";
 			GotoXY(40, 14); cout << u8"│                                            │" << "\n";
 			// Vẽ bảng file và danh sách các file
 			for (int i = 0; i < maxFiles; i++) {
@@ -697,7 +706,8 @@ void showloadgame()
 			GotoXY(40, fileStartRow + maxFiles);
 			cout << u8"└────────────────────────────────────────────┘" << "\n";
 			GotoXY(36, fileStartRow + maxFiles + 1);
-			cout << "Ban co muon Load File khong? (Y/N) hoac xoa file? (D) ";
+			if (isEnglish) cout << "Do you want to Load file? (Y/N) or Delete file? (D) ";
+			else	cout << "Ban co muon Load file khong? (Y/N) hoac Xoa file? (D) ";
 			char choice = _getch();
 
 			// Xử lý lựa chọn của người dùng
@@ -853,7 +863,11 @@ void xoagame()
 		DrawBG_Tim();
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
 		GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
-		GotoXY(40, 13); cout << u8"│            DANH SACH FILE SAVE             │" << "\n";
+		GotoXY(40, 13);
+		if (isEnglish)
+			cout << u8"│               SAVED FILE LIST              │" << "\n";
+		else
+			cout << u8"│             DANH SÁCH FILE LƯU             │" << "\n";
 		GotoXY(40, 14); cout << u8"│                                            │" << "\n";
 
 		vector<string> savedFiles;
@@ -877,7 +891,11 @@ void xoagame()
 
 			}
 			GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
-			GotoXY(40, 13); cout << u8"│            DANH SACH FILE SAVE             │" << "\n";
+			GotoXY(40, 13);
+			if (isEnglish)
+				cout << u8"│               SAVED FILE LIST              │" << "\n";
+			else
+				cout << u8"│             DANH SÁCH FILE LƯU             │" << "\n";
 			GotoXY(40, 14); cout << u8"│                                            │" << "\n";
 			// Vẽ bảng file và danh sách các file
 			for (int i = 0; i < maxFiles; i++) {
@@ -904,7 +922,9 @@ void xoagame()
 			GotoXY(40, fileStartRow + maxFiles);
 			cout << u8"└────────────────────────────────────────────┘" << "\n";
 			GotoXY(46, fileStartRow + maxFiles + 1);
-			cout << "Ban co muon xoa File khong? (D) ";
+			if (isEnglish) cout << "Do you want to delete File? (D) ";
+			else 			cout << "Ban co muon xoa File khong? (D) ";
+
 			char choice = _getch();
 
 			if (choice == 'n' || choice == 'N') {

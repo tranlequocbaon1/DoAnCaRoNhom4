@@ -1,7 +1,9 @@
 ﻿#include <iostream>
+
 #include <Windows.h>
 #include "Header.h"
 #include "Draw.h"
+#include "language.h"
 
 
 using namespace std;
@@ -131,17 +133,33 @@ void Box3() {
 	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hStdOut, (15 << 4) | 4);
 
-	GotoXY(LEFT + 70, TOP + 17);//nhap noi dung
-	cout << " --HOW TO PLAY-- ";
-	GotoXY(LEFT + 70, TOP + 18);
-	cout << "RIGHT: D | LEFT: A ";
-	GotoXY(LEFT + 70, TOP + 19);
-	cout << "UP:    W | DOWN: S ";
-	GotoXY(LEFT + 70, TOP + 20);
-	cout << "QUIT: ESC| SAVE: L";
-	GotoXY(LEFT + 70, TOP + 21);
-	cout << "CHOOSE:ENTER";
-	SetConsoleTextAttribute(hStdOut, (15 << 4) | 1);
+	GotoXY(LEFT + 70, TOP + 17);
+	//nhap noi dung
+	if (isEnglish) {
+		cout << " --HOW TO PLAY-- ";
+		GotoXY(LEFT + 70, TOP + 18);
+		cout << "RIGHT: D | LEFT: A ";
+		GotoXY(LEFT + 70, TOP + 19);
+		cout << "UP:    W | DOWN: S ";
+		GotoXY(LEFT + 70, TOP + 20);
+		cout << "QUIT: ESC| SAVE: L";
+		GotoXY(LEFT + 70, TOP + 21);
+		cout << "CHOOSE:ENTER";
+		SetConsoleTextAttribute(hStdOut, (15 << 4) | 1);
+	}
+	else
+	{
+		cout << " --CACH CHOI-- ";
+		GotoXY(LEFT + 70, TOP + 18);
+		cout << "PHAI:  D | TRAI:A ";
+		GotoXY(LEFT + 70, TOP + 19);
+		cout << "LEN:   W | XUONG:S ";
+		GotoXY(LEFT + 70, TOP + 20);
+		cout << "THOAT:ESC| LUU: L";
+		GotoXY(LEFT + 70, TOP + 21);
+		cout << "CHON:ENTER";
+		SetConsoleTextAttribute(hStdOut, (15 << 4) | 1);
+	}
 	for (int i = 0;i < 6;i++) {
 		GotoXY(LEFT + 88, TOP + 16);
 		cout << u8"┬";
@@ -158,7 +176,10 @@ void Box4() {
 	GotoXY(40, 8);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 9);
-	cout << u8R"(║    NHAP Y/N DE (TIEP TUC)/(DUNG LAI)    ║)";
+	if (isEnglish)
+		cout << u8R"(║      PRESS (Y)/(N) TO CONTINUE/STOP     ║)";
+	else
+		cout << u8R"(║    NHAP (Y)/(N) ĐỂ TIẾP TỤC/DỪNG LẠI    ║)";
 	GotoXY(40, 10);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
@@ -168,24 +189,46 @@ void Box_Error_MaxSave() {
 	GotoXY(40, 8);
 	cout << u8R"(╔═════════════════════════════════════════════════════════════╗)";
 	GotoXY(40, 9);
-	cout << u8R"(║ Save limit reached. You cannot create any more save files!  ║)";
+	if (isEnglish)
+		cout << u8R"(║ Save limit reached. You cannot create any more save files!  ║)";
+	else
+		cout << u8R"(║     LƯU ĐẠT GIỚI HẠN. BẠN KHÔNG THỂ TẠO LƯU THÊM FILE       ║)";
 	GotoXY(40, 10);
 	cout << u8R"(╚═════════════════════════════════════════════════════════════╝)";
-	GotoXY(55, 11);SetColor(4, 14);cout << "--Press (K) to delete file--";SetColor(0, 15);
-}
+	GotoXY(55, 11);SetColor(4, 14);
+	if (isEnglish)
+	{
+		cout << "--Press (K) to delete file--";SetColor(0, 15);
+	}
+	else
+	{
+		cout << "--Nhan (K) de xoa file--";SetColor(0, 15);
+	}
 
+}
 
 void Box6() {
 	SetColor(0, 15);
 	GotoXY(30, 8);
 	cout << u8R"(╔═════════════════════════════════════════════════════════════╗)";
 	GotoXY(30, 9);
-	cout << u8R"(║ Nhap ten file de luu game:                                   )";
+	if (isEnglish)
+		cout << u8R"(║ Enter file name to save:                                     )";
+	else
+		cout << u8R"(║ Nhập tên file để lưu game:                                   )";
 	GotoXY(92, 9);
 	cout << u8"║";
 	GotoXY(30, 10);
 	cout << u8R"(╚═════════════════════════════════════════════════════════════╝)";
-	GotoXY(34, 11);SetColor(4, 14);cout << "--Please name the file with fewer than 8 characters.--";SetColor(0, 15);
+	if (isEnglish)
+	{
+		GotoXY(34, 11);SetColor(4, 14);
+		cout << "--Please name the file with fewer than 8 characters.--";SetColor(0, 15);
+	}
+	else {
+		GotoXY(40, 11);SetColor(4, 14);
+		cout << "--Vui long dat ten file it hon 8 ki tu.--";SetColor(0, 15);
+	}
 	GotoXY(58, 9);
 
 }
@@ -194,7 +237,10 @@ void Box_Error_Name() {
 	GotoXY(40, 12);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 13);
-	cout << u8R"(║  FILE NAME MUST BE UNDER 8 CHARACTERS.  ║)";
+	if (isEnglish)
+		cout << u8R"(║   FILE NAME MUST BE UNDER 8 CHARACTERS  ║)";
+	else
+		cout << u8R"(║       TÊN FILE PHẢI DƯỚI 8 KÍ TỰ        ║)";
 	GotoXY(40, 14);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
@@ -203,7 +249,10 @@ void Box_Save_Complete() {
 	GotoXY(40, 12);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 13);
-	cout << u8R"(║         FILE SAVED SUCCESSFULLY!!       ║)";
+	if (isEnglish)
+		cout << u8R"(║         FILE SAVED SUCCESSFULLY!!       ║)";
+	else
+		cout << u8R"(║           SAVE FILE THÀNH CÔNG!!        ║)";
 	GotoXY(40, 14);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
@@ -213,7 +262,10 @@ void Box_Error_SetName(int x, int y) {
 	GotoXY(x, y + 1);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(x, y + 2);
-	cout << u8R"(║   NICKNAME MUST BE UNDER 8 CHARTACTERS  ║)";
+	if (isEnglish)
+		cout << u8R"(║   NICKNAME MUST BE UNDER 8 CHARTACTERS  ║)";
+	else
+		cout << u8R"(║           TÊN PHẢI DƯỚI 8 KÍ TỰ         ║)";
 	GotoXY(x, y + 3);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
@@ -223,7 +275,10 @@ void Box_Error_Duplicate_SetName() {
 	GotoXY(40, 15);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 16);
-	cout << u8R"(║         THE NAME ALREADY EXISTS         ║)";
+	if (isEnglish)
+		cout << u8R"(║         THE NAME ALREADY EXISTS         ║)";
+	else
+		cout << u8R"(║              TÊN ĐÃ TỒN TẠI             ║)";
 	GotoXY(40, 17);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
@@ -234,7 +289,11 @@ void Box_TimeCountdown_End() {
 	GotoXY(40, 15);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 16);
-	cout << u8R"(║              TIME IS UP!!!!!            ║)";
+	if (isEnglish) {
+		cout << u8R"(║              TIME IS UP!!!!!            ║)";
+	}
+	else
+		cout << u8R"(║            HẾT THỜI GIAN!!!!!           ║)";
 	GotoXY(40, 17);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
@@ -244,21 +303,33 @@ void Box_Error_Empty_File() {
 	GotoXY(41, 16);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(41, 17);
-	cout << u8R"(║              FILE NOT FOUND             ║)";
+	if (isEnglish) {
+		cout << u8R"(║              FILE NOT FOUND             ║)";
+	}
+	else {
+		cout << u8R"(║           KHÔNG TÌM THẤY FILE           ║)";
+	}
 	GotoXY(41, 18);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
 }
 void Box_Error_Duplicate_file() {
-	SetColor(4, 15);
+	SetColor(4, 15);  // Màu cho thông báo lỗi (đỏ chữ, trắng nền)
+
+	// Vẽ hộp thông báo
 	GotoXY(40, 12);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(40, 13);
-	cout << u8R"(║         FILE NAME ALREADY EXISTS        ║)";
+
+	// Hiển thị thông báo tùy thuộc vào ngôn ngữ
+	if (isEnglish) {
+		cout << u8R"(║         FILE NAME ALREADY EXISTS        ║)";
+	}
+	else {
+		cout << u8R"(║           TÊN FILE ĐÃ TỒN TẠI           ║)";
+	}
+
 	GotoXY(40, 14);
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
 }
-
-
-
