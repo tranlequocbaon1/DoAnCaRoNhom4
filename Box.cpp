@@ -203,8 +203,8 @@ void Box_Error_MaxSave() {
 	{
 		cout << "--Nhan (K) de xoa file--";SetColor(0, 15);
 	}
-}
 
+}
 
 void Box6() {
 	SetColor(0, 15);
@@ -229,7 +229,7 @@ void Box6() {
 		cout << "--Vui long dat ten file it hon 8 ki tu.--";SetColor(0, 15);
 	}
 	GotoXY(58, 9);
-
+	
 }
 void Box_Error_Name() {
 	SetColor(4, 15);
@@ -256,9 +256,9 @@ void Box_Save_Complete() {
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 }
 
-void Box_Error_SetName(int x, int y) {
+void Box_Error_SetName(int x,int y) {
 	SetColor(4, 15);
-	GotoXY(x, y + 1);
+	GotoXY(x, y+1);
 	cout << u8R"(╔═════════════════════════════════════════╗)";
 	GotoXY(x, y + 2);
 	if (isEnglish)
@@ -332,5 +332,6 @@ void Box_Error_Duplicate_file() {
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
 }
+
 
 
