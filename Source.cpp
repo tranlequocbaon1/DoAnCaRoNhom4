@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "header.h"
+#include "language.h"
 #include"Draw.h"
 #include"Sound.h"
 #include "Save.h"
@@ -764,7 +765,11 @@ void RecoveryBoard() {
 }
 
 void displayMenu2(int selected) {
-	const string options[] = { "Continue","SFX","Thoat"};
+	const string options[] = {
+		isEnglish ? "Continue" : "Tiep tuc",   // Tiếng Anh -> Tiếng Việt
+		"SFX",
+		isEnglish ? "Exit" : "Thoat"           // Tiếng Anh -> Tiếng Việt
+	};
 	const int numOptions = sizeof(options) / sizeof(options[0]);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -775,56 +780,49 @@ void displayMenu2(int selected) {
 	for (int i = 0; i < numOptions; i++) {
 
 		if (i == selected) {
-			// Mục đang chọn với màu chữ đỏ
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
 			SetConsoleOutputCP(CP_UTF8);
 
-			if (options[i] == "Continue") {
+			if (options[i] == (isEnglish ? "Continue" : "Tiep tuc")) {
 				GotoXY(46, 11);
 				cout << u8"│  >>  " << options[i];
 				cout << u8"          │" << "\n";
 			}
-			if (options[i] == "SFX") {
+			else if (options[i] == "SFX") {
 				GotoXY(46, 12);
 				cout << u8"│  >>  " << options[i];
 				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
 			}
-			else if (options[i] == "Thoat") {
+			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
 				GotoXY(46, 13);
-				cout << u8"│  >>  " << options[i];
-				cout << u8"             │" << "\n";
+				cout << u8"│      " << setw(18) << left << options[i];
+				cout << u8"│" << "\n";
 			}
 		}
 		else {
-			// Mục không chọn với màu mặc định (trắng)
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
-			// Màu mặc định
-			if (options[i] == "Continue") {
+			if (options[i] == (isEnglish ? "Continue" : "Tiep tuc")) {
 				GotoXY(46, 11);
 				cout << u8"│      " << options[i];
 				cout << u8"          │" << "\n";
 			}
-			else if(options[i] == "SFX") {
+			else if (options[i] == "SFX") {
 				GotoXY(46, 12);
 				cout << u8"│      " << options[i];
 				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
 			}
-
-			else if (options[i] == "Thoat") {
+			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
 				GotoXY(46, 13);
-				cout << u8"│      " << options[i];
-				cout << u8"             │" << "\n";
+				cout << u8"│      " << setw(18) << left << options[i];
+				cout << u8"│" << "\n";
 			}
 		}
 	}
 	GotoXY(46, 14);
 	std::cout << u8"└────────────────────────┘" << endl;
 
-
 	std::cout << endl;
-
-
-
 }
+
 
 

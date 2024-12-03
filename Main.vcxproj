@@ -131,6 +131,7 @@
     <ClCompile Include="about.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="language.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Rule.cpp" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Header.h" />
     <ClInclude Include="Draw.h" />
+    <ClInclude Include="language.h" />
     <ClInclude Include="Save.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Timer.h" />
