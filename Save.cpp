@@ -250,7 +250,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + (j + k) * 5, 2 + i * 2); // Tọa độ X thay đổi theo cột, Y giữ nguyên theo hàng
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 				}
 				return -1; // X thắng
 			}
@@ -262,7 +262,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + (j + k) * 5, 2 + i * 2);
 					SetColor(0, 14);
-					cout << " O ";
+					cout << "O ";
 				}
 				return 1; // O thắng
 			}
@@ -280,7 +280,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + j * 5, 2 + (i + k) * 2); // Tọa độ X giữ nguyên theo cột, Y thay đổi theo hàng
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 				}
 				return -1; // X thắng
 			}
@@ -292,7 +292,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + j * 5, 2 + (i + k) * 2);
 					SetColor(0, 14);
-					cout << " O ";
+					cout << "O ";
 				}
 				return 1; // O thắng
 			}
@@ -310,7 +310,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + (j + k) * 5, 2 + (i + k) * 2); // X và Y đều tăng
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 				}
 				return -1; // X thắng
 			}
@@ -322,7 +322,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + (j + k) * 5, 2 + (i + k) * 2);
 					SetColor(0, 14);
-					cout << " O ";
+					cout << "O ";
 				}
 				return 1; // O thắng
 			}
@@ -340,7 +340,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + (j - k) * 5, 2 + (i + k) * 2); // X giảm, Y tăng
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 				}
 				return -1; // X thắng
 			}
@@ -352,7 +352,7 @@ int checkWinCondition() {
 				for (int k = 0; k < 5; k++) {
 					GotoXY(5 + (j - k) * 5, 2 + (i + k) * 2);
 					SetColor(0, 14);
-					cout << " O ";
+					cout << "O ";
 				}
 				return 1; // O thắng
 			}

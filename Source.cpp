@@ -313,7 +313,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X + 20 - (startXcp + j) * 5, _Y - 8 + (startXcp + j) * 2);
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 
 				}
 				return -1;
@@ -329,7 +329,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X + 20 - (startOcp + j) * 5, _Y - 8 + (startOcp + j) * 2);
 					SetColor(0, 14);
-					cout << " 0 ";
+					cout << "O ";
 
 				}
 				return 1;
@@ -346,7 +346,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startXcc + j) * 5, _Y - 8 + (startXcc + j) * 2);
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 
 				}
 				return -1;
@@ -367,7 +367,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startOcc + j) * 5, _Y - 8 + (startOcc + j) * 2);
 					SetColor(0, 14);
-					cout << " O ";
+					cout << "O ";
 				}
 				return 1;
 			}
@@ -389,7 +389,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X, _Y - 8 + (startXt + j) * 2);
 					SetColor(4, 14);
-					cout << " X ";
+					cout << "X ";
 				}
 				return -1;
 			}
@@ -408,7 +408,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X, _Y - 8 + (startOt + j) * 2);
 					SetColor(0, 14);
-					cout << " O ";
+					cout << "O ";
 				}
 				return 1;
 			}
