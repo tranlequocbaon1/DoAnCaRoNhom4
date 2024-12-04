@@ -23,7 +23,7 @@ void about() {
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 12); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(50, 12); std::cout << u8"GROUP 04:";
+	GotoXY(40, 12); std::cout << u8"GROUP 04:";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 13); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
@@ -39,15 +39,15 @@ void about() {
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 16); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 16); std::cout << u8"+Nguyễn Văn Toàn         (24120232)";
+	GotoXY(50, 16); std::cout << u8"+Nguyễn Văn Toàn         (24120232)";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 17); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 17); std::cout << u8"+Trần Thiên An           (24120255)";
+	GotoXY(50, 17); std::cout << u8"+Trần Thiên An           (24120255)";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 18); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 18); std::cout << u8"Press Q to return Menu  ";
+	GotoXY(40, 18); std::cout << u8"Press Q to return Menu  ";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(32, 19); std::cout << u8"██████████████████████████████████████████████████████" << "\n";
 	GotoXY(34, 20); std::cout << u8"██████████████████████████████████████████████████" << "\n";
