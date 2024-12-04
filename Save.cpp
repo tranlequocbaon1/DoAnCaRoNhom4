@@ -436,16 +436,52 @@ void restartGame() {
 	else DrawO(89 + 2, 17);
 	while (1) {
 		_COMMAND = toupper(_getch());
-		if (_COMMAND == 27 || _COMMAND == 'q' || _COMMAND == 'Q') { // Nếu người chơi bấm Esc
-			Sleep(500);
-			//system("pause");
-			Sleep(500);scoreP1 = 0;
-			scoreP2 = 0;
-			system("cls");
-			click();
-			mainmenu();
+		if (_COMMAND == 27 || _COMMAND == 'Q') {
+			//countdownActive = false;
+			int choice = 0;
+			char key;
+			bool running = true;
+			while (running) {
+				GotoXY(0, 17);
+				displayMenu2(choice);
+				key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
 
-			return;
+				if (key == 'w' || key == 'W') {
+					choice = (choice - 1 + 3) % 3; // Di chuyển lên
+				}
+				else if (key == 's' || key == 'S') {
+					choice = (choice + 1) % 3; // Di chuyển xuống
+				}
+				else if (key == 13) {
+
+
+					if (choice == 2) {
+						click();
+						Sleep(500);
+						scoreP1 = 0;
+						scoreP2 = 0;
+
+						ExitGame();
+						mainmenu();
+
+						ExitProcess(0);
+						break;
+					}
+					else if (choice == 1) {
+
+						toggleSFX();
+
+
+						GotoXY(72, 4);
+
+					}
+					else break;
+
+
+				}
+
+			}RecoveryBoard();
+
 		}
 		else {
 			if (_COMMAND == 'A') MoveLeft();
@@ -706,16 +742,13 @@ void showloadgame()
 			GotoXY(40, fileStartRow + maxFiles);
 			cout << u8"└────────────────────────────────────────────┘" << "\n";
 			GotoXY(36, fileStartRow + maxFiles + 1);
-			if (isEnglish) cout << "Do you want to Load file? (Y/N) or Delete file? (D) ";
-			else	cout << "Ban co muon Load file khong? (Y/N) hoac Xoa file? (D) ";
+			if (isEnglish) cout << "Do you want to Load file? (Y) or Delete file? (D) ";
+			else	cout << "Ban co muon Load file khong? (Y) hoac Xoa file? (D) ";
 			char choice = _getch();
 
 			// Xử lý lựa chọn của người dùng
-			if (choice == 'n' || choice == 'N') {
-				click();
-				return;
-			}
-			else if (choice == 'q' || choice == 'Q') {
+			
+			if (choice == 'q' || choice == 'Q') {
 				click();
 				return;
 			}
@@ -740,11 +773,21 @@ void showloadgame()
 			else if (selectingFile == -1) {
 				if (choice == 'w' || choice == 'W') {
 					click();
-					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
+					if (selectedFileIndex > 0) {
+						selectedFileIndex--; // Di chuyển lên
+					}
+					else {
+						selectedFileIndex = savedFiles.size() - 1; // Quay về cuối danh sách
+					}
 				}
 				else if (choice == 's' || choice == 'S') {
 					click();
-					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
+					if (selectedFileIndex < savedFiles.size() - 1) {
+						selectedFileIndex++; // Di chuyển xuống
+					}
+					else {
+						selectedFileIndex = 0; // Quay về đầu danh sách
+					}
 				}
 				else if (choice == '\r') {
 					// Xóa file khi nhấn Enter
@@ -780,11 +823,21 @@ void showloadgame()
 			else if (selectingFile == 1) {
 				if (choice == 'w' || choice == 'W') {
 					click();
-					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
+					if (selectedFileIndex > 0) {
+						selectedFileIndex--; // Di chuyển lên
+					}
+					else {
+						selectedFileIndex = savedFiles.size() - 1; // Quay về cuối danh sách
+					}
 				}
 				else if (choice == 's' || choice == 'S') {
 					click();
-					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
+					if (selectedFileIndex < savedFiles.size() - 1) {
+						selectedFileIndex++; // Di chuyển xuống
+					}
+					else {
+						selectedFileIndex = 0; // Quay về đầu danh sách
+					}
 				}
 				else if (choice == '\r') { // Enter để load tệp
 					click();
@@ -958,11 +1011,21 @@ void xoagame()
 			{
 				if (choice == 'w' || choice == 'W') {
 					click();
-					if (selectedFileIndex > 0) selectedFileIndex--; // Di chuyển lên
+					if (selectedFileIndex > 0) {
+						selectedFileIndex--; // Di chuyển lên
+					}
+					else {
+						selectedFileIndex = savedFiles.size() - 1; // Quay về cuối danh sách
+					}
 				}
 				else if (choice == 's' || choice == 'S') {
 					click();
-					if (selectedFileIndex < savedFiles.size() - 1) selectedFileIndex++; // Di chuyển xuống
+					if (selectedFileIndex < savedFiles.size() - 1) {
+						selectedFileIndex++; // Di chuyển xuống
+					}
+					else {
+						selectedFileIndex = 0; // Quay về đầu danh sách
+					}
 				}
 				else if (choice == '\r') {
 
