@@ -799,7 +799,7 @@ void displayMenu2(int selected) {
 			}
 			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
 				GotoXY(46, 13);
-				cout << u8"│      " << setw(18) << left << options[i];
+				cout << u8"│  >>  " << setw(18) << left << options[i];
 				cout << u8"│" << "\n";
         
 			}

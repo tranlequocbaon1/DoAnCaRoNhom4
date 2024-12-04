@@ -1,4 +1,5 @@
 ﻿#include "Header.h"
+#include "language.h"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -154,7 +155,8 @@ void SetName_View() {
 	// Hiển thị và căn giữa phần nhập tên Player 1
 	SetColor(0, 15);
 	GotoXY(2, 9);
-	cout << ">>Nhap ten player1";
+	if (isEnglish) cout << ">>Enter name player1";
+	else cout << ">>Nhap ten player1";
 	GotoXY(2, 10);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
 	GotoXY(2, 11);
@@ -165,8 +167,8 @@ void SetName_View() {
 
 	// Hiển thị và căn giữa phần nhập tên Player 2
 	GotoXY(75, 9);
-	cout << ">>Nhap ten player2";
-	GotoXY(75, 10);
+	if (isEnglish) cout << ">>Enter name player2";
+	else cout << ">>Nhap ten player2";	GotoXY(75, 10);
 	cout << u8R"(┌─────────────────────────────────────────┐)";
 	GotoXY(75, 11);
 	cout << u8R"(│                                         │)";
