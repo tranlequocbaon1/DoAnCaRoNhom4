@@ -1,4 +1,4 @@
-﻿#include "header.h"
+#include "header.h"
 #include <windows.h>
 #include<iostream>;
 #include <conio.h>
@@ -19,23 +19,23 @@ void about() {
 	GotoXY(32, 10); std::cout << u8"██████████████████████████████████████████████████████" << "\n";
 	GotoXY(30, 11); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 11); std::cout << u8"Teacher_Instructors:Trương Toàn Thịnh";
+	GotoXY(40, 11); std::cout << u8"Teacher_Instructors:Trương Toàn Thịnh";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 12); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(35, 12); std::cout << u8"GROUP 04:";
+	GotoXY(50, 12); std::cout << u8"GROUP 04:";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 13); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 13); std::cout << u8"+Đỗ Ngọc Gia Bảo - Leader(24120263)";
+	GotoXY(50, 13); std::cout << u8"+Đỗ Ngọc Gia Bảo - Leader(24120263)";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 14); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 14); std::cout << u8"+Huỳnh Thanh Tú          (24120235)";
+	GotoXY(50, 14); std::cout << u8"+Huỳnh Thanh Tú          (24120235)";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 15); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
-	GotoXY(45, 15); std::cout << u8"+Trần Lê Quốc Bảo        (24120268)";
+	GotoXY(50, 15); std::cout << u8"+Trần Lê Quốc Bảo        (24120268)";
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 	GotoXY(30, 16); std::cout << u8"██████████████████████████████████████████████████████████" << "\n";
 	SetConsoleTextAttribute(hConsole, (11 << 4) | 0);
