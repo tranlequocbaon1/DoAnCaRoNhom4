@@ -86,12 +86,7 @@ void InputPlayerNames() {
 		}
 
 		if (player2.length() > 10) {
-			Sleep(200);
-			Box_Error_SetName(75, 8);
-			Sleep(800);
-			SetName_View();
-			GotoXY(4, 6);
-			cout << player1;
+			
 			int count = 3;
 			while (count > 0) {
 				Box_Error_SetName(75, 8);
@@ -101,15 +96,14 @@ void InputPlayerNames() {
 				Sleep(400);
 				count--;
 			}
+			SetName_View();
+			GotoXY(4, 6);
+			cout << player1;
 			GotoXY(centerX + 5, 12); // Đưa con trỏ về vị trí nhập tên
 			validInput = false;
 		}
 		else if (player1 == player2) {
-			Sleep(200);
-			Box_Error_Duplicate_SetName();
-			Sleep(800);
-			SetName_View();
-			GotoXY(4, 6);
+			
 			cout << player1;
 			int count = 3;
 			while (count > 0) {
@@ -120,6 +114,9 @@ void InputPlayerNames() {
 				Sleep(400);
 				count--;
 			}
+			SetName_View();
+			GotoXY(4, 6);
+			cout << player1;
 			GotoXY(76, 8); // Đưa con trỏ về vị trí nhập tên
 			validInput = false;
 		}

@@ -428,7 +428,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startXn + j) * 5, _Y);
 					SetColor(4, 14);
-					cout << "X";
+					cout << "X ";
 				}
 				return -1;
 			}
@@ -447,7 +447,7 @@ int TestBoard() {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startOn + j) * 5, _Y);
 					SetColor(0, 14);
-					cout << "O";
+					cout << "O ";
 				}
 				return 1;
 			}
@@ -770,7 +770,7 @@ void RecoveryBoard() {
 void displayMenu2(int selected) {
 	const string options[] = {
 		isEnglish ? "Continue" : "Tiep tuc",   // Tiếng Anh -> Tiếng Việt
-		"SFX",
+	"SFX",
 		isEnglish ? "Exit" : "Thoat"           // Tiếng Anh -> Tiếng Việt
 	};
 

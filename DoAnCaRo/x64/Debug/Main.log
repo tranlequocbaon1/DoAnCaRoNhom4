@@ -1,6 +1,2 @@
-﻿  Save.cpp
-E:\New folder\Save.cpp(404,6): warning C4101: 'a': unreferenced local variable
-E:\New folder\Save.cpp(404,9): warning C4101: 'b': unreferenced local variable
-  Source.cpp
-  Generating Code...
+﻿  Box.cpp
   Main.vcxproj -> E:\New folder\x64\Debug\DoAnCaRo.exe
