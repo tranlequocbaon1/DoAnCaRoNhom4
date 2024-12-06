@@ -1,4 +1,4 @@
-﻿
+
 #include "Save.h"
 #include "language.h"
 #include <Windows.h>
@@ -441,46 +441,50 @@ void restartGame() {
 			int choice = 0;
 			char key;
 			bool running = true;
-			while (running) {
-				GotoXY(0, 17);
-				displayMenu2(choice);
-				key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
+		nhan2:while (running) {
+			GotoXY(0, 17);
+			displayMenu2(choice);
+			key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
 
-				if (key == 'w' || key == 'W') {
-					choice = (choice - 1 + 3) % 3; // Di chuyển lên
+			if (key == 'w' || key == 'W') {
+				choice = (choice - 1 + 4) % 4; // Di chuyển lên
+			}
+			else if (key == 's' || key == 'S') {
+				choice = (choice + 1) % 4; // Di chuyển xuống
+			}
+			else if (key == 13) {
+
+				if (choice == 2) {
+					isEnglish = !isEnglish;  // Đổi ngôn ngữ
+
+					goto nhan2;
 				}
-				else if (key == 's' || key == 'S') {
-					choice = (choice + 1) % 3; // Di chuyển xuống
+				if (choice == 3) {
+					click();
+					Sleep(500);
+					scoreP1 = 0;
+					scoreP2 = 0;
+
+					ExitGame();
+					mainmenu();
+
+					ExitProcess(0);
+					break;
 				}
-				else if (key == 13) {
+				else if (choice == 1) {
+
+					toggleSFX();
 
 
-					if (choice == 2) {
-						click();
-						Sleep(500);
-						scoreP1 = 0;
-						scoreP2 = 0;
-
-						ExitGame();
-						mainmenu();
-
-						ExitProcess(0);
-						break;
-					}
-					else if (choice == 1) {
-
-						toggleSFX();
-
-
-						GotoXY(72, 4);
-
-					}
-					else break;
-
+					GotoXY(72, 4);
 
 				}
+				else break;
 
-			}RecoveryBoard();
+
+			}
+
+		}RecoveryBoard();
 
 		}
 		else {
@@ -520,7 +524,7 @@ void restartGame() {
 					}
 					pc.x = _X;
 					pc.y = _Y;
-					DrawO(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
+					DrawO(89 + 2, 17); SetConsoleTextAttribute(hStdOut, 0 | (15 << 4));
 
 
 					break;
@@ -545,7 +549,7 @@ void restartGame() {
 					}
 					pc.x = _X;
 					pc.y = _Y;
-					DrawX(89 + 2, 17);SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
+					DrawX(89 + 2, 17); SetConsoleTextAttribute(hStdOut, 1 | (15 << 4));
 					break;
 				case 0: // Nếu ô trống
 					ValidEnter = false; // Không làm gì, ô đã có X hoặc O
@@ -656,15 +660,15 @@ void reStartGame() {
 
 
 void resetData() {
-	for (int i = 0;i < BOARD_SIZE;i++) {
-		for (int j = 0;j < BOARD_SIZE;j++) {
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
 			_A[i][j].x = 5 * j + LEFT + 2;
 			_A[i][j].y = 2 * i + TOP + 1;
 
 		}
 	}
-	_TURN = true;_COMMAND = -1;
-	_X = _A[0][0].x;_Y = _A[0][0].y;
+	_TURN = true; _COMMAND = -1;
+	_X = _A[0][0].x; _Y = _A[0][0].y;
 }
 
 //final
@@ -679,15 +683,17 @@ void showloadgame()
 		clearScreen();
 		DrawBG_Tim();
 		drawLoadGame(20, 1);
-		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+		SetConsoleTextAttribute(hConsole, (15 << 4) | 13);
 
-		GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
+		GotoXY(42, 12); cout << u8"██████████████████████████████████████████" << "\n";
 		GotoXY(40, 13);
+		SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
 		if (isEnglish)
-			cout << u8"│               SAVED FILE LIST              │" << "\n";
+
+			cout << u8"                SAVED FILE LIST               " << "\n";
 		else
-			cout << u8"│             DANH SÁCH FILE LƯU             │" << "\n";
-		GotoXY(40, 14); cout << u8"│                                            │" << "\n";
+			cout << u8"              DANH SÁCH FILE LƯU              " << "\n";
+		GotoXY(40, 14); cout << u8"                                              " << "\n";
 
 		vector<string> savedFiles;
 		showSavedFiles(savedFiles);
@@ -702,21 +708,22 @@ void showloadgame()
 
 		while (true) {
 			// Xóa màn hình nếu người dùng di chuyển
-			if (selectingFile) {
+			/*if (selectingFile) {
 				clearScreen();
 				// Vẽ lại nền mỗi lần sau khi người dùng di chuyển lựa chọn
-				DrawBG_Tim();
+				//DrawBG_Tim();
 				drawLoadGame(20, 1);
-				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
-
-			}
-			GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
+				SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
+			}*/
+			SetConsoleTextAttribute(hConsole, (15 << 4) | 13);
+			GotoXY(42, 12); cout << u8"██████████████████████████████████████████" << "\n";
 			GotoXY(40, 13);
+			SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
 			if (isEnglish)
-				cout << u8"│               SAVED FILE LIST              │" << "\n";
+				cout << u8"                SAVED FILE LIST               " << "\n";
 			else
-				cout << u8"│             DANH SÁCH FILE LƯU             │" << "\n";
-			GotoXY(40, 14); cout << u8"│                                            │" << "\n";
+				cout << u8"              DANH SÁCH FILE LƯU              " << "\n";
+			GotoXY(40, 14); cout << u8"                                              " << "\n";
 			// Vẽ bảng file và danh sách các file
 			for (int i = 0; i < maxFiles; i++) {
 				// Đảm bảo không vẽ quá số lượng file có sẵn
@@ -728,26 +735,35 @@ void showloadgame()
 				// Đánh dấu file đang chọn
 				if (i == selectedFileIndex) {
 					GotoXY(40, fileStartRow + i);
-					cout << u8"│ > " << formattedFileName
-						<< std::string(38 - formattedFileName.length(), ' ') << u8"   │" << "\n";
+					SetConsoleTextAttribute(hConsole, (13 << 4) | 7);
+					cout << u8"  > " << formattedFileName
+						<< std::string(38 - formattedFileName.length(), ' ') << u8"    " << "\n";
 				}
 				else {
 					GotoXY(40, fileStartRow + i);
-					cout << u8"│   " << formattedFileName
-						<< std::string(40 - formattedFileName.length(), ' ') << u8" │" << "\n";
+					SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
+					cout << u8"    " << formattedFileName
+						<< std::string(40 - formattedFileName.length(), ' ') << u8"  " << "\n";
 				}
 			}
 
 			// Hiển thị bảng đóng lại
-			GotoXY(40, fileStartRow + maxFiles);
-			cout << u8"└────────────────────────────────────────────┘" << "\n";
-			GotoXY(36, fileStartRow + maxFiles + 1);
-			if (isEnglish) cout << "Do you want to Load file? (Y) or Delete file? (D) ";
-			else	cout << "Ban co muon Load file khong? (Y) hoac Xoa file? (D) ";
+			SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
+			if (isEnglish) {
+				GotoXY(40, fileStartRow + maxFiles); cout << "       Do you want to Load file? (Y)          ";
+				GotoXY(40, fileStartRow + maxFiles + 1); cout << "                or Delete file ? (D)          ";
+			}
+			else {
+				GotoXY(40, fileStartRow + maxFiles); cout << "      Ban co muon Load file khong? (Y)        ";
+				GotoXY(40, fileStartRow + maxFiles + 1); cout << "                   hoac Xoa file ? (D)        ";
+			}
+			GotoXY(42, fileStartRow + maxFiles + 2);
+			SetConsoleTextAttribute(hConsole, (15 << 4) | 13);
+			cout << u8"██████████████████████████████████████████" << "\n";
 			char choice = _getch();
 
 			// Xử lý lựa chọn của người dùng
-			
+
 			if (choice == 'q' || choice == 'Q') {
 				click();
 				return;
@@ -914,7 +930,7 @@ void xoagame()
 	{
 		clearScreen();
 		DrawBG_Tim();
-		SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
+		SetConsoleTextAttribute(hConsole, (15 << 4) | 11);
 		GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
 		GotoXY(40, 13);
 		if (isEnglish)
@@ -940,7 +956,7 @@ void xoagame()
 				clearScreen();
 				// Vẽ lại nền mỗi lần sau khi người dùng di chuyển lựa chọn
 				DrawBG_Tim();
-				SetConsoleTextAttribute(hConsole, (15<<4)|5);
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
 
 			}
 			GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
