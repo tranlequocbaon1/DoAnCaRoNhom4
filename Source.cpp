@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "header.h"
 #include "language.h"
 #include"Draw.h"
@@ -547,21 +547,25 @@ void startGame() {
 			int choice = 0;
 			char key;
 			bool running = true;
-			while (running) {
+			nhan:while (running) {
 				GotoXY(0, 17);
 				displayMenu2(choice);
 				key = _getch(); // Nhận đầu vào từ bàn phím mà không cần nhấn Enter
 
 				if (key == 'w' || key == 'W') {
-					choice = (choice - 1 + 3) % 3; // Di chuyển lên
+					choice = (choice - 1 + 4) % 4; // Di chuyển lên
 				}
 				else if (key == 's' || key == 'S') {
-					choice = (choice + 1) % 3; // Di chuyển xuống
+					choice = (choice + 1) % 4; // Di chuyển xuống
 				}
 				else if (key == 13) {
 
-
 					if (choice == 2) {
+						isEnglish = !isEnglish;  // Đổi ngôn ngữ
+						
+						goto nhan;
+					}
+					if (choice == 3) {
 						click();
 						Sleep(500);
 						scoreP1 = 0;
@@ -771,7 +775,9 @@ void displayMenu2(int selected) {
 	const string options[] = {
 		isEnglish ? "Continue" : "Tiep tuc",   // Tiếng Anh -> Tiếng Việt
 	"SFX",
-		isEnglish ? "Exit" : "Thoat"           // Tiếng Anh -> Tiếng Việt
+	isEnglish ? "Language(English)" : "Language(Vietnamese)",
+		isEnglish ? "Exit" : "Thoat" ,
+		
 	};
 
 	const int numOptions = sizeof(options) / sizeof(options[0]);
@@ -780,7 +786,7 @@ void displayMenu2(int selected) {
 	SetConsoleTextAttribute(hConsole, (15 << 4) | 0);
 	SetConsoleOutputCP(CP_UTF8);
 	GotoXY(46, 10);
-	cout << u8"┌────────────────────────┐" << endl;
+	cout << u8"┌──────────────────────────┐" << endl;
 	for (int i = 0; i < numOptions; i++) {
 
 		if (i == selected) {
@@ -790,17 +796,30 @@ void displayMenu2(int selected) {
 			if (options[i] == (isEnglish ? "Continue" : "Tiep tuc")) {
 				GotoXY(46, 11);
 				cout << u8"│  >>  " << options[i];
-				cout << u8"          │" << "\n";
+				cout << u8"            │" << "\n";
 			}
 			else if (options[i] == "SFX") {
 				GotoXY(46, 12);
 				cout << u8"│  >>  " << options[i];
-				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
+				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"       │" << endl;
 			}
-			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
+			else if (options[i] == (isEnglish ? "Language(English)" : "Language(Vietnamese)")) {
 				GotoXY(46, 13);
 				cout << u8"│  >>  " << setw(18) << left << options[i];
-				cout << u8"│" << "\n";
+				if (options[i] == "Language(English)")
+				{
+					cout << u8"  │" << "\n";
+
+				}
+				else
+					cout << u8"│" << "\n";
+
+			}
+
+			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
+				GotoXY(46, 14);
+				cout << u8"│  >>  " << setw(18) << left << options[i];
+				cout << u8"  │" << "\n";
         
 			}
 		}
@@ -809,22 +828,33 @@ void displayMenu2(int selected) {
 			if (options[i] == (isEnglish ? "Continue" : "Tiep tuc")) {
 				GotoXY(46, 11);
 				cout << u8"│      " << options[i];
-				cout << u8"          │" << "\n";
+				cout << u8"            │" << "\n";
 			}
 			else if (options[i] == "SFX") {
 				GotoXY(46, 12);
 				cout << u8"│      " << options[i];
-				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"     │" << endl;
+				cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"       │" << endl;
 			}
-			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
+			else if (options[i] == (isEnglish ? "Language(English)" : "Language(Vietnamese)")) {
 				GotoXY(46, 13);
 				cout << u8"│      " << setw(18) << left << options[i];
+				if (options[i]== "Language(English)")
+				{
+					cout << u8"  │" << "\n";
+
+				}else 
 				cout << u8"│" << "\n";
+
+			}
+			else if (options[i] == (isEnglish ? "Exit" : "Thoat")) {
+				GotoXY(46, 14);
+				cout << u8"│      " << setw(18) << left << options[i];
+				cout << u8"  │" << "\n";
 			}
 		}
 	}
-	GotoXY(46, 14);
-	std::cout << u8"└────────────────────────┘" << endl;
+	GotoXY(46, 15);
+	std::cout << u8"└──────────────────────────┘" << endl;
 
 	std::cout << endl;
 }
