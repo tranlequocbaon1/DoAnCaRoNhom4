@@ -1,4 +1,4 @@
-﻿#pragma once﻿
+#pragma once﻿
 #include "Header.h"
 #include <conio.h>
 #include <iostream>
@@ -18,58 +18,85 @@ void displaysetting(int selected) {
 
     // Cố định khung với kích thước không thay đổi
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
-    clearScreen();
-    DrawBg_Hong();
-    drawSetting(32, 1);
+    
 
     SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
-    GotoXY(46, 12);
-    cout << u8"┌────────────────────────────┐" << endl;
+    GotoXY(47, 12);
+    SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+    cout << u8"██████████████████████████" ;
+    
     for (int i = 0; i < numOptions; i++) {
         if (i == selected) {
             // Màu sắc khi mục đang chọn
-            SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
+            SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
             GotoXY(46, 13 + i); // Di chuyển tới dòng tương ứng với lựa chọn
-            cout << u8"│   >> " << options[i];
+            cout << u8"    >> " << options[i];
 
             // Hiển thị trạng thái cho SFX
             if (i == 0) {
-                cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"         │" << endl;
+                SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
+                cout << setw(12) << (isSFXEnabled ? " (On)" : " (Off)");
+                SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+                cout << u8"██████" << endl;
             }
             else if (i == 1) {
                 // Hiển thị trạng thái cho Language
-                cout << setw(13) << (isEnglish ? " (English)" : "(Vietnamese)") << u8" │" << endl;
+                SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
+                cout << setw(11) << (isEnglish ? " (English)" : "(Vietnamese)");
+                SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+                cout << u8"██" << endl;
             }
         }
         else {
             // Màu sắc khi mục không được chọn
-            SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | (15 << 4));
+            SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
             GotoXY(46, 13 + i); // Di chuyển tới dòng tương ứng với lựa chọn
-            cout << u8"│      " << options[i];
+            cout << u8"       " << options[i];
 
             // Hiển thị trạng thái cho SFX
             if (i == 0) {
-                cout << setw(10) << (isSFXEnabled ? " (On)" : " (Off)") << u8"         │" << endl;
+                SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
+                cout << setw(12) << (isSFXEnabled ? " (On)" : " (Off)");
+                SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+                cout << u8"███" << endl;
             }
             else if (i == 1) {
                 // Hiển thị trạng thái cho Language
-                cout << setw(13) << (isEnglish ? " (English)" : "(Vietnamese)") << u8" │" << endl;
+                SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
+                cout << setw(11) << (isEnglish ? "(English)" : "(Vietnamese)");
+                SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+                cout << u8"██" << endl;
             }
         }
     }
-    GotoXY(46, 15);
-    cout << u8"└────────────────────────────┘" << endl;
+    GotoXY(47, 15);
+    SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+    cout << u8"██████████████████████████" << endl;
+    GotoXY(73, 12);
+    SetConsoleTextAttribute(hConsole, (15 << 4) | 6);
 
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | (15 << 4));
+    cout << u8"█" << endl;
+    GotoXY(74, 13);
+    cout << u8"█" << endl;
+    GotoXY(74, 14);
+    cout << u8"█" << endl;
+    GotoXY(73, 15);
+    cout << u8"█" << endl;
+   
+    
 }
 
 
 
 
 void Setting() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int choice = 0;
 	char key;
-	while (true) {
+    clearScreen();
+    DrawBg_Hong();
+    drawSetting(32, 1);
+	nhan1:while (true) {
 		displaysetting(choice);  // Hiển thị menu cài đặt
 		key = _getch();  // Nhận đầu vào từ bàn phím
 
@@ -82,10 +109,16 @@ void Setting() {
 			switch (choice) {
 			case 0:  // Thay đổi SFX
 				toggleSFX();
+                goto nhan1;
 				break;
 			case 1:  // Thay đổi ngôn ngữ
 				isEnglish = !isEnglish;  // Đổi ngôn ngữ
-				Box_Error_Duplicate_file(); // Cập nhật hộp thông báo khi ngôn ngữ thay đổi
+				
+
+                goto nhan1;
+                GotoXY(70, 13);
+                SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
+                cout << u8"████" << endl;
 				break;
 			}
 		}
