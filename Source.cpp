@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "header.h"
 #include "language.h"
 #include"Draw.h"
@@ -9,7 +9,7 @@
 #include <Windows.h>
 #include"Timer.h"
 #include <iomanip>
-#include <thread>//de chay timer
+
 
 
 using namespace std;
