@@ -914,7 +914,7 @@ void xoagame()
 	{
 		clearScreen();
 		DrawBG_Tim();
-		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+		SetConsoleTextAttribute(hConsole, (15 << 4) | 5);
 		GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
 		GotoXY(40, 13);
 		if (isEnglish)
@@ -940,7 +940,7 @@ void xoagame()
 				clearScreen();
 				// Vẽ lại nền mỗi lần sau khi người dùng di chuyển lựa chọn
 				DrawBG_Tim();
-				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+				SetConsoleTextAttribute(hConsole, (15<<4)|5);
 
 			}
 			GotoXY(40, 12); cout << u8"┌────────────────────────────────────────────┐" << "\n";
