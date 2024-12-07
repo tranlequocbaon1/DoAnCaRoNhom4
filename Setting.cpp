@@ -1,4 +1,4 @@
-#pragma once﻿
+﻿#pragma once﻿
 #include "Header.h"
 #include <conio.h>
 #include <iostream>
