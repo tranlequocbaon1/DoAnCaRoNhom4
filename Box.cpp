@@ -333,3 +333,49 @@ void Box_Error_Duplicate_file() {
 	cout << u8R"(╚═════════════════════════════════════════╝)";
 	SetColor(0, 15);
 }
+void deletefilebox() {
+	SetColor(4, 15);  // Màu cho thông báo lỗi (đỏ chữ, trắng nền)
+
+	// Vẽ hộp thông báo
+	GotoXY(41, 12);
+	cout << u8R"(╔══════════════════════════════════════════╗)";
+
+
+	// Hiển thị thông báo tùy thuộc vào ngôn ngữ
+	if (isEnglish) {
+		GotoXY(41, 13);	cout << u8R"(║Are you sure you want to delete this file?║)";
+		GotoXY(41, 14);	cout << u8R"(║   Press (A) to confirm, (C) to cancel    ║)";
+
+	}
+	else {
+		GotoXY(41, 13);cout << u8R"(║   Bạn có chắc chắn muốn xóa file không?  ║)";
+		GotoXY(41, 14);cout << u8R"(║     Nhấn (A) để xác nhận, (C) để hủy     ║)";
+
+	}
+	GotoXY(41, 15);
+	cout << u8R"(╚══════════════════════════════════════════╝)";
+	SetColor(0, 16);
+}
+void loadsavebox() {
+	SetColor(4, 15);  // Màu cho thông báo lỗi (đỏ chữ, trắng nền)
+
+	// Vẽ hộp thông báo
+	GotoXY(41, 12);
+	cout << u8R"(╔══════════════════════════════════════════╗)";
+
+
+	// Hiển thị thông báo tùy thuộc vào ngôn ngữ
+	if (isEnglish) {
+		GotoXY(41, 13);	cout << u8R"(║ Are you sure you want to load this file? ║)";
+		GotoXY(41, 14);	cout << u8R"(║   Press (A) to confirm, (C) to cancel    ║)";
+
+	}
+	else {
+		GotoXY(41, 13);cout << u8R"(║   Bạn có chắc chắn muốn tải file không?  ║)";
+		GotoXY(41, 14);cout << u8R"(║     Nhấn (A) để xác nhận, (C) để hủy     ║)";
+
+	}
+	GotoXY(41, 15);
+	cout << u8R"(╚══════════════════════════════════════════╝)";
+	SetColor(0, 16);
+}

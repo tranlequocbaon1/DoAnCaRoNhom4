@@ -12,8 +12,10 @@
 using namespace std;
 
 void displaysetting(int selected) {
-    const string options[] = { "SFX", "Language" };
-    const int numOptions = sizeof(options) / sizeof(options[0]);
+    const string optionsEnglish[] = { "SFX", "Language" };
+    const string optionsVietnamese[] = { "SFX", "Ngon ngu" };
+    const string* options = isEnglish ? optionsEnglish : optionsVietnamese;
+    const int numOptions = sizeof(optionsEnglish) / sizeof(optionsEnglish[0]);
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     // Cố định khung với kích thước không thay đổi
@@ -35,14 +37,14 @@ void displaysetting(int selected) {
             // Hiển thị trạng thái cho SFX
             if (i == 0) {
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
-                cout << setw(12) << (isSFXEnabled ? " (On)" : " (Off)");
+                cout << setw(10) << (isSFXEnabled ? (isEnglish ? " (On)" : " (Bat)") : (isEnglish ? " (Off)" : " (Tat)")) << u8"         │" << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"██████" << endl;
             }
             else if (i == 1) {
                 // Hiển thị trạng thái cho Language
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
-                cout << setw(11) << (isEnglish ? " (English)" : "(Vietnamese)");
+                cout << setw(13) << (isEnglish ? " (English)" : " (Tieng Viet)") << u8" │" << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"██" << endl;
             }
@@ -56,14 +58,14 @@ void displaysetting(int selected) {
             // Hiển thị trạng thái cho SFX
             if (i == 0) {
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
-                cout << setw(12) << (isSFXEnabled ? " (On)" : " (Off)");
+                cout << setw(10) << (isSFXEnabled ? (isEnglish ? " (On)" : " (Bat)") : (isEnglish ? " (Off)" : " (Tat)")) << u8"         │" << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"███" << endl;
             }
             else if (i == 1) {
                 // Hiển thị trạng thái cho Language
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
-                cout << setw(11) << (isEnglish ? "(English)" : "(Vietnamese)");
+                cout << setw(13) << (isEnglish ? " (English)" : " (Tieng Viet)") << u8" │" << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"██" << endl;
             }
