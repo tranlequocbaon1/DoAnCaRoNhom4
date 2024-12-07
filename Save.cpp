@@ -806,13 +806,45 @@ void showloadgame()
 					}
 				}
 				else if (choice == '\r') {
-					// Xóa file khi nhấn Enter
-					string fileName = savedFiles[selectedFileIndex];
-					deleteSavedFile(fileName);
-					savedFiles.clear();
-					showSavedFiles(savedFiles);
-					selectedFileIndex = 0;
-					selectingFile = 0;
+					char key;
+					//GotoXY(27, fileStartRow + maxFiles + 2);
+					//cout << "Are you sure you want to delete this file? Press (A) to confirm, (C) to cancel";
+					//int countError = 3;
+					//do {
+					//	deletefilebox();
+					//	/*Sleep(500);
+					//	GotoXY(50, 17); cout << "                      ";
+					//	Sleep(200);*/
+					//	countError--;
+					//} while (countError > 0);
+					//selectingFile = 0;
+					/*do
+					{*/
+					deletefilebox();
+					key = _getch();
+					if (key == 'a' || key == 'A')
+					{
+						click();
+						string fileName = savedFiles[selectedFileIndex];
+						deleteSavedFile(fileName);
+						savedFiles.clear();
+						showSavedFiles(savedFiles);
+						selectedFileIndex = 0;
+						selectingFile = 0;
+						break;
+					}
+					else if (key == 'c' || key == 'C')
+					{
+						click();
+						break;
+					}
+					//else {
+					//	cout << "invalid key" << endl;
+					//	//GotoXY(27, fileStartRow + maxFiles + 2); cout << "                                                                                                  ";
+					//}
+
+				//} while (key != 'c' && key != 'a');
+
 				}
 			}
 			else if (choice == 'y' || choice == 'Y')
@@ -855,52 +887,65 @@ void showloadgame()
 						selectedFileIndex = 0; // Quay về đầu danh sách
 					}
 				}
-				else if (choice == '\r') { // Enter để load tệp
-					click();
-					string fileName = savedFiles[selectedFileIndex];
-					string fullFileName = "Saves/" + fileName + ".txt";
+				else if (choice == '\r')
+				{ // Enter để load tệp
+					char key;
+					loadsavebox();
+					key = _getch();
+					if (key == 'a' || key == 'A')
+					{
 
-					if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".txt") {
-						fullFileName = "Saves/" + fileName; // Nếu đã có ".txt" thì giữ nguyên
-					}
-					else {
-						fullFileName = "Saves/" + fileName + ".txt"; // Nếu chưa có thì thêm ".txt"
-					}
+						click();
+						string fileName = savedFiles[selectedFileIndex];
+						string fullFileName = "Saves/" + fileName + ".txt";
 
-					ifstream loadFile(fullFileName.c_str());
-					cout << "duong dan file load: " << fullFileName << endl;
-
-					if (!loadFile.is_open()) {
-						error();
-						cout << "Loi: Khong the mo file save! Kiem tra lai ten file va thu muc 'Saves/'." << endl;
-						return;
-					}
-
-					if (loadFile.peek() == ifstream::traits_type::eof()) {
-						error();
-						cout << "Loi: File save rong hoac khong dung dinh dang!" << endl;
-						return;
-					}
-
-					for (int i = 0; i < BOARD_SIZE; i++) {
-						for (int j = 0; j < BOARD_SIZE; j++) {
-							loadFile >> _A[i][j].c;
+						if (fileName.size() >= 4 && fileName.substr(fileName.size() - 4) == ".txt") {
+							fullFileName = "Saves/" + fileName; // Nếu đã có ".txt" thì giữ nguyên
 						}
+						else {
+							fullFileName = "Saves/" + fileName + ".txt"; // Nếu chưa có thì thêm ".txt"
+						}
+
+						ifstream loadFile(fullFileName.c_str());
+						cout << "duong dan file load: " << fullFileName << endl;
+
+						if (!loadFile.is_open()) {
+							error();
+							cout << "Loi: Khong the mo file save! Kiem tra lai ten file va thu muc 'Saves/'." << endl;
+							return;
+						}
+
+						if (loadFile.peek() == ifstream::traits_type::eof()) {
+							error();
+							cout << "Loi: File save rong hoac khong dung dinh dang!" << endl;
+							return;
+						}
+
+						for (int i = 0; i < BOARD_SIZE; i++) {
+							for (int j = 0; j < BOARD_SIZE; j++) {
+								loadFile >> _A[i][j].c;
+							}
+						}
+						int turn;
+						loadFile >> turn;
+						_TURN = (turn == 1);
+
+						loadFile >> _X >> _Y;
+						loadFile >> scoreP1 >> scoreP2;
+						loadFile.close();
+
+						clearScreen();
+						restartGame();
+						GotoXY(_X, _Y);
+						cout << "Game da duoc load thanh cong tu file: " << fullFileName << endl;
+						break;
+					}
+					else if (key == 'c' || key == 'C')
+					{
+						click();
+						break;
 					}
 
-					int turn;
-					loadFile >> turn;
-					_TURN = (turn == 1);
-
-					loadFile >> _X >> _Y;
-					loadFile >> scoreP1 >> scoreP2;
-					loadFile.close();
-
-					clearScreen();
-					restartGame();
-					GotoXY(_X, _Y);
-					cout << "Game da duoc load thanh cong tu file: " << fullFileName << endl;
-					break;
 				}
 			}
 		}

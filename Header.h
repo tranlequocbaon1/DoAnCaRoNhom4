@@ -67,6 +67,8 @@ void Box_Error_Duplicate_SetName();
 void Box_TimeCountdown_End();
 void Box_Error_Empty_File();
 void Box_Error_Duplicate_file();
+void deletefilebox();
+void loadsavebox();
 
 void displayMenu(int selected);
 void startGame();
