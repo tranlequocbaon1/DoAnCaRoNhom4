@@ -6,7 +6,7 @@
 #pragma comment(lib, "winmm.lib")
 #include <winnt.rh>
 
-bool isSFXEnabled = false;
+bool isSFXEnabled = true;
 void click() {
     if (isSFXEnabled) { // Kiểm tra xem SFX có được bật không
         PlaySound(TEXT("Music/click.wav"), NULL, SND_FILENAME | SND_ASYNC);
