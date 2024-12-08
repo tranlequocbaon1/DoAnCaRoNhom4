@@ -1,4 +1,4 @@
-﻿#pragma once﻿
+#pragma once﻿
 #include "Header.h"
 #include <conio.h>
 #include <iostream>
@@ -37,14 +37,14 @@ void displaysetting(int selected) {
             // Hiển thị trạng thái cho SFX
             if (i == 0) {
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
-                cout << setw(10) << (isSFXEnabled ? (isEnglish ? " (On)" : " (Bat)") : (isEnglish ? " (Off)" : " (Tat)")) << u8"         │" << endl;
+                cout << setw(10) << (isSFXEnabled ? (isEnglish ? " (On)" : " (Bat)") : (isEnglish ? " (Off)" : " (Tat)")) << u8"        " <<endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"██████" << endl;
             }
             else if (i == 1) {
                 // Hiển thị trạng thái cho Language
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 4);
-                cout << setw(13) << (isEnglish ? " (English)" : " (Tieng Viet)") << u8" │" << endl;
+                cout << setw(13) << (isEnglish ? " (English)" : " (Tieng Viet)") << u8" " << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"██" << endl;
             }
@@ -58,14 +58,14 @@ void displaysetting(int selected) {
             // Hiển thị trạng thái cho SFX
             if (i == 0) {
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
-                cout << setw(10) << (isSFXEnabled ? (isEnglish ? " (On)" : " (Bat)") : (isEnglish ? " (Off)" : " (Tat)")) << u8"         │" << endl;
+                cout << setw(10) << (isSFXEnabled ? (isEnglish ? " (On)" : " (Bat)") : (isEnglish ? " (Off)" : " (Tat)")) << u8"        " << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"███" << endl;
             }
             else if (i == 1) {
                 // Hiển thị trạng thái cho Language
                 SetConsoleTextAttribute(hConsole, (14 << 4) | 0);
-                cout << setw(13) << (isEnglish ? " (English)" : " (Tieng Viet)") << u8" │" << endl;
+                cout << setw(13) << (isEnglish ? " (English)" : " (Tieng Viet)") << u8" " << endl;
                 SetConsoleTextAttribute(hConsole, (15 << 4) | 14);
                 cout << u8"██" << endl;
             }
