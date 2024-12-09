@@ -360,10 +360,10 @@ int TestBoard() {
 
 	for (int i = 0; i <= 9; i++) {
 		if (_B[_X / 5 - 4 + i][_Y / 2 - 4 + i] == 1) {
-			if (countOCC == 0) startOcc = i;
-			countOCC += 1;
+			if (countXCC == 0) startOcc = i;
+			countXCC += 1;
 
-			if (countOCC == 5) {
+			if (countXCC == 5) {
 				for (int j = 0; j < 5; j++) {
 					GotoXY(_X - 20 + (startOcc + j) * 5, _Y - 8 + (startOcc + j) * 2);
 					SetColor(0, 14);
@@ -373,7 +373,7 @@ int TestBoard() {
 			}
 		}
 		else {
-			countOCC = 0; startOcc = -1;
+			countXCC = 0; startOcc = -1;
 		}
 
 	}
@@ -528,7 +528,8 @@ void startGame() {
 	bool ValidEnter = true;
 	seconds = 15;
 	StartGame();
-
+	DrawMinion2(95, 1);
+	DrawHeart(105, 1);
 	Box1();
 	Box2();
 	Box3();
