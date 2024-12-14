@@ -619,8 +619,9 @@ void restartGame() {
 							return;
 						}
 						else {
+							InputActive = false;
 							ResetKetqua(_B);
-							startGame(); // Khởi động lại trò chơi
+							startGame();//Khởi động lại trò chơi
 						}
 					}
 
@@ -641,8 +642,10 @@ void restartGame() {
 							return;
 						}
 						else {
+							// = false;
+							InputActive = false;
 							ResetKetqua(_B);
-							startGame(); // Khởi động lại trò chơi
+							startGame();// Khởi động lại trò chơi
 						}
 					}
 				}
@@ -748,15 +751,51 @@ void showloadgame()
 			}
 
 			// Hiển thị bảng đóng lại
-			SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
-			if (isEnglish) {
-				GotoXY(40, fileStartRow + maxFiles); cout << "       Do you want to Load file? (Y)          ";
-				GotoXY(40, fileStartRow + maxFiles + 1); cout << "                or Delete file ? (D)          ";
+			//SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
+
+
+
+
+
+
+			if (selectingFile == 1) {
+				// Load file: tô trắng
+				SetConsoleTextAttribute(hConsole, (13 << 4) | 7);
+				GotoXY(40, fileStartRow + maxFiles);
+				cout << (isEnglish ? "       Do you want to Load file? (Y)          "
+					: "      Ban co muon Load file khong? (Y)        ");
+
+				// Delete file: màu mặc định
+				SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
+				GotoXY(40, fileStartRow + maxFiles + 1);
+				cout << (isEnglish ? "                or Delete file ? (D)          "
+					: "                   hoac Xoa file ? (D)        ");
+			}
+			else if (selectingFile == -1) {
+				// Load file: màu mặc định
+				SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
+				GotoXY(40, fileStartRow + maxFiles);
+				cout << (isEnglish ? "       Do you want to Load file? (Y)          "
+					: "      Ban co muon Load file khong? (Y)        ");
+
+				// Delete file: tô trắng
+				SetConsoleTextAttribute(hConsole, (13 << 4) | 7);
+				GotoXY(40, fileStartRow + maxFiles + 1);
+				cout << (isEnglish ? "                or Delete file ? (D)          "
+					: "                   hoac Xoa file ? (D)        ");
 			}
 			else {
-				GotoXY(40, fileStartRow + maxFiles); cout << "      Ban co muon Load file khong? (Y)        ";
-				GotoXY(40, fileStartRow + maxFiles + 1); cout << "                   hoac Xoa file ? (D)        ";
+				// Cả hai dòng đều màu mặc định
+				SetConsoleTextAttribute(hConsole, (13 << 4) | 0);
+				GotoXY(40, fileStartRow + maxFiles);
+				cout << (isEnglish ? "       Do you want to Load file? (Y)          "
+					: "      Ban co muon Load file khong? (Y)        ");
+				GotoXY(40, fileStartRow + maxFiles + 1);
+				cout << (isEnglish ? "                or Delete file ? (D)          "
+					: "                   hoac Xoa file ? (D)        ");
 			}
+
+			//SetConsoleTextAttribute(hConsole, (13 << 4) | 7);
 			GotoXY(42, fileStartRow + maxFiles + 2);
 			SetConsoleTextAttribute(hConsole, (15 << 4) | 13);
 			cout << u8"██████████████████████████████████████████" << "\n";
@@ -784,9 +823,11 @@ void showloadgame()
 				}
 				else {
 					selectingFile = -1;
+
 				}
 			}
 			else if (selectingFile == -1) {
+
 				if (choice == 'w' || choice == 'W') {
 					click();
 					if (selectedFileIndex > 0) {
@@ -865,6 +906,7 @@ void showloadgame()
 				}
 				else {
 					selectingFile = 1;
+
 				}
 			}
 
