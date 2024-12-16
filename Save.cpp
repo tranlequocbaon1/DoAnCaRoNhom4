@@ -846,6 +846,7 @@ void showloadgame()
 						selectedFileIndex = 0; // Quay về đầu danh sách
 					}
 				}
+				else if (choice == 'y' || choice == 'Y') selectingFile = 1;
 				else if (choice == '\r') {
 					char key;
 					//GotoXY(27, fileStartRow + maxFiles + 2);
@@ -1108,6 +1109,7 @@ void xoagame()
 				else {
 					selectingFile = -1;
 				}
+			
 			}
 
 			else if (selectingFile == -1)
@@ -1130,6 +1132,7 @@ void xoagame()
 						selectedFileIndex = 0; // Quay về đầu danh sách
 					}
 				}
+				//else if (choice == 'y' || choice == 'Y') { selectingFile = 1; }
 				else if (choice == '\r') {
 
 					string fileName = savedFiles[selectedFileIndex];
