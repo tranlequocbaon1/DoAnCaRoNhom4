@@ -775,7 +775,7 @@ void RecoveryBoard() {
 void displayMenu2(int selected) {
 	const string options[] = {
 		isEnglish ? "Continue" : "Tiep tuc",   // Tiếng Anh -> Tiếng Việt
-	"SFX",
+"SFX",
 	isEnglish ? "Language" : "Ngon ngu",
 		isEnglish ? "Exit" : "Thoat" ,
 		
